@@ -10,7 +10,6 @@ import '../widgets/floating_particles.dart';
 import '../widgets/glowing_button.dart';
 import '../data/onboarding_data.dart'; // ✅ Import this
 import 'student_query_screen.dart';
-import '../providers/onboarding_provider.dart';
 
 class OnboardingScreen extends ConsumerWidget {
   OnboardingScreen({super.key});
@@ -103,13 +102,45 @@ class OnboardingScreen extends ConsumerWidget {
           ).animate().fadeIn(delay: 3500.ms),
           const SizedBox(height: 40),
           if (isLastPage)
+            // GlowingButton(
+            //   text: "Let's Start!",
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => StudentQueryScreen()));
+            //   },
+            // ),
             GlowingButton(
               text: "Let's Start!",
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => StudentQueryScreen()));
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: const Duration(milliseconds: 350),
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        StudentQueryScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: ScaleTransition(
+                          scale: Tween<double>(begin: 0.8, end: 1.0).animate(
+                            CurvedAnimation(
+                                parent: animation, curve: Curves.easeOutBack),
+                          ),
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0, 1),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
               },
             ),
         ],

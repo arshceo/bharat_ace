@@ -1,7 +1,10 @@
 import 'package:bharat_ace/common/app_theme.dart';
+import 'package:bharat_ace/screens/student_details_screen.dart';
+import 'package:bharat_ace/widgets/floating_particles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'dart:ui';
 
 class StudentQueryScreen extends StatefulWidget {
   const StudentQueryScreen({super.key});
@@ -10,11 +13,14 @@ class StudentQueryScreen extends StatefulWidget {
   _StudentQueryScreenState createState() => _StudentQueryScreenState();
 }
 
-class _StudentQueryScreenState extends State<StudentQueryScreen> {
-  int _selectedClass = 0; // Default class index
+class _StudentQueryScreenState extends State<StudentQueryScreen>
+    with TickerProviderStateMixin {
+  int _selectedClass = 0;
   final Random _random = Random();
-
-  final Color _secondaryColor = AppTheme.secondaryColor;
+  late AnimationController _swirlController;
+  late Animation<double> _twistAnimation;
+  late Animation<double> _scaleAnimation;
+  bool _isAnimating = false;
 
   final List<IconData> _classIcons = [
     Icons.one_k_plus_outlined,
@@ -46,6 +52,27 @@ class _StudentQueryScreenState extends State<StudentQueryScreen> {
     "12"
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _swirlController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+
+    _twistAnimation = Tween<double>(begin: 0.0, end: 2.0 * pi).animate(
+        CurvedAnimation(parent: _swirlController, curve: Curves.easeInOut));
+
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.2).animate(
+        CurvedAnimation(parent: _swirlController, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _swirlController.dispose();
+    super.dispose();
+  }
+
   List<Widget> _generateScatteredNumbers() {
     return List.generate(15, (index) {
       return AnimatedPositioned(
@@ -53,33 +80,62 @@ class _StudentQueryScreenState extends State<StudentQueryScreen> {
         curve: Curves.easeInOut,
         left: _random.nextDouble() * MediaQuery.of(context).size.width,
         top: _random.nextDouble() * MediaQuery.of(context).size.height,
-        child: Text(
-          _classLabels[_selectedClass], // Only the digit is displayed
-          style: TextStyle(
-            fontSize: _random.nextDouble() * 50 + 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.amber.withAlpha(50),
+        child: Transform.rotate(
+          angle: _twistAnimation.value,
+          child: Text(
+            _classLabels[_selectedClass],
+            style: TextStyle(
+              fontSize: _random.nextDouble() * 50 + 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.amber.withAlpha(50),
+            ),
           ),
         ),
       );
     });
   }
 
+  void _goToUserDetailsScreen() {
+    setState(() {
+      _isAnimating = true;
+    });
+    _swirlController.forward().then((_) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const StudentDetailsScreen()),
+      ).then((_) {
+        setState(() {
+          _isAnimating = false;
+          _swirlController.reverse();
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-        width: double.infinity,
-        height: double.infinity,
-        color: _secondaryColor,
+      body: AnimatedBuilder(
+        animation: _swirlController,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _scaleAnimation.value,
+            child: Transform.rotate(
+              angle: _twistAnimation.value,
+              child: child,
+            ),
+          );
+        },
         child: Stack(
           children: [
-            // Scattered Numbers Background
+            Positioned.fill(
+              child: Container(color: AppTheme.secondaryColor),
+            ),
+            Positioned.fill(
+              child: FloatingParticles(
+                  numParticles: 40, particleColor: Colors.white30),
+            ),
             Stack(children: _generateScatteredNumbers()),
-
-            // Icon Above Picker
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -91,8 +147,6 @@ class _StudentQueryScreenState extends State<StudentQueryScreen> {
                 ),
               ),
             ),
-
-            // Main UI - Circular Picker
             Center(
               child: ClipOval(
                 child: Container(
@@ -133,16 +187,12 @@ class _StudentQueryScreenState extends State<StudentQueryScreen> {
                 ),
               ),
             ),
-
-            // Glowing Next Button
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 100),
                 child: GestureDetector(
-                  onTap: () {
-                    // Handle Next Button Press
-                  },
+                  onTap: _isAnimating ? null : _goToUserDetailsScreen,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 40),
