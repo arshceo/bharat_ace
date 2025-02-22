@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960086682540",
+    "project_id": "bharat-ace",
+    "storage_bucket": "bharat-ace.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960086682540:android:413ed89beb634a61552809",
+        "android_client_info": {
+          "package_name": "com.example.bharat_ace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYJk2IY1zotVwjt03MiuzvnzOB_1lt2eM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
