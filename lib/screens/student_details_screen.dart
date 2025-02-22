@@ -1,3 +1,4 @@
+import 'package:bharat_ace/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class StudentDetailsScreen extends StatefulWidget {
@@ -28,6 +29,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
 
   void _submitDetails() {
     // Process student details (save to database or move to next step)
+    Navigator.push(context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
   }
 
   @override
