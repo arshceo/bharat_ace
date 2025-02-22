@@ -1,4 +1,5 @@
 import 'package:bharat_ace/common/app_theme.dart';
+import 'package:bharat_ace/screens/smaterial/study_material.dart';
 import 'package:bharat_ace/widgets/scroll_arrow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -9,7 +10,6 @@ import '../providers/onboarding_provider.dart';
 import '../widgets/floating_particles.dart';
 import '../widgets/glowing_button.dart';
 import '../data/onboarding_data.dart'; // ✅ Import this
-import 'student_query_screen.dart';
 
 class OnboardingScreen extends ConsumerWidget {
   OnboardingScreen({super.key});
@@ -18,6 +18,7 @@ class OnboardingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // ignore: unused_local_variable
     final currentIndex = ref.watch(onboardingIndexProvider);
 
     return Scaffold(
@@ -119,7 +120,7 @@ class OnboardingScreen extends ConsumerWidget {
                   PageRouteBuilder(
                     transitionDuration: const Duration(milliseconds: 350),
                     pageBuilder: (context, animation, secondaryAnimation) =>
-                        StudentQueryScreen(),
+                        StudyMaterialsScreen(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(

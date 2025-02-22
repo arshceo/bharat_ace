@@ -2,7 +2,7 @@ name: bharat_ace
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -45,8 +45,18 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   flutter_glow: ^0.3.2
   lucide_icons: ^0.257.0
+<<<<<<< Updated upstream
   google_generative_ai: ^0.4.6
   flutter_dotenv: ^5.2.1
+=======
+  percent_indicator: ^4.2.4
+  animate_do: ^4.0.1
+  audioplayers: ^6.1.2
+  cloud_firestore: ^5.6.3
+  firebase_core: ^3.11.0
+  firebase_auth: ^5.4.2
+  firebase_storage: ^12.4.2
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_test:
@@ -64,7 +74,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -74,8 +83,12 @@ flutter:
   assets:
     # - images/a_dot_burr.jpeg
     - assets/avatars/
+<<<<<<< Updated upstream
     - .env
     - assets/.env
+=======
+    - assets/audio/
+>>>>>>> Stashed changes
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

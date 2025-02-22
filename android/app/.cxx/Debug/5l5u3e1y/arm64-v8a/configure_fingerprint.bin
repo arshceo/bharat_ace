@@ -2,6 +2,7 @@ C/C++ Structured Logi
 g
 eD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\additional_project_files.txtC
 A
+<<<<<<< Updated upstream
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	Ú…¢ëÒ2 ×Ü×¢Ð2f
 d
 bD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\android_gradle_build.json	Ú…¢ëÒ2Ì æÜ×¢Ð2k
@@ -26,3 +27,29 @@ b
 `D:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\symbol_folder_index.txt	Ý…¢ëÒ2W öÜ×¢Ð2K
 I
 GD:\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txt	Ý…¢ëÒ2§ õ ÜÚÏ2
+=======
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	¯©õÐ2 Á¢§«Ð2f
+d
+bD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\android_gradle_build.json	¯©õÐ2° ê¢§«Ð2k
+i
+gD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\android_gradle_build_mini.json	¯©õÐ2… €¤§«Ð2X
+V
+TD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\build.ninja	¯©õÐ2ëØ Ôœ§«Ð2\
+Z
+XD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\build.ninja.txt	ž¯©õÐ2a
+_
+]D:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\build_file_index.txt	ž¯©õÐ2G ¤§«Ð2b
+`
+^D:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\compile_commands.json	ž¯©õÐ2f
+d
+bD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\compile_commands.json.bin	ž¯©õÐ2	l
+j
+hD:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\metadata_generation_command.txt	ž¯©õÐ2
+Å Š¤§«Ð2_
+]
+[D:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\prefab_config.json	ž¯©õÐ2( Œ¤§«Ð2d
+b
+`D:\Flutter Projects\bharat_ace\android\app\.cxx\Debug\5l5u3e1y\arm64-v8a\symbol_folder_index.txt	ž¯©õÐ2W Ž¤§«Ð2K
+I
+GD:\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txt	Ÿ¯©õÐ2§ õ ÜÚÏ2
+>>>>>>> Stashed changes
