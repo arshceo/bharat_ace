@@ -1,3 +1,4 @@
+import 'package:bharat_ace/common/app_theme.dart';
 import 'package:flutter/material.dart';
 import '../providers/ai_chat_service.dart';
 
@@ -34,6 +35,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.primaryColor,
       appBar: AppBar(title: Text("AI Chat")),
       body: Column(
         children: [
