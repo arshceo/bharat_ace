@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
       height: 100,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white10,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -225,8 +225,7 @@ class SwirlyPathPainter extends CustomPainter {
 
     for (int i = 0; i < tasks.length - 1; i++) {
       bool isCompleted = tasks[i]["completed"];
-      paint.color =
-          isCompleted ? Colors.greenAccent : Colors.white.withOpacity(0.3);
+      paint.color = isCompleted ? Colors.greenAccent : Colors.white30;
 
       double endX = startX + (i % 2 == 0 ? curveOffset : -curveOffset);
       double endY = startY + 130;
