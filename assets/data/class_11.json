@@ -1,0 +1,218 @@
+{
+    "streams": {
+      "Science": {
+        "Non-Medical": {
+          "Mathematics": [
+            "Chapter 1: Sets",
+            "Chapter 2: Relations and Functions",
+            "Chapter 3: Trigonometric Functions",
+            "Chapter 4: Principle of Mathematical Induction",
+            "Chapter 5: Complex Numbers and Quadratic Equations",
+            "Chapter 6: Linear Inequalities",
+            "Chapter 7: Permutations and Combinations",
+            "Chapter 8: Binomial Theorem",
+            "Chapter 9: Sequences and Series",
+            "Chapter 10: Straight Lines",
+            "Chapter 11: Conic Sections",
+            "Chapter 12: Introduction to Three-dimensional Geometry",
+            "Chapter 13: Limits and Derivatives",
+            "Chapter 14: Mathematical Reasoning",
+            "Chapter 15: Statistics",
+            "Chapter 16: Probability"
+          ],
+          "Physics": [
+            "Chapter 1: Physical World",
+            "Chapter 2: Units and Measurements",
+            "Chapter 3: Motion in a Straight Line",
+            "Chapter 4: Motion in a Plane",
+            "Chapter 5: Laws of Motion",
+            "Chapter 6: Work, Energy and Power",
+            "Chapter 7: System of Particles and Rotational Motion",
+            "Chapter 8: Gravitation",
+            "Chapter 9: Mechanical Properties of Solids",
+            "Chapter 10: Mechanical Properties of Fluids",
+            "Chapter 11: Thermal Properties of Matter",
+            "Chapter 12: Thermodynamics",
+            "Chapter 13: Kinetic Theory",
+            "Chapter 14: Oscillations",
+            "Chapter 15: Waves"
+          ],
+          "Chemistry": [
+            "Chapter 1: Some Basic Concepts of Chemistry",
+            "Chapter 2: Structure of Atom",
+            "Chapter 3: Classification of Elements and Periodicity in Properties",
+            "Chapter 4: Chemical Bonding and Molecular Structure",
+            "Chapter 5: States of Matter",
+            "Chapter 6: Thermodynamics",
+            "Chapter 7: Equilibrium",
+            "Chapter 8: Redox Reactions",
+            "Chapter 9: Hydrogen",
+            "Chapter 10: The s-Block Elements",
+            "Chapter 11: The p-Block Elements",
+            "Chapter 12: Organic Chemistry – Some Basic Principles and Techniques",
+            "Chapter 13: Hydrocarbons",
+            "Chapter 14: Environmental Chemistry"
+          ]
+        },
+        "Medical": {
+          "Biology": [
+            "Chapter 1: The Living World",
+            "Chapter 2: Biological Classification",
+            "Chapter 3: Plant Kingdom",
+            "Chapter 4: Animal Kingdom",
+            "Chapter 5: Morphology of Flowering Plants",
+            "Chapter 6: Anatomy of Flowering Plants",
+            "Chapter 7: Structural Organisation in Animals",
+            "Chapter 8: Cell: The Unit of Life",
+            "Chapter 9: Biomolecules",
+            "Chapter 10: Cell Cycle and Cell Division",
+            "Chapter 11: Transport in Plants",
+            "Chapter 12: Mineral Nutrition",
+            "Chapter 13: Photosynthesis in Higher Plants",
+            "Chapter 14: Respiration in Plants",
+            "Chapter 15: Plant Growth and Development",
+            "Chapter 16: Digestion and Absorption",
+            "Chapter 17: Breathing and Exchange of Gases",
+            "Chapter 18: Body Fluids and Circulation",
+            "Chapter 19: Excretory Products and Their Elimination",
+            "Chapter 20: Locomotion and Movement",
+            "Chapter 21: Neural Control and Coordination",
+            "Chapter 22: Chemical Coordination and Integration"
+          ]
+        }
+      },
+      "Commerce": {
+        "Accountancy": [
+          "Chapter 1: Introduction to Accounting",
+          "Chapter 2: Theory Base of Accounting",
+          "Chapter 3: Recording of Transactions – I",
+          "Chapter 4: Recording of Transactions – II",
+          "Chapter 5: Bank Reconciliation Statement",
+          "Chapter 6: Trial Balance and Rectification of Errors",
+          "Chapter 7: Depreciation, Provisions and Reserves",
+          "Chapter 8: Bills of Exchange",
+          "Chapter 9: Financial Statements – I",
+          "Chapter 10: Financial Statements – II",
+          "Chapter 11: Accounts from Incomplete Records",
+          "Chapter 12: Applications of Computers in Accounting",
+          "Chapter 13: Computerised Accounting System"
+        ],
+        "Business Studies": [
+          "Chapter 1: Nature and Purpose of Business",
+          "Chapter 2: Forms of Business Organisation",
+          "Chapter 3: Private, Public and Global Enterprises",
+          "Chapter 4: Business Services",
+          "Chapter 5: Emerging Modes of Business",
+          "Chapter 6: Social Responsibilities of Business and Business Ethics",
+          "Chapter 7: Formation of a Company",
+          "Chapter 8: Sources of Business Finance",
+          "Chapter 9: Small Business",
+          "Chapter 10: Internal Trade",
+          "Chapter 11: International Business – I",
+          "Chapter 12: International Business – II"
+        ],
+        "Economics": [
+          "Part A: Statistics for Economics",
+          "Chapter 1: Introduction",
+          "Chapter 2: Collection of Data",
+          "Chapter 3: Organisation of Data",
+          "Chapter 4: Presentation of Data",
+          "Chapter 5: Measures of Central Tendency",
+          "Chapter 6: Measures of Dispersion",
+          "Chapter 7: Correlation",
+          "Chapter 8: Index Numbers",
+          "Part B: Indian Economic Development",
+          "Chapter 1: Indian Economy on the Eve of Independence",
+          "Chapter 2: Indian Economy (1950–1990)",
+          "Chapter 3: Liberalisation, Privatisation and Globalisation: An Appraisal",
+          "Chapter 4: Poverty",
+          "Chapter 5: Human Capital Formation in India",
+          "Chapter 6: Rural Development",
+          "Chapter 7: Employment: Growth, Informalisation and Other Issues",
+          "Chapter 8: Infrastructure",
+          "Chapter 9: Environment and Sustainable Development",
+          "Chapter 10: Comparative Development Experiences of India and Its Neighbours"
+        ]
+      },
+      "Arts": {
+        "subjects": {
+          "History": [
+            "Chapter 1: From the Beginning of Time",
+            "Chapter 2: Writing and City Life",
+            "Chapter 3: An Empire Across Three Continents",
+            "Chapter 4: The Central Islamic Lands",
+            "Chapter 5: Nomadic Empires",
+            "Chapter 6: The Three Orders",
+            "Chapter 7: Changing Cultural Traditions",
+            "Chapter 8: Confrontation of Cultures",
+            "Chapter 9: The Industrial Revolution",
+            "Chapter 10: Displacing Indigenous Peoples",
+            "Chapter 11: Paths to Modernization"
+          ],
+          "Geography": [
+            "Chapter 1: Geography as a Discipline",
+            "Chapter 2: The Origin and Evolution of the Earth",
+            "Chapter 3: Interior of the Earth",
+            "Chapter 4: Distribution of Oceans and Continents",
+            "Chapter 5: Minerals and Rocks",
+            "Chapter 6: Geomorphic Processes",
+            "Chapter 7: Landforms and their Evolution",
+            "Chapter 8: Composition and Structure of Atmosphere",
+            "Chapter 9: Solar Radiation, Heat Balance and Temperature",
+            "Chapter 10: Atmospheric Circulation and Weather Systems",
+            "Chapter 11: Water in the Atmosphere",
+            "Chapter 12: World Climate and Climate Change",
+            "Chapter 13: Water (Oceans)",
+            "Chapter 14: Movements of Ocean Water",
+            "Chapter 15: Life on the Earth",
+            "Chapter 16: Biodiversity and Conservation"
+          ],
+          "Political Science": [
+            "Chapter 1: Constitution: Why and How?",
+            "Chapter 2: Rights in the Indian Constitution",
+            "Chapter 3: Election and Representation",
+            "Chapter 4: Executive",
+            "Chapter 5: Legislature",
+            "Chapter 6: Judiciary",
+            "Chapter 7: Federalism",
+            "Chapter 8: Local Governments",
+            "Chapter 9: Constitution as a Living Document",
+            "Chapter 10: The Philosophy of the Constitution"
+          ],
+          "Sociology": [
+            "Chapter 1: Sociology and Society",
+            "Chapter 2: Terms, Concepts and their Use in Sociology",
+            "Chapter 3: Understanding Social Institutions",
+            "Chapter 4: Culture and Socialization",
+            "Chapter 5: Doing Sociology: Research Methods",
+            "Chapter 6: Social Structure, Stratification and Social Processes in Society",
+            "Chapter 7: Social Change and Social Order in Rural and Urban Society",
+            "Chapter 8: Environment and Society",
+            "Chapter 9: Introducing Western Sociologists",
+            "Chapter 10: Indian Sociologists"
+          ],
+          "Psychology": [
+            "Chapter 1: What is Psychology?",
+            "Chapter 2: Methods of Enquiry in Psychology",
+            "Chapter 3: The Bases of Human Behaviour",
+            "Chapter 4: Human Development",
+            "Chapter 5: Sensory, Attentional and Perceptual Processes",
+            "Chapter 6: Learning",
+            "Chapter 7: Human Memory",
+            "Chapter 8: Thinking",
+            "Chapter 9: Motivation and Emotion"
+          ],
+          "Economics": [
+            "Chapter 1: Introduction",
+            "Chapter 2: Collection of Data",
+            "Chapter 3: Organisation of Data",
+            "Chapter 4: Presentation of Data",
+            "Chapter 5: Measures of Central Tendency",
+            "Chapter 6: Measures of Dispersion",
+            "Chapter 7: Correlation",
+            "Chapter 8: Index Numbers"
+          ]
+        }
+      }
+    }
+  }

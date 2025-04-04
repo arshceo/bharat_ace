@@ -9,6 +9,8 @@ import '../kidlearning/kids_learning.dart';
 final xpProvider = StateProvider<int>((ref) => 0);
 
 class KidsHomeScreen extends ConsumerStatefulWidget {
+  const KidsHomeScreen({super.key});
+
   @override
   _KidsHomeScreenState createState() => _KidsHomeScreenState();
 }
@@ -144,6 +146,8 @@ class _KidsHomeScreenState extends ConsumerState<KidsHomeScreen>
 }
 
 class OptimizedAnimatedBackground extends StatefulWidget {
+  const OptimizedAnimatedBackground({super.key});
+
   @override
   _OptimizedAnimatedBackgroundState createState() =>
       _OptimizedAnimatedBackgroundState();

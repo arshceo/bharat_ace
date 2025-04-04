@@ -1,6 +1,6 @@
 import 'package:bharat_ace/common/app_theme.dart';
 import 'package:flutter/material.dart';
-import '../providers/ai_chat_service.dart';
+import '../core/services/ai_chat_service.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});

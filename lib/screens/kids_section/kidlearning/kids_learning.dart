@@ -8,6 +8,8 @@ void main() {
 }
 
 class KidsLearning extends StatelessWidget {
+  const KidsLearning({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class KidsLearning extends StatelessWidget {
 }
 
 class KidsLearningScreen extends ConsumerStatefulWidget {
+  const KidsLearningScreen({super.key});
+
   @override
   _KidsLearningScreenState createState() => _KidsLearningScreenState();
 }
@@ -157,7 +161,7 @@ class _KidsLearningScreenState extends ConsumerState<KidsLearningScreen>
 
 class InteractiveAnimatedBackground extends StatelessWidget {
   final AnimationController controller;
-  InteractiveAnimatedBackground({required this.controller});
+  const InteractiveAnimatedBackground({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

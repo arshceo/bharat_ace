@@ -7,11 +7,11 @@ class TopicContentScreen extends StatefulWidget {
   final Map<String, dynamic> contentData;
 
   const TopicContentScreen({
-    Key? key,
+    super.key,
     required this.chapter,
     required this.topic,
     required this.contentData,
-  }) : super(key: key);
+  });
 
   @override
   _TopicContentScreenState createState() => _TopicContentScreenState();
@@ -63,7 +63,7 @@ class _TopicContentScreenState extends State<TopicContentScreen> {
 class SectionWidget extends StatelessWidget {
   final Map<String, dynamic> section;
 
-  const SectionWidget({Key? key, required this.section}) : super(key: key);
+  const SectionWidget({super.key, required this.section});
 
   @override
   Widget build(BuildContext context) {

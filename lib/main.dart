@@ -1,13 +1,14 @@
-import 'package:bharat_ace/screens/chat_screen.dart';
-import 'package:bharat_ace/screens/onboarding_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:bharat_ace/common/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp())); // Riverpod ProviderScope
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      initialRoute: AppRoutes.authChecker,
+      onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }

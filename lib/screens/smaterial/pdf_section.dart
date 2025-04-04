@@ -62,8 +62,10 @@ class PdfLearningScreen extends ConsumerWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ChapterSelectionScreen(subject: subjects[index]),
+                  builder: (context) => ChapterSelectionScreen(
+                    className: '8',
+                    subject: 'math',
+                  ),
                 ),
               );
             },
