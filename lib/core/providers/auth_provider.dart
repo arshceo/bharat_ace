@@ -6,7 +6,17 @@ final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
 });
 
 final authStateProvider = StreamProvider<User?>((ref) {
-  return ref.watch(firebaseAuthProvider).authStateChanges();
+  final stream = ref.watch(firebaseAuthProvider).authStateChanges();
+  // Add logging to the stream itself
+  return stream.map((user) {
+    print(
+        ">>> authStateProvider Stream Emitting: User = ${user?.uid ?? 'null'}");
+    return user;
+  }).handleError((error) {
+    print(">>> authStateProvider Stream Error: $error");
+    // It's important to handle errors in the stream if possible
+    // throw error; // Rethrow if you want the provider to be in error state
+  });
 });
 
 class AuthService {

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:collection/collection.dart'; // For firstWhereOrNull if needed later
+// For firstWhereOrNull if needed later
 
 // --- Placeholder Models ---
 

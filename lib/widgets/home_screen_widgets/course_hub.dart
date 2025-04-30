@@ -1,5 +1,4 @@
 import 'package:bharat_ace/core/providers/student_details_provider.dart';
-import 'package:bharat_ace/screens/smaterial/chapter_selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -65,15 +64,15 @@ class CourseHub extends ConsumerWidget {
   Widget _courseItem(String subject, String className, BuildContext ctx) {
     return ListTile(
       onTap: () {
-        Navigator.push(
-          ctx,
-          MaterialPageRoute(
-            builder: (ctx) => ChapterSelectionScreen(
-              className: className, // Pass className dynamically
-              subject: subject,
-            ),
-          ),
-        );
+        // Navigator.push(
+        //   ctx,
+        //   MaterialPageRoute(
+        //     builder: (ctx) => ChapterSelectionScreen(
+        //       className: className, // Pass className dynamically
+        //       subject: subject,
+        //     ),
+        //   ),
+        // );
       },
       tileColor: Colors.black26,
       splashColor: Colors.black,

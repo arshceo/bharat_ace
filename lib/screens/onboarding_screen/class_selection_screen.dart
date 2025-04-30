@@ -1,10 +1,8 @@
 import 'package:bharat_ace/common/app_theme.dart';
-import 'package:bharat_ace/core/models/student_model.dart';
+import 'package:bharat_ace/core/providers/auth_provider.dart';
 import 'package:bharat_ace/core/providers/student_details_provider.dart';
 import 'package:bharat_ace/screens/onboarding_screen/student_details_screen.dart';
 import 'package:bharat_ace/widgets/floating_particles.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -239,44 +237,29 @@ class _ClassSelectionScreenState extends ConsumerState<ClassSelectionScreen>
               padding: const EdgeInsets.only(bottom: 120),
               child: GestureDetector(
                 onTap: () {
-                  // Get the provider instance
-                  final studentProvider =
+                  // Get the notifier
+                  final studentNotifier =
                       ref.read(studentDetailsProvider.notifier);
+                  // Get the currently logged-in user (should exist here)
+                  final user = ref.read(firebaseAuthProvider).currentUser;
 
-                  // Get the current state (could be null if not set yet)
-                  final currentStudent = ref.read(studentDetailsProvider);
-
-                  if (currentStudent != null) {
-                    // ✅ If student exists, update only the `grade`
-                    studentProvider.setStudentDetails(
-                      currentStudent.copyWith(
-                          grade: _classLabels[_selectedClass]),
-                    );
-                  } else {
-                    // ✅ If no student exists yet, create a minimal object with only `grade`
-                    studentProvider.setStudentDetails(
-                      StudentModel(
-                        id: FirebaseAuth.instance.currentUser!.uid,
-                        username: "",
-                        name: "",
-                        email: FirebaseAuth.instance.currentUser!.email!,
-                        phone: "",
-                        school: "",
-                        board: "",
-                        grade:
-                            _classLabels[_selectedClass], // Set selected class
-                        enrolledSubjects: [],
-                        createdAt: Timestamp.now(),
-                        lastActive: Timestamp.now(),
-                        xp: 0,
-                        isPremium: false,
-                        avatar: "",
-                        deviceInfo: {},
-                      ),
-                    );
+                  if (user == null) {
+                    print("Error: User is null in ClassSelectionScreen");
+                    // Handle error appropriately, maybe navigate back to login
+                    return;
                   }
 
-                  // Navigate to next screen
+                  // Get the selected class label
+                  final String selectedClass = _classLabels[_selectedClass];
+
+                  // Update the state via the notifier
+                  // The notifier handles creating the initial state if it's null
+                  studentNotifier.setClass(
+                      selectedClass); // Assuming setClass handles creation/update
+
+                  // ---- NO Firestore write here ----
+
+                  // Navigate to the next onboarding screen
                   Navigator.push(
                     context,
                     MaterialPageRoute(

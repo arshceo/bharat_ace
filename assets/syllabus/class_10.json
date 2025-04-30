@@ -1,0 +1,1691 @@
+{
+  "Class": "10",
+  "Subjects": {
+    "Mathematics": {
+      "subjectName": "Mathematics",
+      "chapters": [
+        {
+          "chapterTitle": "Chapter 1: Real Numbers",
+          "sections": [
+            {
+              "title": "Chapter 1: Real Numbers",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 2: Polynomials",
+          "sections": [
+            {
+              "title": "Chapter 2: Polynomials",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 3: Pair of Linear Equations in Two Variables",
+          "sections": [
+            {
+              "title": "Chapter 3: Pair of Linear Equations in Two Variables",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 4: Quadratic Equations",
+          "sections": [
+            {
+              "title": "Chapter 4: Quadratic Equations",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 5: Arithmetic Progressions",
+          "sections": [
+            {
+              "title": "Chapter 5: Arithmetic Progressions",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 6: Triangles",
+          "sections": [
+            {
+              "title": "Chapter 6: Triangles",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 7: Coordinate Geometry",
+          "sections": [
+            {
+              "title": "Chapter 7: Coordinate Geometry",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 8: Introduction to Trigonometry",
+          "sections": [
+            {
+              "title": "Chapter 8: Introduction to Trigonometry",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 9: Some Applications of Trigonometry",
+          "sections": [
+            {
+              "title": "Chapter 9: Some Applications of Trigonometry",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 10: Circles",
+          "sections": [
+            {
+              "title": "Chapter 10: Circles",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 11: Constructions",
+          "sections": [
+            {
+              "title": "Chapter 11: Constructions",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 12: Areas Related to Circles",
+          "sections": [
+            {
+              "title": "Chapter 12: Areas Related to Circles",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 13: Surface Areas and Volumes",
+          "sections": [
+            {
+              "title": "Chapter 13: Surface Areas and Volumes",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 14: Statistics",
+          "sections": [
+            {
+              "title": "Chapter 14: Statistics",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 15: Probability",
+          "sections": [
+            {
+              "title": "Chapter 15: Probability",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        }
+      ]
+    },
+    "Science": {
+      "subjectName": "Science",
+      "chapters": [
+        {
+          "chapterTitle": "Chapter 1: Chemical Reactions and Equations",
+          "sections": [
+            {
+              "title": "Chapter 1: Chemical Reactions and Equations",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 2: Acids, Bases, and Salts",
+          "sections": [
+            {
+              "title": "Chapter 2: Acids, Bases, and Salts",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 3: Metals and Non-metals",
+          "sections": [
+            {
+              "title": "Chapter 3: Metals and Non-metals",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 4: Carbon and Its Compounds",
+          "sections": [
+            {
+              "title": "Chapter 4: Carbon and Its Compounds",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 5: Periodic Classification of Elements",
+          "sections": [
+            {
+              "title": "Chapter 5: Periodic Classification of Elements",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 6: Life Processes",
+          "sections": [
+            {
+              "title": "Chapter 6: Life Processes",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 7: Control and Coordination",
+          "sections": [
+            {
+              "title": "Chapter 7: Control and Coordination",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 8: How Do Organisms Reproduce?",
+          "sections": [
+            {
+              "title": "Chapter 8: How Do Organisms Reproduce?",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 9: Heredity and Evolution",
+          "sections": [
+            {
+              "title": "Chapter 9: Heredity and Evolution",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 10: Light – Reflection and Refraction",
+          "sections": [
+            {
+              "title": "Chapter 10: Light – Reflection and Refraction",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 11: Human Eye and Colourful World",
+          "sections": [
+            {
+              "title": "Chapter 11: Human Eye and Colourful World",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 12: Electricity",
+          "sections": [
+            {
+              "title": "Chapter 12: Electricity",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 13: Magnetic Effects of Electric Current",
+          "sections": [
+            {
+              "title": "Chapter 13: Magnetic Effects of Electric Current",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 14: Sources of Energy",
+          "sections": [
+            {
+              "title": "Chapter 14: Sources of Energy",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 15: Our Environment",
+          "sections": [
+            {
+              "title": "Chapter 15: Our Environment",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        },
+        {
+          "chapterTitle": "Chapter 16: Sustainable Management of Natural Resources",
+          "sections": [
+            {
+              "title": "Chapter 16: Sustainable Management of Natural Resources",
+              "keyConcepts": [],
+              "examples": [],
+              "formulae": [],
+              "diagrams": [],
+              "bestPracticesForExams": [],
+              "commonMistakes": [],
+              "subsections": []
+            }
+          ]
+        }
+      ]
+    },
+    "Social Science": {
+      "subjectName": "Social Science",
+      "subSubjects": {
+        "History": {
+          "subjectName": "History: India and the Contemporary World – II",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: The Rise of Nationalism in Europe",
+              "sections": [
+                {
+                  "title": "Chapter 1: The Rise of Nationalism in Europe",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: Nationalism in India",
+              "sections": [
+                {
+                  "title": "Chapter 2: Nationalism in India",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: The Making of a Global World",
+              "sections": [
+                {
+                  "title": "Chapter 3: The Making of a Global World",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: The Age of Industrialisation",
+              "sections": [
+                {
+                  "title": "Chapter 4: The Age of Industrialisation",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: Print Culture and the Modern World",
+              "sections": [
+                {
+                  "title": "Chapter 5: Print Culture and the Modern World",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        },
+        "Geography": {
+          "subjectName": "Geography: Contemporary India – II",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: Resources and Development",
+              "sections": [
+                {
+                  "title": "Chapter 1: Resources and Development",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: Forest and Wildlife Resources",
+              "sections": [
+                {
+                  "title": "Chapter 2: Forest and Wildlife Resources",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: Water Resources",
+              "sections": [
+                {
+                  "title": "Chapter 3: Water Resources",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: Agriculture",
+              "sections": [
+                {
+                  "title": "Chapter 4: Agriculture",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: Minerals and Energy Resources",
+              "sections": [
+                {
+                  "title": "Chapter 5: Minerals and Energy Resources",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 6: Manufacturing Industries",
+              "sections": [
+                {
+                  "title": "Chapter 6: Manufacturing Industries",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 7: Lifelines of National Economy",
+              "sections": [
+                {
+                  "title": "Chapter 7: Lifelines of National Economy",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        },
+        "Political Science": {
+          "subjectName": "Political Science: Democratic Politics – II",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: Power Sharing",
+              "sections": [
+                {
+                  "title": "Chapter 1: Power Sharing",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: Federalism",
+              "sections": [
+                {
+                  "title": "Chapter 2: Federalism",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: Democracy and Diversity",
+              "sections": [
+                {
+                  "title": "Chapter 3: Democracy and Diversity",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: Gender, Religion, and Caste",
+              "sections": [
+                {
+                  "title": "Chapter 4: Gender, Religion, and Caste",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: Popular Struggles and Movements",
+              "sections": [
+                {
+                  "title": "Chapter 5: Popular Struggles and Movements",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 6: Political Parties",
+              "sections": [
+                {
+                  "title": "Chapter 6: Political Parties",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 7: Outcomes of Democracy",
+              "sections": [
+                {
+                  "title": "Chapter 7: Outcomes of Democracy",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 8: Challenges to Democracy",
+              "sections": [
+                {
+                  "title": "Chapter 8: Challenges to Democracy",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        },
+        "Economics": {
+          "subjectName": "Economics: Understanding Economic Development",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: Development",
+              "sections": [
+                {
+                  "title": "Chapter 1: Development",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: Sectors of the Indian Economy",
+              "sections": [
+                {
+                  "title": "Chapter 2: Sectors of the Indian Economy",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: Money and Credit",
+              "sections": [
+                {
+                  "title": "Chapter 3: Money and Credit",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: Globalisation and the Indian Economy",
+              "sections": [
+                {
+                  "title": "Chapter 4: Globalisation and the Indian Economy",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: Consumer Rights",
+              "sections": [
+                {
+                  "title": "Chapter 5: Consumer Rights",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "English": {
+      "subjectName": "English",
+      "subSubjects": {
+        "First Flight (Textbook)": {
+          "subjectName": "First Flight (Textbook)",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: A Letter to God",
+              "sections": [
+                {
+                  "title": "Chapter 1: A Letter to God",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: Nelson Mandela: Long Walk to Freedom",
+              "sections": [
+                {
+                  "title": "Chapter 2: Nelson Mandela: Long Walk to Freedom",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: Two Stories About Flying",
+              "sections": [
+                {
+                  "title": "Chapter 3: Two Stories About Flying",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: From the Diary of Anne Frank",
+              "sections": [
+                {
+                  "title": "Chapter 4: From the Diary of Anne Frank",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: The Hundred Dresses – I",
+              "sections": [
+                {
+                  "title": "Chapter 5: The Hundred Dresses – I",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 6: The Hundred Dresses – II",
+              "sections": [
+                {
+                  "title": "Chapter 6: The Hundred Dresses – II",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 7: Glimpses of India",
+              "sections": [
+                {
+                  "title": "Chapter 7: Glimpses of India",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 8: Mijbil the Otter",
+              "sections": [
+                {
+                  "title": "Chapter 8: Mijbil the Otter",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 9: Madam Rides the Bus",
+              "sections": [
+                {
+                  "title": "Chapter 9: Madam Rides the Bus",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 10: The Sermon at Benares",
+              "sections": [
+                {
+                  "title": "Chapter 10: The Sermon at Benares",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 11: The Proposal",
+              "sections": [
+                {
+                  "title": "Chapter 11: The Proposal",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        },
+        "Footprints Without Feet (Supplementary Reader)": {
+          "subjectName": "Footprints Without Feet (Supplementary Reader)",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: A Triumph of Surgery",
+              "sections": [
+                {
+                  "title": "Chapter 1: A Triumph of Surgery",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: The Thief’s Story",
+              "sections": [
+                {
+                  "title": "Chapter 2: The Thief’s Story",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: The Midnight Visitor",
+              "sections": [
+                {
+                  "title": "Chapter 3: The Midnight Visitor",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: A Question of Trust",
+              "sections": [
+                {
+                  "title": "Chapter 4: A Question of Trust",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: Footprints Without Feet",
+              "sections": [
+                {
+                  "title": "Chapter 5: Footprints Without Feet",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 6: The Making of a Scientist",
+              "sections": [
+                {
+                  "title": "Chapter 6: The Making of a Scientist",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 7: The Necklace",
+              "sections": [
+                {
+                  "title": "Chapter 7: The Necklace",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 8: The Hack Driver",
+              "sections": [
+                {
+                  "title": "Chapter 8: The Hack Driver",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 9: Bholi",
+              "sections": [
+                {
+                  "title": "Chapter 9: Bholi",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 10: The Book That Saved the Earth",
+              "sections": [
+                {
+                  "title": "Chapter 10: The Book That Saved the Earth",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Hindi": {
+      "subjectName": "Hindi",
+      "subSubjects": {
+        "Kritika (कृतिका)": {
+          "subjectName": "कृतिका भाग 2",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: माता का आँचल",
+              "sections": [
+                {
+                  "title": "Chapter 1: माता का आँचल",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: जॉर्ज पंचम की नाक",
+              "sections": [
+                {
+                  "title": "Chapter 2: जॉर्ज पंचम की नाक",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: साना-साना हाथ जोड़ि...",
+              "sections": [
+                {
+                  "title": "Chapter 3: साना-साना हाथ जोड़ि...",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: एही ठैयाँ झुलनी हेरानी हो रामा!",
+              "sections": [
+                {
+                  "title": "Chapter 4: एही ठैयाँ झुलनी हेरानी हो रामा!",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: मैं क्यों लिखता हूँ?",
+              "sections": [
+                {
+                  "title": "Chapter 5: मैं क्यों लिखता हूँ?",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        },
+        "Kshitij (क्षितिज)": {
+          "subjectName": "क्षितिज भाग 2",
+          "chapters": [
+            {
+              "chapterTitle": "Chapter 1: सूरदास",
+              "sections": [
+                {
+                  "title": "Chapter 1: सूरदास",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 2: तुलसीदास",
+              "sections": [
+                {
+                  "title": "Chapter 2: तुलसीदास",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 3: देव",
+              "sections": [
+                {
+                  "title": "Chapter 3: देव",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 4: जयशंकर प्रसाद",
+              "sections": [
+                {
+                  "title": "Chapter 4: जयशंकर प्रसाद",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 5: सूर्यकांत त्रिपाठी 'निराला'",
+              "sections": [
+                {
+                  "title": "Chapter 5: सूर्यकांत त्रिपाठी 'निराला'",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 6: नागार्जुन",
+              "sections": [
+                {
+                  "title": "Chapter 6: नागार्जुन",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 7: गिरिजाकुमार माथुर",
+              "sections": [
+                {
+                  "title": "Chapter 7: गिरिजाकुमार माथुर",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 8: ऋतुराज",
+              "sections": [
+                {
+                  "title": "Chapter 8: ऋतुराज",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 9: माखनलाल चतुर्वेदी",
+              "sections": [
+                {
+                  "title": "Chapter 9: माखनलाल चतुर्वेदी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 10: सुभद्राकुमारी चौहान",
+              "sections": [
+                {
+                  "title": "Chapter 10: सुभद्राकुमारी चौहान",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 11: हरिवंश राय बच्चन",
+              "sections": [
+                {
+                  "title": "Chapter 11: हरिवंश राय बच्चन",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 12: केदारनाथ अग्रवाल",
+              "sections": [
+                {
+                  "title": "Chapter 12: केदारनाथ अग्रवाल",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 13: सच्चिदानंद हीरानंद वात्स्यायन 'अज्ञेय'",
+              "sections": [
+                {
+                  "title": "Chapter 13: सच्चिदानंद हीरानंद वात्स्यायन 'अज्ञेय'",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 14: उमाशंकर जोशी",
+              "sections": [
+                {
+                  "title": "Chapter 14: उमाशंकर जोशी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 15: त्रिलोचन",
+              "sections": [
+                {
+                  "title": "Chapter 15: त्रिलोचन",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 16: शमशेर बहादुर सिंह",
+              "sections": [
+                {
+                  "title": "Chapter 16: शमशेर बहादुर सिंह",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 17: मनोहर श्याम जोशी",
+              "sections": [
+                {
+                  "title": "Chapter 17: मनोहर श्याम जोशी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 17: मनोहर श्याम जोशी",
+              "sections": [
+                {
+                  "title": "Chapter 17: मनोहर श्याम जोशी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 17: मनोहर श्याम जोशी",
+              "sections": [
+                {
+                  "title": "Chapter 17: मनोहर श्याम जोशी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 17: मनोहर श्याम जोशी",
+              "sections": [
+                {
+                  "title": "Chapter 17: मनोहर श्याम जोशी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 17: मनोहर श्याम जोशी",
+              "sections": [
+                {
+                  "title": "Chapter 17: मनोहर श्याम जोशी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+            {
+              "chapterTitle": "Chapter 18: भीष्म साहनी",
+              "sections": [
+                {
+                  "title": "Chapter 18: भीष्म साहनी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 19: कृष्णा सोबती",
+              "sections": [
+                {
+                  "title": "Chapter 19: कृष्णा सोबती",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 20: श्रीलाल शुक्ल",
+              "sections": [
+                {
+                  "title": "Chapter 20: श्रीलाल शुक्ल",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 21: मन्नू भंडारी",
+              "sections": [
+                {
+                  "title": "Chapter 21: मन्नू भंडारी",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            },
+             {
+              "chapterTitle": "Chapter 22: रमेशचंद्र शाह",
+              "sections": [
+                {
+                  "title": "",
+                  "keyConcepts": [],
+                  "examples": [],
+                  "formulae": [],
+                  "diagrams": [],
+                  "bestPracticesForExams": [],
+                  "commonMistakes": [],
+                  "subsections": []
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+  }
+  

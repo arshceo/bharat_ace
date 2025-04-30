@@ -1,9 +1,7 @@
 import 'dart:ui';
 import 'dart:math';
-import 'package:bharat_ace/core/models/student_model.dart';
 import 'package:bharat_ace/core/providers/auth_provider.dart';
 import 'package:bharat_ace/core/providers/student_details_provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,55 +61,52 @@ class _SignupScreenState extends ConsumerState<SignupScreen>
     }
 
     setState(() => isLoading = true);
-
     final authService = ref.read(authServiceProvider);
-    final result = await authService.signUp(
-      _emailController.text.trim(),
-      _passwordController.text.trim(),
-    );
 
-    final studentProvider = ref.read(studentDetailsProvider.notifier);
-
-    // Get the current state (could be null if not set yet)
-    final currentStudent = ref.read(studentDetailsProvider);
-
-    if (currentStudent != null) {
-      // ✅ If student exists, update only the `grade`
-      studentProvider.setStudentDetails(
-        currentStudent.copyWith(email: _emailController.text.trim()),
+    try {
+      // Attempt sign up
+      UserCredential? userCredential = await authService.signUp(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
       );
-    } else {
-      // ✅ If no student exists yet, create a minimal object with only `grade`
-      studentProvider.setStudentDetails(
-        StudentModel(
-          id: FirebaseAuth
-              .instance.currentUser!.uid, // Placeholder, will be assigned later
-          username: "",
-          name: "",
-          email: _emailController.text.trim(),
-          phone: "",
-          school: "",
-          board: "",
-          grade: "", // Set selected class
-          enrolledSubjects: [],
-          createdAt: Timestamp.now(),
-          lastActive: Timestamp.now(),
-          xp: 0,
-          isPremium: false,
-          avatar: "",
-          deviceInfo: {},
-        ),
-      );
-    }
 
-    setState(() => isLoading = false);
+      if (userCredential != null && userCredential.user != null) {
+        // --- SUCCESS ---
+        // **CRITICAL: Do NOT update studentDetailsProvider state here.**
+        // The StudentDetailsInitializer/fetcher will handle loading/creating
+        // the initial state based on the now logged-in user.
 
-    if (result != null) {
-      Navigator.pushReplacementNamed(context, AppRoutes.onboard);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Signup failed. Try again.")),
-      );
+        print("Signup successful for UID: ${userCredential.user!.uid}");
+        // Navigate to the start of onboarding
+        if (mounted) {
+          // Check if widget is still in the tree
+          Navigator.pushNamedAndRemoveUntil(
+              context, AppRoutes.onboard, (route) => false);
+        }
+      } else {
+        // Handle signup failure (userCredential is null)
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content:
+                    Text("Signup failed. Email might be taken or invalid.")),
+          );
+        }
+      }
+    } catch (e) {
+      // Handle potential errors during signup (e.g., network)
+      print("Signup Exception: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content:
+                  Text("An error occurred during signup: ${e.toString()}")),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
     }
   }
 

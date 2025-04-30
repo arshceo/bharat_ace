@@ -6,7 +6,7 @@ class AIChatService {
 
   AIChatService() {
     final model = GenerativeModel(
-      model: 'gemini-2.0-flash-latest',
+      model: 'gemini-2.0-flash',
       apiKey: dotenv.env['GEMINI_API']!,
     );
     _chatSession = model.startChat(); // 🔥 Creates a chat session
