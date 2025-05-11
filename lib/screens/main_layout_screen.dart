@@ -1,5 +1,7 @@
 // --- lib/screens/main_layout_screen.dart (Corrected - Provider Defined) ---
 
+import 'package:bharat_ace/common/routes.dart';
+import 'package:bharat_ace/screens/alarm_screen.dart' show AlarmScreen;
 import 'package:bharat_ace/screens/syllabus_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,9 +32,8 @@ class MainLayout extends ConsumerWidget {
   final List<Widget> _screens = const [
     HomeScreen2(), // Index 0
     SyllabusScreen(), // Index 1
-    Placeholder(
-        child: Center(child: Text("Progress (Placeholder)"))), // Index 2
-    Placeholder(child: Center(child: Text("Profile (Placeholder)"))), // Index 3
+    AlarmScreen(), // Index 2
+    ProfilePlaceholderScreen()
   ];
 
   @override
@@ -112,3 +113,30 @@ class MainLayout extends ConsumerWidget {
     );
   }
 } // End of MainLayout class
+
+class ProfilePlaceholderScreen extends StatelessWidget {
+  const ProfilePlaceholderScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: MainLayout.darkBg, // Match background
+      appBar: AppBar(
+        title: const Text("Profile (Placeholder)"),
+        backgroundColor: MainLayout.surfaceDark,
+        foregroundColor: MainLayout.textPrimary,
+        automaticallyImplyLeading: false, // No back button if it's a root tab
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Navigate to the PermissionsScreen using its defined route name
+            Navigator.pushNamed(
+                context, AppRoutes.permissions); // Use the route name
+          },
+          child: const Text("Go to Permissions Screen (DEV)"),
+        ),
+      ),
+    );
+  }
+}

@@ -1,10 +1,74 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- Usage Stats Permission (Needs to be granted via Settings) -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:ignore="ProtectedPermissions" />
+    <!-- Overlay Permission (Needs to be granted via Settings) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- Exact Alarm Permission (Needs to be granted via Settings on Android 12+) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- Optional: Request ignore battery optimization for background service -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <!-- Optional: Run foreground service -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" /> <!-- Potentially needed for persistent overlays/blocking depending on justification -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> <!-- Android 13+ for notifications -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- To start service on boot -->
     <application
         android:label="bharat_ace"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- *** ADD DEVICE ADMIN RECEIVER DECLARATION *** -->
+        <receiver
+            android:name=".AppDeviceAdminReceiver"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_policies" /> 
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+             android:name=".AlarmReceiver"
+             android:enabled="true"
+             android:exported="false" />
+
+        <!-- Boot Completed Receiver (to restart service) -->
+         <receiver
+             android:name=".BootCompletedReceiver"
+             android:enabled="true"
+             android:exported="true">
+              <intent-filter>
+                  <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                  <action android:name="android.intent.action.QUICKBOOT_POWERON"/> <!-- For some devices -->
+              </intent-filter>
+         </receiver>
+        <!-- *** END OF RECEIVER DECLARATION *** -->
+
+        <service
+            android:name=".AlarmForegroundService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Discipline Foreground Service -->
+        <service
+            android:name=".DisciplineService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse" /> <!-- Required for Android 14+ if using overlay/blocking persistently -->
+            <!-- Note: foregroundServiceType="specialUse" requires justification during Play Store review -->
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -32,6 +96,14 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <activity
+            android:name=".BlockingOverlayActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TransparentActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

@@ -11,13 +11,12 @@ import 'package:animate_do/animate_do.dart'; // For simple animations
 
 // --- Import Project Models --- (Ensure paths are correct)
 import '../../core/models/syllabus_models.dart'; // Contains ChapterDetailed, Level, Topic etc.
-import '../../core/models/progress_models.dart'; // Contains ChapterProgress
-import '../../core/models/student_model.dart';
+// Contains ChapterProgress
 
 // --- Import Project Services & Their Providers --- (Ensure paths are correct)
 import '../../core/services/ai_content_service.dart'; // Provides aiContentGenerationServiceProvider
 import '../../core/services/content_cache_service.dart'; // Provides contentCacheServiceProvider
-import '../../core/services/progress_service.dart'; // Provides progressServiceProvider
+// Provides progressServiceProvider
 
 // --- Import Project Providers --- (Ensure paths are correct)
 import '../../core/providers/student_details_provider.dart'; // Provides student data

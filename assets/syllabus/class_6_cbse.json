@@ -4236,6 +4236,7 @@
       },
       "Mathematics": {
       "subjectId": "math",
+      "syllabus":"",
       "chapters": [
         {
           "chapterId": "math_c6_ch1_knowing_numbers", 

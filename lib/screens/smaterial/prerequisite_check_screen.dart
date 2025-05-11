@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bharat_ace/core/models/syllabus_models.dart';
-import 'package:bharat_ace/core/models/progress_models.dart';
 import 'package:bharat_ace/core/providers/student_details_provider.dart';
 import 'package:bharat_ace/core/providers/progress_provider.dart';
-import 'package:bharat_ace/core/services/progress_service.dart'; // To update progress
+// To update progress
 
 // State for quiz loading
 final _isCheckingPrereqsProvider =
