@@ -1,9 +1,10 @@
+import 'package:bharat_ace/common/observers/app_route_observer,dart';
 import 'package:bharat_ace/common/routes.dart';
 import 'package:bharat_ace/core/providers/auth_provider.dart'
     show authStateProvider;
+import 'package:bharat_ace/core/providers/student_details_listener.dart';
 import 'package:bharat_ace/core/services/auth_checker.dart';
-import 'package:bharat_ace/screens/home_screen/home_screen2.dart'
-    show studentDetailsFetcher;
+
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -28,12 +29,13 @@ class MyApp extends ConsumerWidget {
     final _ = ref.watch(authStateProvider);
     final __ = ref.watch(studentDetailsFetcher); // Ensure listener is active
     print("MyApp Build: Watched critical providers.");
+    final appRouteObserver = AppRouteObserver(ref);
 
     return MaterialApp(
       // ... rest of MaterialApp setup ...
       title: 'BharatAce',
       debugShowCheckedModeBanner: false,
-
+      navigatorObservers: [appRouteObserver],
       home: const AuthChecker(),
       onGenerateRoute: AppRoutes.generateRoute,
     );
@@ -48,10 +50,7 @@ class AppInitializer extends StatefulWidget {
 }
 
 class _AppInitializerState extends State<AppInitializer> {
-  // Optional: Use MethodChannel to get initial launch intent data if needed reliably
-  static const platform =
-      MethodChannel('com.bharatace.app/lifecycle'); // Example channel
-
+  static const platform = MethodChannel('com.bharatace.app/lifecycle');
   @override
   void initState() {
     super.initState();

@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+class AppColors {
+  static const Color surfaceLight = Color(0xFFF5F5F5);
+  static const Color darkBackground = Color(0xFF10101E);
+  static const Color primaryAccent = Color(0xFF7E57C2);
+  static const Color secondaryAccent = Color(0xFF26A69A);
+  static const Color cardBackground = Color(0xFF1C1C2E);
+  static const Color cardLightBackground = Color(0xFF28283E);
+  static const Color textPrimary = Color(0xFFF0F0F0);
+  static const Color textSecondary = Color(0xFFA0A0B0);
+  static const Color greenSuccess = Color(0xFF66BB6A);
+  static const Color orangeWarning = Color(0xFFFFA726);
+  static const Color redFailure = Color(0xFFEF5350);
+  static const Color shimmerBase = Color(0xFF2A2A3A);
+  static const Color shimmerHighlight = Color(0xFF3A3A4A);
+  static const Color yellowHighlight = Color(0xFFFFEB3B);
+  static const Color goldColor = Color(0xFFFFD700);
+  static const Color darkBg = Color(0xFF12121F);
+  static const Color primaryPurple = Color(0xFF7E57C2);
+  static const Color accentCyan = Color(0xFF29B6F6);
+  static const Color accentPink = Color(0xFFEC407A);
+  static const Color surfaceDark = Color(0xFF1E1E2E);
+  static const Color goldStar = Color(0xFFFFD700); // Gold color
+  static const Color completedGreen = Colors.greenAccent;
+  static const Color accentGreen = Colors.greenAccent;
+  static const Color accentOrange = Colors.orangeAccent;
+  static const Color feedAccentPurple = Colors.purpleAccent;
+  static const Color accentLime = Colors.limeAccent;
+  static final Color pomodoroOrange = Colors.orangeAccent.shade200;
+  static final Color activeRecallBlue = Colors.blue.shade300;
+  static final Color spacedRepetitionTeal = Colors.teal.shade300;
+  static final Color mindPalacePurple = Colors.deepPurple.shade300;
+  static final Color prioritizeTasksRed = Colors.redAccent.shade100;
+  static final Color chunkingBrown = Colors.brown.shade300;
+  static final Color noMultitaskingGrey = Colors.grey.shade500;
+  static final Color fuelFireRed = Colors.red.shade400;
+  static final Color keepGoingGreen = Colors.green.shade400;
+  static final Color mantraBlue = Colors.lightBlue.shade300;
+  static final Color unlockPotentialAmber = Colors.amber.shade700;
+  static final Color powerOfKnowledgeGreen = Colors.green.shade700;
+  static final Color hydrateBlue = Colors.blue.shade200;
+  static final Color sleepIndigo = Colors.indigo.shade200;
+  static final Color brainFoodGreen = Colors.green.shade300;
+  static final Color eyeCareCyan = Colors.cyan.shade300;
+  static final Color connectPink = Colors.pink.shade200;
+  static final Color mindfulnessPurple = Colors.purple.shade200;
+  static final Color outdoorsGreen = Colors.lightGreen.shade400;
+  static final Color celebrateWinsAmber = Colors.amber.shade400;
+  static final Color honeyAmber = Colors.amber.shade300;
+  static final Color octopusBlueGrey = Colors.blueGrey.shade300;
+  static final Color bananasYellow = Colors.yellow.shade700;
+  static final Color brainStorageOrange = Colors.deepOrange.shade300;
+}

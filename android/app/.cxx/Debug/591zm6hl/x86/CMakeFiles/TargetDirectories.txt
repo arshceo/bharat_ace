@@ -1,0 +1,2 @@
+D:/Bharat_Ace_Project/bharat_ace/android/app/.cxx/Debug/591zm6hl/x86/CMakeFiles/edit_cache.dir
+D:/Bharat_Ace_Project/bharat_ace/android/app/.cxx/Debug/591zm6hl/x86/CMakeFiles/rebuild_cache.dir

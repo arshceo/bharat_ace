@@ -1,25 +1,6 @@
 // lib/core/models/syllabus_models.dart (New or Updated File)
 
 // Represents a prerequisite concept
-class Prerequisite {
-  final String conceptId;
-  final String conceptName;
-  final String importance; // "High", "Medium", "Low"
-
-  Prerequisite(
-      {required this.conceptId,
-      required this.conceptName,
-      required this.importance});
-
-  factory Prerequisite.fromJson(Map<String, dynamic> json) {
-    return Prerequisite(
-      conceptId: json['conceptId'] ?? '',
-      conceptName: json['conceptName'] ?? 'Unknown Concept',
-      importance: json['importance'] ?? 'Medium',
-    );
-  }
-}
-
 // Represents a suggested activity within a topic
 class SuggestedActivity {
   final String type; // e.g., "list", "explain", "match"
@@ -46,7 +27,7 @@ class Topic {
   final List<String> aiPromptHints;
   final List<SuggestedActivity>
       suggestedActivities; // Changed to list of objects
-
+  final int? estimatedStudyTimeMinutes;
   Topic({
     required this.topicId,
     required this.topicTitle,
@@ -56,6 +37,7 @@ class Topic {
     required this.keywords,
     required this.aiPromptHints,
     required this.suggestedActivities,
+    this.estimatedStudyTimeMinutes,
   });
 
   factory Topic.fromJson(Map<String, dynamic> json) {
@@ -73,6 +55,8 @@ class Topic {
                   activityJson as Map<String, dynamic>))
               .toList() ??
           [],
+      estimatedStudyTimeMinutes:
+          json['estimatedStudyTimeMinutes'] as int?, // ✨ PARSE THIS
     );
   }
 }
@@ -136,33 +120,70 @@ class ChapterDetailed {
   final String chapterId;
   final String chapterTitle;
   final String description;
-  final List<Prerequisite> prerequisites;
+  final List<String> prerequisites; // NEW: List of strings
   final List<Level> levels;
-
+  final List<String> coreTopics; // <<< --- ADD THIS LINE ---
+  final int? estimatedStudyTimeMinutes;
   ChapterDetailed({
     required this.chapterId,
     required this.chapterTitle,
     required this.description,
     required this.prerequisites,
     required this.levels,
+    required this.coreTopics, // <<< --- ADD THIS LINE ---
+    this.estimatedStudyTimeMinutes,
   });
 
+  // From your lib/core/models/syllabus_models.dart
   factory ChapterDetailed.fromJson(Map<String, dynamic> json) {
+    List<String> parsedPrerequisites = [];
+    if (json['prerequisites'] is List) {
+      print(
+          "[DEBUG ChapterDetailed.fromJson]   'prerequisites' is a List. Iterating...");
+      for (var i = 0; i < (json['prerequisites'] as List).length; i++) {
+        var item = (json['prerequisites'] as List)[i];
+        print(
+            "[DEBUG ChapterDetailed.fromJson]     Item $i (type: ${item?.runtimeType}): $item");
+        if (item is String) {
+          parsedPrerequisites.add(item);
+          print(
+              "[DEBUG ChapterDetailed.fromJson]       Added item $i as String.");
+        } else {
+          print(
+              "[DEBUG ChapterDetailed.fromJson]       SKIPPED item $i because it's NOT a String.");
+        }
+      }
+    } else if (json['prerequisites'] == null) {
+      print(
+          "[DEBUG ChapterDetailed.fromJson]   'prerequisites' key is NULL or MISSING.");
+    } else {
+      print(
+          "[DEBUG ChapterDetailed.fromJson]   'prerequisites' is NOT a List (type: ${json['prerequisites']?.runtimeType}). Value: ${json['prerequisites']}");
+    }
+    print(
+        "[DEBUG ChapterDetailed.fromJson]   FINAL parsedPrerequisites for ${json['chapterId']} (length: ${parsedPrerequisites.length}): $parsedPrerequisites");
+
     return ChapterDetailed(
-      chapterId:
-          json['chapterId'] as String? ?? '', // Explicit cast and null check
+      chapterId: json['chapterId'] as String? ?? '',
       chapterTitle: json['chapterTitle'] as String? ?? 'Unnamed Chapter',
       description: json['description'] as String? ?? '',
-      prerequisites: (json['prerequisites'] as List<dynamic>?)
-              ?.map((prereqJson) =>
-                  Prerequisite.fromJson(prereqJson as Map<String, dynamic>))
-              .toList() ??
-          [],
+      prerequisites: parsedPrerequisites, // Use the debugged list
       levels: (json['levels'] as List<dynamic>?)
-              ?.map((levelJson) =>
-                  Level.fromJson(levelJson as Map<String, dynamic>))
+              ?.map((levelJson) {
+                if (levelJson is Map<String, dynamic>) {
+                  return Level.fromJson(levelJson);
+                }
+                print(
+                    "Warning: Invalid item in 'levels' list: $levelJson. Skipping.");
+                return null;
+              })
+              .where((level) => level != null)
+              .cast<Level>()
               .toList() ??
           [],
+      coreTopics: List<String>.from(json['coreTopics'] as List<dynamic>? ?? []),
+      estimatedStudyTimeMinutes:
+          json['estimatedStudyTimeMinutes'] as int?, // ✨ PARSE THIS
     );
   }
 
@@ -176,6 +197,8 @@ class ChapterDetailed {
       description: '',
       prerequisites: [], // Empty list
       levels: [], // Empty list
+      coreTopics: [], // <<< --- ADD THIS LINE ---
+      estimatedStudyTimeMinutes: null, // No estimated time
     );
   }
   // *** END OF ADDED FACTORY ***

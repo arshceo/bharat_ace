@@ -1,46 +1,44 @@
-// --- lib/screens/smaterial/topic_content_screen.dart (Complete & Corrected) ---
+// lib/screens/smaterial/topic_content_screen.dart
 
 import 'package:animate_do/animate_do.dart' show FadeIn;
+import 'package:bharat_ace/core/models/student_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_markdown/flutter_markdown.dart'; // To render generated markdown
-import 'package:speech_to_text/speech_to_text.dart'; // For voice input
-import 'package:permission_handler/permission_handler.dart'; // For mic permission
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-// Import necessary providers and services (Ensure paths are correct)
+// New imports
+import 'package:markdown/markdown.dart' as md_parser;
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:bharat_ace/core/theme/app_colors.dart'; // Assuming AppColors are used for styling
+import 'package:bharat_ace/core/utils/color_extensions.dart'; // Your color extension
+
+// Import necessary providers and services
 import '../../core/services/ai_content_service.dart';
 import '../../core/services/content_cache_service.dart';
-import '../../core/providers/student_details_provider.dart'; // Needed for class/board context
+import '../../core/providers/student_details_provider.dart';
 
 // --- State Management for this Screen ---
-// State for the main content (loading, data, error)
 final _topicContentStateProvider =
-    StateProvider.autoDispose<AsyncValue<String>>((ref) => const AsyncValue
-        .loading()); // autoDispose cleans up when screen is left
-
-// State for voice input listening status
+    StateProvider.autoDispose<AsyncValue<String>>(
+        (ref) => const AsyncValue.loading());
 final _isListeningProvider = StateProvider.autoDispose<bool>((ref) => false);
-
-// State for loading indicator when answering a question
 final _isAnsweringProvider = StateProvider.autoDispose<bool>((ref) => false);
-
-// State for Q&A history
-final _qaHistoryProvider = StateProvider.autoDispose<List<Map<String, String>>>(
-    (ref) => []); // List of {'q': question, 'a': answer}
+final _qaHistoryProvider =
+    StateProvider.autoDispose<List<Map<String, String>>>((ref) => []);
 
 // --- Main Widget ---
 class TopicContentScreen extends ConsumerStatefulWidget {
   final String chapter;
   final String topic;
-  final String subject; // Subject is now required
+  final String subject;
 
   const TopicContentScreen({
     super.key,
     required this.chapter,
     required this.topic,
     required this.subject,
-    // Removed sectionData - content is generated/fetched internally
   });
 
   @override
@@ -52,7 +50,7 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
   final ScrollController _scrollController = ScrollController();
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
-  String _lastWords = ""; // Holds words recognized by speech recognizer
+  String _lastWords = "";
 
   @override
   void initState() {
@@ -60,15 +58,13 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
     _initializeServicesAndLoadContent();
   }
 
-  // Helper to run async init tasks
   void _initializeServicesAndLoadContent() async {
-    // Initialize speech *after* the first frame to ensure context is ready
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _initSpeech(); // Request permission and initialize speech
-      // Trigger content load after speech init (or concurrently if desired)
       if (mounted) {
-        // Check if still mounted after async gap
-        _loadOrGenerateContent();
+        await _initSpeech();
+        if (mounted) {
+          _loadOrGenerateContent();
+        }
       }
     });
   }
@@ -81,9 +77,8 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
     super.dispose();
   }
 
-  /// Initializes speech recognition & requests permission
   Future<void> _initSpeech() async {
-    if (!mounted) return; // Avoid operations if widget is disposed
+    if (!mounted) return;
     print("Initializing Speech Recognition...");
     try {
       var status = await Permission.microphone.request();
@@ -93,7 +88,6 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                 print('Speech Init Error: $errorNotification'),
             onStatus: (status) {
               print('Speech Status: $status');
-              // Automatically stop listening state if speech service stops unexpectedly
               if (mounted &&
                   status != SpeechToText.listeningStatus &&
                   ref.read(_isListeningProvider)) {
@@ -115,34 +109,28 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
       }
     } catch (e) {
       print("Exception initializing speech: $e");
-      _speechEnabled = false; // Ensure it's false on error
+      _speechEnabled = false;
     }
-    // Update the UI if needed after init completes
     if (mounted) setState(() {});
   }
 
-  /// Starts listening for speech input
   void _startListening() async {
-    if (!_speechEnabled || _speechToText.isListening) return;
+    if (!_speechEnabled || _speechToText.isListening || !mounted) return;
     print("Starting speech listening...");
-    ref.read(_isListeningProvider.notifier).state =
-        true; // Update state *before* async call
+    ref.read(_isListeningProvider.notifier).state = true;
     setState(() {
       _lastWords = "";
-    }); // Clear previous words
+    });
 
     try {
       await _speechToText.listen(
         onResult: (result) {
           if (mounted) {
-            // Update text field continuously with recognized words
             _lastWords = result.recognizedWords;
             _questionController.text = _lastWords;
-            // Move cursor to end
             _questionController.selection = TextSelection.fromPosition(
                 TextPosition(offset: _questionController.text.length));
             print("Recognized: $_lastWords");
-            // Check if speech recognition finished
             if (result.finalResult) {
               if (mounted) {
                 ref.read(_isListeningProvider.notifier).state = false;
@@ -150,29 +138,22 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
             }
           }
         },
-        listenFor: const Duration(seconds: 20), // Listen for up to 20 seconds
-        pauseFor:
-            const Duration(seconds: 3), // Stop if user pauses for 3 seconds
-        partialResults: true, // Get results as they come
-        localeId: "en_IN", // Specify locale if needed (e.g., Indian English)
-        cancelOnError: true, // Stop listening if an error occurs
-        listenMode: ListenMode.confirmation, // Example mode
+        listenFor: const Duration(seconds: 20),
+        pauseFor: const Duration(seconds: 3),
+        partialResults: true,
+        localeId: "en_IN",
+        cancelOnError: true,
+        listenMode: ListenMode.confirmation,
       );
-      // Note: The 'listening' state might update via the onStatus callback in _initSpeech
     } catch (e) {
       print("Error starting speech recognition: $e");
-      if (mounted) {
-        ref.read(_isListeningProvider.notifier).state =
-            false; // Reset state on error
-      }
+      if (mounted) ref.read(_isListeningProvider.notifier).state = false;
     }
-    // setState required to update the mic icon potentially
     if (mounted) setState(() {});
   }
 
-  /// Stops listening for speech input
   void _stopListening() async {
-    if (!_speechEnabled || !_speechToText.isListening) return;
+    if (!_speechEnabled || !_speechToText.isListening || !mounted) return;
     print("Stopping speech listening...");
     try {
       await _speechToText.stop();
@@ -180,52 +161,63 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
       print("Error stopping speech recognition: $e");
     } finally {
       if (mounted) {
-        ref.read(_isListeningProvider.notifier).state =
-            false; // Ensure state is updated
+        ref.read(_isListeningProvider.notifier).state = false;
+        setState(() {});
       }
-      if (mounted) setState(() {}); // Update UI if needed
     }
   }
 
-  /// Loads content from cache or generates it using AI.
-  /// `forceRegenerate`: Skips cache check.
-  /// `complexity`: Hint for regeneration ('simple', 'detailed').
   Future<void> _loadOrGenerateContent(
       {bool forceRegenerate = false, String? complexity}) async {
     if (!mounted) return;
     ref.read(_topicContentStateProvider.notifier).state =
-        const AsyncValue.loading(); // Show loading
-    ref.read(_qaHistoryProvider.notifier).state = []; // Clear Q&A
+        const AsyncValue.loading();
+    ref.read(_qaHistoryProvider.notifier).state = [];
 
-    final cacheService =
-        ref.read(contentCacheServiceProvider); // Read cache service
+    final cacheService = ref.read(contentCacheServiceProvider);
     final String? cachedContent = forceRegenerate
         ? null
-        : await cacheService.getCachedContent(
-            widget.subject, widget.chapter, widget.topic);
+        : await cacheService.getCachedContent(widget.topic);
 
     if (cachedContent != null && cachedContent.isNotEmpty) {
-      print("Content loaded from cache.");
+      print("Content loaded from cache for ${widget.topic}.");
       if (mounted) {
         ref.read(_topicContentStateProvider.notifier).state =
             AsyncValue.data(cachedContent);
       }
     } else {
       print(forceRegenerate
-          ? "Regenerating content..."
-          : "Generating content...");
-      final student = ref.read(studentDetailsProvider); // Get student details
-      if (student == null || student.grade.isEmpty) {
+          ? "Regenerating content for ${widget.topic}..."
+          : "Generating content for ${widget.topic}...");
+      final AsyncValue<StudentModel?> studentAsync =
+          ref.read(studentDetailsProvider);
+      final StudentModel? student = studentAsync.valueOrNull;
+
+      if (student == null) {
+        print(
+            "TopicContentScreen: Student details are null. Cannot generate content.");
         if (mounted) {
           ref.read(_topicContentStateProvider.notifier).state =
-              AsyncValue.error("Student details missing.", StackTrace.current);
+              AsyncValue.error(
+                  "Student details not available.", StackTrace.current);
+        }
+        return;
+      }
+      if (student.grade.isEmpty) {
+        print(
+            "TopicContentScreen: Student grade is empty. Cannot generate content tailored to grade.");
+        if (mounted) {
+          ref.read(_topicContentStateProvider.notifier).state =
+              AsyncValue.error(
+                  "Student grade information is missing.", StackTrace.current);
         }
         return;
       }
 
       try {
-        final contentService = ref.read(
-            aiContentGenerationServiceProvider); // Read generation service
+        final contentService = ref.read(aiContentGenerationServiceProvider);
+        print(
+            "Generating content with class: ${student.grade}, board: ${student.board ?? "Not specified"}");
         final generatedContent = await contentService.generateTopicContent(
           subject: widget.subject,
           chapter: widget.chapter,
@@ -235,10 +227,7 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
           complexityPreference: complexity,
         );
         if (mounted) {
-          // Save to cache asynchronously (don't wait for it)
-          cacheService.saveContentToCache(
-              widget.subject, widget.chapter, widget.topic, generatedContent);
-          // Update state with generated content
+          cacheService.saveContentToCache(widget.topic, generatedContent);
           ref.read(_topicContentStateProvider.notifier).state =
               AsyncValue.data(generatedContent);
         }
@@ -251,35 +240,53 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
     }
   }
 
-  /// Handles asking a question about the current topic.
   Future<void> _askQuestion() async {
     final question = _questionController.text.trim();
-    if (question.isEmpty) return;
+    if (question.isEmpty || !mounted) return;
 
     final currentContentAsync = ref.read(_topicContentStateProvider);
-    final currentContent =
-        currentContentAsync.valueOrNull; // Get current content safely
-    if (currentContent == null) {
-      /* Show error: content not loaded */ return;
+    final currentContent = currentContentAsync.valueOrNull;
+    if (currentContent == null || currentContent.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Content not loaded yet to ask a question."),
+            backgroundColor: Colors.orange));
+      }
+      return;
     }
-    final student = ref.read(studentDetailsProvider);
+
+    final AsyncValue<StudentModel?> studentAsync =
+        ref.read(studentDetailsProvider);
+    final StudentModel? student = studentAsync.valueOrNull;
     if (student == null) {
-      /* Show error: student details missing */ return;
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Student details missing. Cannot process question."),
+            backgroundColor: Colors.red));
+      }
+      return;
+    }
+    if (student.grade.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Student grade is missing. Cannot tailor answer."),
+            backgroundColor: Colors.orange));
+      }
+      return;
     }
 
     _questionController.clear();
     if (mounted) FocusScope.of(context).unfocus();
     ref.read(_isAnsweringProvider.notifier).state = true;
-    // Add question optimistically with "Thinking..." answer
     ref.read(_qaHistoryProvider.notifier).update((state) => [
           ...state,
           {'q': question, 'a': 'Thinking...'}
         ]);
-    // Scroll down after adding question
     _scrollToBottom();
 
     try {
       final contentService = ref.read(aiContentGenerationServiceProvider);
+      print("Answering question with student class: ${student.grade}");
       final answer = await contentService.answerTopicQuestion(
         subject: widget.subject,
         chapter: widget.chapter,
@@ -288,45 +295,44 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
         question: question,
         studentClass: student.grade,
       );
-      // Update the last history entry with the real answer
-      ref.read(_qaHistoryProvider.notifier).update((state) {
-        var updatedHistory = List<Map<String, String>>.from(state);
-        if (updatedHistory.isNotEmpty) {
-          updatedHistory.last = {'q': question, 'a': answer};
-        }
-        return updatedHistory;
-      });
-    } catch (e) {
-      /* Update last history entry with error message */
-      ref.read(_qaHistoryProvider.notifier).update((state) {
-        var updatedHistory = List<Map<String, String>>.from(state);
-        if (updatedHistory.isNotEmpty) {
-          updatedHistory.last = {
-            'q': question,
-            'a': 'Sorry, error getting answer.'
-          };
-        }
-        return updatedHistory;
-      });
       if (mounted) {
+        ref.read(_qaHistoryProvider.notifier).update((state) {
+          var updatedHistory = List<Map<String, String>>.from(state);
+          if (updatedHistory.isNotEmpty &&
+              updatedHistory.last['q'] == question) {
+            updatedHistory.last = {'q': question, 'a': answer};
+          }
+          return updatedHistory;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        ref.read(_qaHistoryProvider.notifier).update((state) {
+          var updatedHistory = List<Map<String, String>>.from(state);
+          if (updatedHistory.isNotEmpty &&
+              updatedHistory.last['q'] == question) {
+            updatedHistory.last = {
+              'q': question,
+              'a': 'Sorry, an error occurred while getting an answer.'
+            };
+          }
+          return updatedHistory;
+        });
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Error: $e"), backgroundColor: Colors.redAccent));
+            content: Text("Error getting answer: ${e.toString()}"),
+            backgroundColor: Colors.redAccent));
       }
     } finally {
       if (mounted) ref.read(_isAnsweringProvider.notifier).state = false;
-      _scrollToBottom(); // Scroll down after answer/error
+      _scrollToBottom();
     }
   }
 
-  // Helper function to scroll the ListView to the bottom
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
+      if (_scrollController.hasClients && mounted) {
+        _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
       }
     });
   }
@@ -347,7 +353,6 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
             style: textTheme.titleLarge?.copyWith(fontSize: 18),
             overflow: TextOverflow.ellipsis),
         actions: [
-          // Refresh / Regenerate Button (Combined)
           contentState.maybeWhen(
             loading: () => const Padding(
                 padding: EdgeInsets.only(right: 16.0),
@@ -356,22 +361,20 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                     height: 20,
                     child: CircularProgressIndicator(strokeWidth: 2))),
             orElse: () => PopupMenuButton<String>(
-                // Keep Popup for other options
                 icon: const Icon(Icons.more_vert),
                 tooltip: "More Options",
                 onSelected: (value) {
                   if (value == 'regenerate') {
                     _loadOrGenerateContent(forceRegenerate: true);
                   } else if (value == 'simplify')
+                    // ignore: curly_braces_in_flow_control_structures
                     _loadOrGenerateContent(
                         forceRegenerate: true, complexity: 'simple');
                   else if (value == 'clear_cache')
                     ref
                         .read(contentCacheServiceProvider)
-                        .clearCacheForTopic(
-                            widget.subject, widget.chapter, widget.topic)
-                        .then(
-                            (_) => _loadOrGenerateContent()); // Add clear cache
+                        .clearCacheForTopic(widget.topic)
+                        .then((_) => _loadOrGenerateContent());
                 },
                 itemBuilder: (context) => <PopupMenuEntry<String>>[
                       const PopupMenuItem<String>(
@@ -401,37 +404,75 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
         ],
       ),
       body: Column(
-        // Use Column for Content + Input Bar
         children: [
           Expanded(
             child: ListView(
-              // Main scrollable area for content and Q&A history
-              controller: _scrollController, // Attach controller
-              padding: const EdgeInsets.fromLTRB(
-                  16, 16, 16, 0), // Padding for content
+              controller: _scrollController,
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
               children: [
-                // --- Generated Content Section ---
                 contentState.when(
-                  data: (content) => FadeIn(
-                    // Add subtle fade-in
-                    child: MarkdownBody(
-                      data: content, selectable: true,
-                      styleSheet: MarkdownStyleSheet.fromTheme(
-                              Theme.of(context))
-                          .copyWith(
-                              /* ... styles ... */ p:
-                                  textTheme.bodyLarge?.copyWith(height: 1.5),
-                              h1: textTheme.headlineMedium
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                              h2: textTheme.headlineSmall
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                              h3: textTheme.titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                              code: GoogleFonts.firaCode(
-                                  backgroundColor: colorScheme
-                                      .surfaceContainerHighest)), // Example code style
-                    ),
-                  ),
+                  data: (content) {
+                    final htmlContent = md_parser.markdownToHtml(
+                      content,
+                      extensionSet: md_parser.ExtensionSet.gitHubWeb,
+                    );
+                    return FadeIn(
+                      child: HtmlWidget(
+                        // Use HtmlWidget for main content
+                        htmlContent,
+                        textStyle: textTheme.bodyLarge?.copyWith(height: 1.5),
+                        customStylesBuilder: (element) {
+                          // Basic styling for HtmlWidget, expand as needed
+                          if (element.localName == 'h1') {
+                            return {
+                              'font-size':
+                                  '${textTheme.headlineMedium?.fontSize}px',
+                              'font-weight': 'bold'
+                            };
+                          }
+                          if (element.localName == 'h2') {
+                            return {
+                              'font-size':
+                                  '${textTheme.headlineSmall?.fontSize}px',
+                              'font-weight': 'bold'
+                            };
+                          }
+                          if (element.localName == 'h3') {
+                            return {
+                              'font-size':
+                                  '${textTheme.titleLarge?.fontSize}px',
+                              'font-weight': 'bold'
+                            };
+                          }
+                          if (element.localName == 'code') {
+                            return {
+                              'font-family':
+                                  GoogleFonts.firaCode().fontFamily ??
+                                      'monospace',
+                              'background-color': colorScheme
+                                  .surfaceContainerHighest
+                                  .toCssRgbaString(),
+                              // Assuming AppColors were similar to theme colors
+                              'padding': '2px 4px', 'border-radius': '4px',
+                            };
+                          }
+                          if (element.localName == 'pre' &&
+                              element.children.isNotEmpty &&
+                              element.children.first.localName == 'code') {
+                            return {
+                              'background-color': colorScheme.surfaceVariant
+                                  .toCssRgbaString(), // Slightly different background for pre
+                              'padding': '12px', 'margin': '8px 0px',
+                              'border-radius': '8px', 'overflow': 'auto',
+                              'border':
+                                  '1px solid ${colorScheme.outlineVariant.toCssRgbaString()}',
+                            };
+                          }
+                          return null;
+                        },
+                      ),
+                    );
+                  },
                   loading: () => Center(
                       child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 64.0),
@@ -456,12 +497,11 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                                 style: TextStyle(color: colorScheme.error)),
                             const SizedBox(height: 10),
                             ElevatedButton.icon(
-                                onPressed: _loadOrGenerateContent,
+                                onPressed: () => _loadOrGenerateContent(),
                                 icon: const Icon(Icons.refresh),
                                 label: const Text("Retry"))
                           ]))),
                 ),
-                // --- Q&A History Section ---
                 if (qaHistory.isNotEmpty) ...[
                   const Divider(height: 40, thickness: 1),
                   Padding(
@@ -471,21 +511,16 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                               ?.copyWith(fontWeight: FontWeight.bold))),
                   ...qaHistory
                       .map((qa) => _buildQACard(context, qa['q']!, qa['a']!)),
-                  const SizedBox(height: 20), // Space at the bottom of list
+                  const SizedBox(height: 20),
                 ]
               ],
             ),
           ),
-
-          // --- Q&A Input Bar ---
           SafeArea(
             top: false,
             child: Container(
               padding: const EdgeInsets.only(
-                  left: 16.0,
-                  right: 8.0,
-                  top: 8.0,
-                  bottom: 8.0), // Adjusted padding
+                  left: 16.0, right: 8.0, top: 8.0, bottom: 8.0),
               decoration: BoxDecoration(
                   color: colorScheme.surface,
                   border: Border(
@@ -495,7 +530,8 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                 children: [
                   Expanded(
                     child: TextField(
-                      controller: _questionController, enabled: !isAnswering,
+                      controller: _questionController,
+                      enabled: !isAnswering,
                       decoration: InputDecoration(
                           hintText: isListening
                               ? "Listening..."
@@ -505,20 +541,14 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                           enabledBorder: InputBorder.none,
                           contentPadding:
                               const EdgeInsets.symmetric(vertical: 10)),
-                      textInputAction:
-                          TextInputAction.send, // Change action to send
-                      onSubmitted: isAnswering
-                          ? null
-                          : (_) => _askQuestion(), // Send on submit
-                      maxLines: 1, // Single line input
+                      textInputAction: TextInputAction.send,
+                      onSubmitted: isAnswering ? null : (_) => _askQuestion(),
+                      maxLines: 1,
                     ),
                   ),
-                  // Voice Input Button
                   if (_speechEnabled)
                     IconButton(
-                      icon: Icon(isListening
-                          ? Icons.mic_off
-                          : Icons.mic), // Use filled mic when listening
+                      icon: Icon(isListening ? Icons.mic_off : Icons.mic),
                       color: isListening
                           ? colorScheme.primary
                           : colorScheme.onSurfaceVariant,
@@ -528,19 +558,19 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                           ? null
                           : (isListening ? _stopListening : _startListening),
                     ),
-                  // Send Button
                   IconButton(
                     icon: isAnswering
                         ? const SizedBox(
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator(strokeWidth: 2))
-                        : const Icon(Icons.send_rounded), // Rounded send icon
-                    color: colorScheme.primary, tooltip: "Ask Question",
+                        : const Icon(Icons.send_rounded),
+                    color: colorScheme.primary,
+                    tooltip: "Ask Question",
                     onPressed:
                         isAnswering || _questionController.text.trim().isEmpty
                             ? null
-                            : _askQuestion, // Disable if answering or empty
+                            : _askQuestion,
                   ),
                 ],
               ),
@@ -551,15 +581,19 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
     );
   }
 
-  // Q&A Card Widget
   Widget _buildQACard(BuildContext context, String question, String answer) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    // Convert Markdown answer to HTML
+    final String htmlAnswer = md_parser.markdownToHtml(
+      answer,
+      extensionSet: md_parser.ExtensionSet.gitHubWeb,
+    );
+
     return Container(
-        // Use container instead of Padding for background later?
         margin: const EdgeInsets.only(bottom: 16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          // Question
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
                 padding: const EdgeInsets.only(top: 2.0),
@@ -572,9 +606,8 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                         ?.copyWith(fontWeight: FontWeight.bold)))
           ]),
           const SizedBox(height: 8),
-          // Answer
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const SizedBox(width: 26), // Indent answer slightly
+            const SizedBox(width: 26),
             Expanded(
                 child: Container(
                     width: double.infinity,
@@ -594,18 +627,45 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                             Text(answer, style: textTheme.bodyMedium)
                           ])
                         : FadeIn(
-                            child: MarkdownBody(
-                                data: answer,
-                                selectable: true,
-                                styleSheet: MarkdownStyleSheet.fromTheme(
-                                        Theme.of(context))
-                                    .copyWith(
-                                        p: textTheme.bodyMedium
-                                            ?.copyWith(height: 1.4),
-                                        code: GoogleFonts.firaCode(
-                                            backgroundColor: colorScheme
-                                                .surfaceContainerHighest)))) // Render answer as Markdown
-                    ))
+                            child: HtmlWidget(
+                              // Use HtmlWidget for answer
+                              htmlAnswer,
+                              textStyle:
+                                  textTheme.bodyMedium?.copyWith(height: 1.4),
+                              customStylesBuilder: (element) {
+                                // Basic styling for HtmlWidget, expand as needed
+                                if (element.localName == 'code') {
+                                  return {
+                                    'font-family':
+                                        GoogleFonts.firaCode().fontFamily ??
+                                            'monospace',
+                                    'background-color': colorScheme
+                                        .surfaceContainerHighest
+                                        .toCssRgbaString(),
+                                    'padding': '2px 4px',
+                                    'border-radius': '4px',
+                                  };
+                                }
+                                if (element.localName == 'pre' &&
+                                    element.children.isNotEmpty &&
+                                    element.children.first.localName ==
+                                        'code') {
+                                  return {
+                                    'background-color': colorScheme
+                                        .surfaceVariant
+                                        .toCssRgbaString(),
+                                    'padding': '12px',
+                                    'margin': '8px 0px',
+                                    'border-radius': '8px',
+                                    'overflow': 'auto',
+                                    'border':
+                                        '1px solid ${colorScheme.outlineVariant.toCssRgbaString()}',
+                                  };
+                                }
+                                return null;
+                              },
+                            ),
+                          )))
           ])
         ]));
   }

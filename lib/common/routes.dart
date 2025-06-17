@@ -3,6 +3,7 @@ import 'package:bharat_ace/screens/alarm_screen.dart';
 import 'package:bharat_ace/screens/authentication/login_screen.dart';
 import 'package:bharat_ace/screens/authentication/signup_screen.dart';
 import 'package:bharat_ace/screens/home_screen/home_screen2.dart';
+import 'package:bharat_ace/screens/leaderboard/leaderboard_screen.dart';
 import 'package:bharat_ace/screens/main_layout_screen.dart';
 import 'package:bharat_ace/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:bharat_ace/screens/onboarding_screen/subject_selection_screen.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String topic_details_screen = "/topic_details";
   static const String permissions = "/permissions";
   static const String alarm = "/alarm";
+  static const String leaderboard = "/leaderboard";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -43,7 +45,9 @@ class AppRoutes {
       case permissions:
         return MaterialPageRoute(builder: (_) => const PermissionsScreen());
       case alarm: // Add case for alarm screen
-        return MaterialPageRoute(builder: (_) => const AlarmScreen());
+        return MaterialPageRoute(builder: (_) => const ProgressScreen());
+      case leaderboard:
+        return MaterialPageRoute(builder: (_) => const LeaderboardScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

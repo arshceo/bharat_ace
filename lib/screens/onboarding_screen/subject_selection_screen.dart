@@ -56,8 +56,8 @@ class _SubjectSelectionScreenState
   // **MODIFIED**: Load subjects based on student profile in provider
   void _loadSubjectsBasedOnProfile() {
     setState(() => _isLoadingSubjects = true); // Start loading
-    final StudentModel? student =
-        ref.read(studentDetailsProvider); // Read data once
+    final asyncStudent = ref.read(studentDetailsProvider);
+    final StudentModel? student = asyncStudent.value; // Read data once
 
     if (student != null &&
         student.board.isNotEmpty &&
@@ -118,7 +118,7 @@ class _SubjectSelectionScreenState
     // Set loading state
     setState(() => _isLoading = true);
 
-    final studentNotifier = ref.read(studentDetailsProvider.notifier);
+    final studentNotifier = ref.read(studentDetailsNotifierProvider.notifier);
 
     try {
       // 1. Update the state in the notifier with selected subjects
@@ -170,13 +170,19 @@ class _SubjectSelectionScreenState
         child: Column(
           children: [
             // Display student's grade for confirmation
-            if (student != null)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Text("For Class: ${student.grade} (${student.board})",
-                    style:
-                        const TextStyle(color: Colors.white70, fontSize: 16)),
-              ),
+            student.when(
+              data: (studentData) => studentData != null
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Text(
+                          "For Class: ${studentData.grade} (${studentData.board})",
+                          style: const TextStyle(
+                              color: Colors.white70, fontSize: 16)),
+                    )
+                  : const SizedBox.shrink(),
+              loading: () => const SizedBox.shrink(),
+              error: (err, stack) => const SizedBox.shrink(),
+            ),
 
             // Removed Mock XP Bar - Show loading indicator for subjects instead
             if (_isLoadingSubjects)

@@ -9,15 +9,9 @@ class CourseHub extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final student = ref.watch(studentDetailsProvider);
 
-    if (student == null) {
-      return const Center(
-        child:
-            CircularProgressIndicator(), // Show loading until data is fetched
-      );
-    }
-
-    final subjects = student.enrolledSubjects;
-    final className = student.grade; // Ensure className is retrieved
+    final subjects = student.value?.enrolledSubjects ?? [];
+    final className =
+        student.value?.grade ?? ''; // Ensure className is retrieved
 
     return Card(
       color: Colors.indigo[900],

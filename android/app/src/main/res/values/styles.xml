@@ -11,11 +11,12 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsFloating">true</item> <!-- Makes it dialog-like -->
         <item name="android:backgroundDimEnabled">true</item> <!-- Dims background -->
         <item name="android:backgroundDimAmount">0.7</item> <!-- Dim amount -->
-         <item name="android:statusBarColor">@android:color/transparent</item> <!-- Optional: Transparent status bar -->
-         <item name="android:navigationBarColor">@android:color/transparent</item> <!-- Optional: Transparent nav bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item> <!-- Optional: Transparent status bar -->
+        <item name="android:navigationBarColor">@android:color/transparent</item> <!-- Optional: Transparent nav bar -->
 
     </style>
 </resources>

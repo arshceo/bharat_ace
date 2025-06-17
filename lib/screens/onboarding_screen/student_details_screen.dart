@@ -163,7 +163,8 @@ class _StudentDetailsScreenState extends ConsumerState<StudentDetailsScreen> {
         _schoolError == null) {
       // --- Update State ONLY ---
       try {
-        final studentNotifier = ref.read(studentDetailsProvider.notifier);
+        final studentNotifier =
+            ref.read(studentDetailsNotifierProvider.notifier);
         studentNotifier.updateProfileDetails(
           name: _nameController.text.trim(),
           username: _usernameController.text.trim(),

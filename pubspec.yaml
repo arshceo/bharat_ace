@@ -47,7 +47,7 @@ dependencies:
   lucide_icons: ^0.257.0
   google_generative_ai: ^0.4.6
   flutter_dotenv: ^5.2.1
-  percent_indicator: ^4.2.4
+  percent_indicator: ^4.2.2 # Or just ^5.0.0percent_indicator: '>=5.0.0 <6.0.0' # Or just ^5.0.0
   animate_do: ^4.0.1
   audioplayers: ^6.1.2
   cloud_firestore: ^5.6.3
@@ -58,13 +58,32 @@ dependencies:
   flutter_cube: ^0.1.1
   rive: ^0.13.20
   intl: ^0.20.2
+  uuid: ^4.5.1
+  video_player: ^2.9.5
+  video_thumbnail: ^0.5.6
   shimmer: ^3.0.0
-  flutter_markdown: ^0.7.7
   speech_to_text: ^7.0.0
   permission_handler: ^12.0.0+1
   usage_stats: ^1.3.1
   flutter_overlay_window: ^0.5.0
+  path_provider: ^2.1.5
+  flutter_hooks: ^0.21.2
+  hooks_riverpod: ^2.6.1
+  syncfusion_flutter_charts: ^29.1.41
+  flutter_html: ^3.0.0-beta.2
+  fl_chart: ^1.0.0
+  html: ^0.15.4
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_tts: ^4.2.2
+  markdown: ^7.3.0
+  flutter_widget_from_html_core: ^0.16.0
+  fwfh_selectable_text: ^0.8.3
+  flutter_markdown: ^0.6.10
+  image_picker: ^1.1.2
 
+dependency_overrides:
+  flutter_widget_from_html_core: ^0.8.3+1 # Forcing the
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,7 +94,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
-
+  hive_generator: ^2.0.0
+  build_runner: ^2.3.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -96,8 +116,40 @@ flutter:
     - .env
     - assets/.env
     - assets/audio/
+    - assets/gifts/
   #   - images/a_dot_ham.jpeg
 
+  fonts:
+    - family: Orbitron
+      fonts:
+        - asset: assets/fonts/Orbitron-Regular.ttf
+        - asset: assets/fonts/Orbitron-Bold.ttf
+          weight: 700
+    - family: Exo2
+      fonts:
+        - asset: assets/fonts/Exo2-Regular.ttf
+        - asset: assets/fonts/Exo2-Bold.ttf
+          weight: 700
+  #       # ... other weights/styles
+  #   - family: Lato
+  #     fonts:
+  #       - asset: assets/fonts/Lato-Regular.ttf
+  #       # ... etc.
+  #   - family: Merriweather
+  #     fonts:
+  #       # ...
+  #   - family: OpenSans
+  #     fonts:
+  #       # ...
+  #   - family: FiraCode
+  #     fonts:
+  #       # ...
+  #   - family: Nunito
+  #     fonts:
+  #       # ...
+  #   - family: SourceSansPro # Or SourceSans3, match the family name
+  #     fonts:
+  # ...
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

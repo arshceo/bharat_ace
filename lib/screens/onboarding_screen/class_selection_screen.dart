@@ -239,7 +239,7 @@ class _ClassSelectionScreenState extends ConsumerState<ClassSelectionScreen>
                 onTap: () {
                   // Get the notifier
                   final studentNotifier =
-                      ref.read(studentDetailsProvider.notifier);
+                      ref.read(studentDetailsNotifierProvider.notifier);
                   // Get the currently logged-in user (should exist here)
                   final user = ref.read(firebaseAuthProvider).currentUser;
 

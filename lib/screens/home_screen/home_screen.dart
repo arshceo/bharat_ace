@@ -21,8 +21,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => ref.read(studentDetailsProvider.notifier).fetchStudentDetails());
+    Future.microtask(() => ref
+        .read(studentDetailsNotifierProvider.notifier)
+        .fetchStudentDetails());
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
@@ -39,7 +40,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    final student = ref.watch(studentDetailsProvider);
+    final studentAsync = ref.watch(studentDetailsProvider);
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -50,13 +51,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             // ⚡ Animated Hacker-Style Header
             FadeTransition(
               opacity: _fadeAnimation,
-              child: Text(
-                "Welcome, ${student?.name ?? "Student"} 👋",
-                style: GoogleFonts.orbitron(
-                  textStyle: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.greenAccent),
+              child: studentAsync.when(
+                data: (student) => Text(
+                  "Welcome, ${student?.name ?? "Student"} 👋",
+                  style: GoogleFonts.orbitron(
+                    textStyle: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.greenAccent),
+                  ),
+                ),
+                loading: () => Text(
+                  "Welcome, Student 👋",
+                  style: GoogleFonts.orbitron(
+                    textStyle: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.greenAccent),
+                  ),
+                ),
+                error: (error, stack) => Text(
+                  "Welcome, Student 👋",
+                  style: GoogleFonts.orbitron(
+                    textStyle: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.greenAccent),
+                  ),
                 ),
               ),
             ),

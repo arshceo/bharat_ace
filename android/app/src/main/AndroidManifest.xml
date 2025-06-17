@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- To start service on boot -->
+    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
     <application
         android:label="bharat_ace"
         android:name="${applicationName}"
@@ -39,20 +40,20 @@
         </receiver>
 
         <receiver
-             android:name=".AlarmReceiver"
-             android:enabled="true"
-             android:exported="false" />
+            android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:exported="false" />
 
         <!-- Boot Completed Receiver (to restart service) -->
-         <receiver
-             android:name=".BootCompletedReceiver"
-             android:enabled="true"
-             android:exported="true">
-              <intent-filter>
-                  <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                  <action android:name="android.intent.action.QUICKBOOT_POWERON"/> <!-- For some devices -->
-              </intent-filter>
-         </receiver>
+        <receiver
+            android:name=".BootCompletedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/> <!-- For some devices -->
+            </intent-filter>
+        </receiver>
         <!-- *** END OF RECEIVER DECLARATION *** -->
 
         <service
@@ -83,9 +84,9 @@
                  while the Flutter UI initializes. After that, this theme continues
                  to determine the Window background behind the Flutter UI. -->
             <meta-data
-              android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
-              />
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"
+            />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

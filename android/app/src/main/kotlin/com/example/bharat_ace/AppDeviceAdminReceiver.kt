@@ -12,7 +12,7 @@ class AppDeviceAdminReceiver : DeviceAdminReceiver() {
     // Simple way to show user feedback, you might replace this with channel calls
     private fun showToast(context: Context, msg: String) {
         // Toast.makeText(context, msg, Toast.LENGTH_SHORT).show() // Commented out to avoid context issues if used improperly
-         Log.d(TAG, msg) // Log instead of Toast for background safety
+        Log.d(TAG, msg) // Log instead of Toast for background safety
     }
 
     override fun onEnabled(context: Context, intent: Intent) {
