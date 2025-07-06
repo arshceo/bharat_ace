@@ -1,9 +1,12 @@
-import 'package:bharat_ace/common/observers/app_route_observer,dart';
+import 'package:bharat_ace/common/observers/app_route_observer.dart';
 import 'package:bharat_ace/common/routes.dart';
 import 'package:bharat_ace/core/providers/auth_provider.dart'
     show authStateProvider;
 import 'package:bharat_ace/core/providers/student_details_listener.dart';
 import 'package:bharat_ace/core/services/auth_checker.dart';
+import 'package:bharat_ace/core/config/supabase_config.dart';
+import 'package:bharat_ace/core/utils/supabase_test.dart';
+import 'package:bharat_ace/core/services/initialization_service.dart';
 
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
 import 'package:flutter/services.dart';
@@ -11,11 +14,43 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase first
   await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
+
+  // Initialize Supabase with proper error handling
+  try {
+    await Supabase.initialize(
+      url: SupabaseConfig.supabaseUrl,
+      anonKey: SupabaseConfig.supabaseAnonKey,
+      debug: true, // Enable debug mode to see more logs
+    );
+    print('✅ Supabase initialized successfully');
+    print('🔗 Supabase URL: ${SupabaseConfig.supabaseUrl}');
+
+    // Mark as initialized
+    InitializationService.markSupabaseInitialized();
+
+    // Test connection and run comprehensive tests
+    SupabaseTest.testConnection();
+
+    // Run async tests after a short delay to let the app initialize
+    Future.delayed(const Duration(seconds: 2), () async {
+      print('\n🧪 Running Supabase diagnostic tests...\n');
+      await SupabaseTest.runAllTests();
+    });
+  } catch (e) {
+    print('❌ Supabase initialization failed: $e');
+    print(
+        '🔧 Please check your Supabase configuration in supabase_config.dart');
+    // Continue without Supabase for now
+  }
+
   runApp(ProviderScope(child: MyApp())); // Riverpod ProviderScope
 }
 

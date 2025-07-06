@@ -65,6 +65,7 @@ class RewardsGalleryScreen extends ConsumerWidget {
         padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).padding.bottom > 0 ? 76.0 : 70.0),
         child: FloatingActionButton.extended(
+          heroTag: "rewards_gallery_dev_fab", // Add unique heroTag
           onPressed: () {
             ref
                 .read(studentProgressProvider.notifier)

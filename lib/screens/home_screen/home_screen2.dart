@@ -5,7 +5,6 @@ import 'package:bharat_ace/common/routes.dart';
 import 'package:bharat_ace/core/models/ai_spark_theme.dart';
 import 'package:bharat_ace/core/services/study_plan_service.dart';
 import 'package:bharat_ace/screens/notification_screen.dart';
-import 'package:bharat_ace/screens/profile_screen.dart';
 import 'package:bharat_ace/widgets/home_screen_widgets/ai_chat_widget.dart';
 import 'package:bharat_ace/widgets/home_screen_widgets/animated_sun_display.dart';
 import 'package:bharat_ace/widgets/home_screen_widgets/book_magic_theme_display.dart';
@@ -34,6 +33,7 @@ import 'package:bharat_ace/core/providers/student_details_listener.dart';
 
 // --- Import Navigation Targets ---
 import 'package:bharat_ace/screens/smaterial/chapter_landing_screen.dart';
+import 'package:bharat_ace/screens/courses/course_screen.dart';
 
 import '../../core/theme/app_colors.dart';
 
@@ -73,10 +73,10 @@ class HomeScreen2 extends ConsumerWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.darkBg,
+      backgroundColor: const Color.fromARGB(255, 8, 1, 14),
       extendBodyBehindAppBar: true,
       body: RefreshIndicator(
-        backgroundColor: AppColors.primaryPurple,
+        backgroundColor: const Color.fromARGB(255, 3, 0, 8),
         color: Colors.white,
         onRefresh: () async {
           HapticFeedback.lightImpact();
@@ -2106,58 +2106,6 @@ class HomeScreen2 extends ConsumerWidget {
     );
   }
 
-  Widget _buildDailyMissionsSection(BuildContext context, WidgetRef ref) {
-    final AsyncValue<List<StudyTask>> tasksAsync =
-        ref.watch(todaysPersonalizedTasksProvider);
-    final TextTheme textTheme = Theme.of(context).textTheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Today's Missions 🎯",
-            style: textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
-        const SizedBox(height: 14),
-        tasksAsync.when(
-          data: (tasks) {
-            print("HomeScreen2: Received ${tasks.length} tasks from provider.");
-            // tasks.forEach((task) => print("  - HS2 Task: ${task.subject} - ${task.title}"));
-            if (tasks.isEmpty) {
-              return FadeIn(
-                  child: _buildInfoCard(
-                      context,
-                      "Mission Control Says Relax! 🧘",
-                      "No new missions for today. You're on track or awaiting your next assignment!",
-                      Icons
-                          .self_improvement_rounded, // Or Icons.celebration_rounded
-                      AppColors.completedGreen.withOpacity(0.8)));
-            }
-            return ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: tasks.length,
-              itemBuilder: (context, index) => FadeInUp(
-                delay: (index * 100).ms,
-                duration: 400.ms,
-                child: _buildMissionCard(context, ref, tasks[index]),
-              ),
-              separatorBuilder: (context, index) => const SizedBox(height: 14),
-            );
-          },
-          loading: () => Column(
-              children: List.generate(
-                  3,
-                  (i) => Padding(
-                        padding: const EdgeInsets.only(bottom: 14.0),
-                        child: _buildShimmerCard(height: 120, borderRadius: 18),
-                      ))),
-          error: (e, s) => _buildErrorCard(context, "Failed to load missions",
-              () => ref.invalidate(todaysPersonalizedTasksProvider)),
-        ),
-      ],
-    );
-  }
-
   Widget _buildMissionCard(
       BuildContext context, WidgetRef ref, StudyTask task) {
     final TextTheme textTheme = Theme.of(context).textTheme;
@@ -2706,82 +2654,6 @@ class HomeScreen2 extends ConsumerWidget {
     );
   }
 
-  Widget _buildExperimentAndReelsCtaSection(
-      BuildContext context, WidgetRef ref) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-    return Card(
-      elevation: 5,
-      color: AppColors.primaryPurple.withOpacity(0.25),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
-          side: BorderSide(
-              color: AppColors.primaryPurple.withOpacity(0.6), width: 1.5)),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () {
-          // print("Experiment CTA Tapped");
-        },
-        borderRadius: BorderRadius.circular(22),
-        splashColor: AppColors.accentPink.withOpacity(0.2),
-        highlightColor: AppColors.accentPink.withOpacity(0.1),
-        child: Padding(
-          padding: const EdgeInsets.all(22.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "🔬 Unleash Your Inner Scientist!",
-                      style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textPrimary,
-                          height: 1.3),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      "Got an experiment kit? Show the world your genius! Upload a reel of your discovery, earn badges, XP, and maybe even get featured!",
-                      style: textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondary.withOpacity(0.9),
-                          height: 1.45),
-                    ),
-                    const SizedBox(height: 18),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.rocket_launch_rounded, size: 20),
-                      label: const Text("Share Your Spark",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.accentPink,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14)),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 12)),
-                      onPressed: () {
-                        // TODO: Navigate to experiment submission
-                      },
-                    ).animate().scaleXY(
-                        delay: 400.ms,
-                        duration: 300.ms,
-                        curve: Curves.easeOutBack),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 18),
-              Swing(
-                duration: 2500.ms,
-                delay: 600.ms,
-                child: Icon(Icons.science_rounded,
-                    size: 64, color: AppColors.accentPink.withOpacity(0.8)),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildEnhancedQuickActions(BuildContext context, WidgetRef ref) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
@@ -2836,24 +2708,43 @@ class HomeScreen2 extends ConsumerWidget {
             ),
             _buildEnhancedActionCard(
               context,
-              "Video Library",
-              Icons.play_circle_outline_rounded,
+              "Study Materials",
+              Icons.library_books_rounded,
               AppColors.accentPink,
+              () {},
+              description: "Access resources",
+            ),
+            _buildEnhancedActionCard(
+              context,
+              "DB Test",
+              Icons.storage_rounded,
+              AppColors.accentOrange,
               () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()),
-                );
+                Navigator.pushNamed(context, AppRoutes.testSupabase);
               },
-              description: "Watch & learn",
+              description: "Test database",
+            ),
+            _buildEnhancedActionCard(
+              context,
+              "Learning Hub",
+              Icons.school_rounded,
+              AppColors.accentGreen,
+              () {},
+              description: "Study resources",
             ),
             _buildEnhancedActionCard(
               context,
               "Study Plan",
               Icons.calendar_today_outlined,
               AppColors.accentGreen,
-              () {},
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CourseScreen(),
+                  ),
+                );
+              },
               description: "Your complete roadmap",
             ),
             _buildEnhancedActionCard(
@@ -3082,84 +2973,6 @@ class HomeScreen2 extends ConsumerWidget {
             },
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildQuickActionsSection(BuildContext context, WidgetRef ref) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Explore & Master 🚀",
-            style: textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
-        const SizedBox(height: 18),
-        GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: 14,
-          mainAxisSpacing: 14,
-          childAspectRatio: 2.3,
-          children: [
-            _buildQuickActionCard(context, "Visual Notes",
-                Icons.lightbulb_circle_rounded, AppColors.accentCyan, () {}),
-            _buildQuickActionCard(context, "Video Library",
-                Icons.play_circle_fill_rounded, AppColors.accentPink, () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfileScreen()),
-              );
-            }),
-            _buildQuickActionCard(
-                context,
-                "Full Study Plan",
-                Icons.calendar_month_rounded,
-                AppColors.accentGreen, // Using AppColors
-                () {}),
-            _buildQuickActionCard(
-                context,
-                "Mock Tests",
-                Icons.checklist_rtl_rounded,
-                AppColors.accentOrange, // Using AppColors
-                () {}),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _buildQuickActionCard(BuildContext context, String title,
-      IconData icon, Color color, VoidCallback onTap) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-    return Card(
-      elevation: 3,
-      color: AppColors.surfaceDark,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        splashColor: color.withOpacity(0.2),
-        highlightColor: color.withOpacity(0.1),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          child: Row(
-            children: [
-              Icon(icon, color: color, size: 30),
-              const SizedBox(width: 12),
-              Expanded(
-                  child: Text(title,
-                      style: textTheme.titleSmall?.copyWith(
-                          color: AppColors.textPrimary,
-                          fontWeight: FontWeight.w600))),
-              Icon(Icons.arrow_forward_ios_rounded,
-                  size: 16, color: AppColors.textSecondary.withOpacity(0.8)),
-            ],
-          ),
-        ),
       ),
     );
   }

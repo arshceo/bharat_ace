@@ -3,7 +3,6 @@ import 'package:bharat_ace/widgets/syllabus_screen_widgets/chapter_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:bharat_ace/core/models/syllabus_models.dart';
 import 'package:bharat_ace/core/theme/app_colors.dart';
 
@@ -68,9 +67,9 @@ class SubjectExpansionTile extends ConsumerWidget {
       return buildChapterTilesForList(
           subjectName, subjectData.chapters, chapterIndent);
     } else if (subjectData.subSubjects != null &&
-        subjectData.subSubjects!.isNotEmpty) {
+        subjectData.subSubjects?.isNotEmpty == true) {
       List<Widget> subSubjectWidgets = [];
-      subjectData.subSubjects!.forEach((subSubjectName, subSubjectItemData) {
+      subjectData.subSubjects?.forEach((subSubjectName, subSubjectItemData) {
         subSubjectWidgets.add(Padding(
           padding: EdgeInsets.only(
               top: 12.0, bottom: 6.0, left: subSubjectIndent + 16.0),
@@ -109,24 +108,34 @@ class SubjectExpansionTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Initialize with a safe default
     double subjectProgress = 0.0;
-    if (progressInfo.total > 0) {
-      subjectProgress =
-          (progressInfo.completed.toDouble() / progressInfo.total.toDouble());
-    }
 
-    if (subjectProgress.isNaN || subjectProgress.isInfinite) {
-      print(
-          "Warning: subjectProgress is invalid for $subjectName. Defaulting to 0.");
-      subjectProgress = 0.0;
-    }
+    try {
+      // Safely calculate progress with proper validation
+      if (progressInfo.total > 0) {
+        final completed = progressInfo.completed.toDouble();
+        final total = progressInfo.total.toDouble();
 
-    subjectProgress = subjectProgress.clamp(0.0, 1.0);
+        // Extra validation to ensure we don't get NaN or Infinity
+        if (total > 0 && !completed.isNaN && !total.isNaN) {
+          subjectProgress = completed / total;
 
-    if (subjectProgress.isNaN || subjectProgress.isInfinite) {
-      print(
-          "Warning: Invalid subjectProgress ($subjectProgress) for $subjectName "
-          "(Total: ${progressInfo.total}, Completed: ${progressInfo.completed}). Defaulting to 0.0.");
+          // Clamp to ensure we have a valid percentage (0.0 to 1.0)
+          subjectProgress = subjectProgress.clamp(0.0, 1.0);
+        }
+      }
+
+      // Final validation check
+      if (subjectProgress.isNaN ||
+          subjectProgress.isInfinite ||
+          subjectProgress < 0) {
+        print("Warning: Invalid subjectProgress calculated for $subjectName "
+            "(Total: ${progressInfo.total}, Completed: ${progressInfo.completed}). Defaulting to 0.0.");
+        subjectProgress = 0.0;
+      }
+    } catch (e) {
+      print("Error calculating progress for $subjectName: $e");
       subjectProgress = 0.0;
     }
 
@@ -165,73 +174,23 @@ class SubjectExpansionTile extends ConsumerWidget {
             Row(
               children: [
                 Expanded(
-                  child: LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constraints) {
-                    // FIRST, check if constraints.maxWidth is null
-                    if (constraints.maxWidth == null) {
-                      print(
-                          "CRITICAL LAYOUT ERROR for $subjectName: constraints.maxWidth is NULL. Rendering SizedBox.shrink()");
-                      return const SizedBox.shrink();
-                    }
-
-                    // Now proceed with your existing checks, knowing maxWidth is not null
-                    if (!constraints.hasBoundedWidth ||
-                        constraints.maxWidth.isInfinite ||
-                        constraints.maxWidth.isNaN ||
-                        constraints.maxWidth <= 0) {
-                      print(
-                          "LPI for $subjectName received invalid or zero width constraint: maxWidth=${constraints.maxWidth}, hasBoundedWidth=${constraints.hasBoundedWidth}. Rendering SizedBox.shrink()");
-                      return const SizedBox.shrink();
-                    }
-
-                    // At this point, constraints.maxWidth is a valid, positive, finite double.
-                    final double indicatorWidth = constraints.maxWidth;
-
-                    double currentPercentValue =
-                        subjectProgress; // This was calculated outside LayoutBuilder
-                    if (currentPercentValue.isNaN ||
-                        currentPercentValue.isInfinite) {
-                      currentPercentValue = 0.0;
-                    }
-                    currentPercentValue = currentPercentValue.clamp(0.0, 1.0);
-
-                    if (progressInfo.total == 0) {
-                      return Container(
-                        height: 6.0,
-                        width: indicatorWidth,
+                  child: Container(
+                    height: 6.0,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    child: FractionallySizedBox(
+                      alignment: Alignment.centerLeft,
+                      widthFactor: (subjectProgress.clamp(0.0, 1.0)),
+                      child: Container(
                         decoration: BoxDecoration(
-                          color: AppColors.cardLightBackground.withOpacity(0.7),
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(3),
                         ),
-                      );
-                    } else {
-                      // This section is for progressInfo.total > 0
-                      // It's less likely the cause for "English" if its total is 0.
-                      if (indicatorWidth < 1.0) {
-                        return Container(
-                          height: 6.0,
-                          width: indicatorWidth,
-                          decoration: BoxDecoration(
-                            color:
-                                AppColors.cardLightBackground.withOpacity(0.7),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        );
-                      }
-                      return LinearPercentIndicator(
-                        key: ValueKey(
-                            '${subjectName}_lpi_${currentPercentValue}_${indicatorWidth}'),
-                        width: indicatorWidth,
-                        percent: currentPercentValue,
-                        lineHeight: 6.0,
-                        barRadius: const Radius.circular(3),
-                        backgroundColor:
-                            AppColors.cardLightBackground.withOpacity(0.7),
-                        progressColor: AppColors.secondaryAccent,
-                        animation: false,
-                      );
-                    }
-                  }),
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Text(

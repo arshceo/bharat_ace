@@ -3,7 +3,7 @@
 // import 'package:bharat_ace/screens/alarm_screen.dart' as AppColors;
 import 'package:bharat_ace/core/models/study_task_model.dart';
 import 'package:bharat_ace/core/providers/personalized_study_plan_provider.dart';
-import 'package:bharat_ace/screens/syllabus_screen.dart';
+import 'package:bharat_ace/screens/smaterial/cat_teacher_classroom_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bharat_ace/core/models/syllabus_models.dart';
@@ -15,6 +15,7 @@ import '../../core/theme/app_colors.dart';
 import 'prerequisite_check_screen.dart';
 import '../../features/level_content/screens/level_content_screen.dart'
     as level_content;
+// import 'cat_teacher_classroom_screen.dart';
 
 // Assuming AppColors is defined as in the previous SyllabusScreen example
 // If not, define it here or import from your theme file.
@@ -26,6 +27,219 @@ class ChapterLandingScreen extends ConsumerWidget {
 
   const ChapterLandingScreen(
       {super.key, required this.subjectName, required this.chapterId});
+
+  // Show learning method selection dialog
+  void _showLearningMethodDialog(BuildContext context,
+      ChapterDetailed chapterData, ChapterProgress progress) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // User must choose
+      builder: (BuildContext dialogContext) {
+        return Dialog(
+            backgroundColor: AppColors.cardBackground,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(dialogContext).size.height * 0.7,
+                maxWidth: MediaQuery.of(dialogContext).size.width * 0.85,
+              ),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.cardBackground,
+                    AppColors.cardBackground.withOpacity(0.9),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Header with icon
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryAccent.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.school_rounded,
+                        size: 28,
+                        color: AppColors.primaryAccent,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Title
+                    Text(
+                      "Choose Your Learning Style",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 6),
+
+                    // Subtitle
+                    Text(
+                      "How would you like to learn about:\n\"${chapterData.chapterTitle}\"?",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textSecondary,
+                        height: 1.3,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Cat Teacher Option
+                    _buildLearningOption(
+                      context: dialogContext,
+                      icon: Icons.pets,
+                      title: "🐱 Learn with Professor Cat",
+                      subtitle:
+                          "Interactive classroom experience with AI teacher",
+                      gradient: [Colors.orange.shade400, Colors.red.shade400],
+                      onTap: () {
+                        Navigator.of(dialogContext).pop();
+                        _navigateToCatTeacher(context, chapterData, progress);
+                      },
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Simple Chat Option
+                    _buildLearningOption(
+                      context: dialogContext,
+                      icon: Icons.chat_bubble_rounded,
+                      title: "📖 Traditional Learning",
+                      subtitle: "Standard content with Q&A chat support",
+                      gradient: [
+                        AppColors.primaryAccent,
+                        AppColors.secondaryAccent
+                      ],
+                      onTap: () {
+                        Navigator.of(dialogContext).pop();
+                        _navigateToTraditionalLearning(
+                            context, chapterData, progress);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ));
+      },
+    );
+  }
+
+  Widget _buildLearningOption({
+    required BuildContext context,
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required List<Color> gradient,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: gradient.map((c) => c.withOpacity(0.1)).toList(),
+          ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: gradient.first.withOpacity(0.3),
+            width: 2,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: gradient),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(icon, color: Colors.white, size: 20),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 1),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: gradient.first,
+              size: 14,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _navigateToCatTeacher(BuildContext context, ChapterDetailed chapterData,
+      ChapterProgress progress) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        settings: RouteSettings(
+            name: "/catTeacher/${chapterId}/${progress.currentLevel}"),
+        builder: (_) => CatTeacherClassroomScreen(
+          chapter: chapterId,
+          topic: chapterData.chapterTitle,
+          subject: subjectName,
+          content:
+              "Let's explore ${chapterData.chapterTitle} together! I'm Professor Cat, and I'll make this topic fun and easy to understand.",
+        ),
+      ),
+    );
+  }
+
+  void _navigateToTraditionalLearning(BuildContext context,
+      ChapterDetailed chapterData, ChapterProgress progress) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        settings: RouteSettings(
+            name: "/levelContent/${chapterId}/${progress.currentLevel}"),
+        builder: (_) => level_content.LevelContentScreen(
+          subject: subjectName,
+          chapterId: chapterId,
+          levelName: progress.currentLevel,
+          chapterData: chapterData,
+        ),
+      ),
+    );
+  }
 
   // _findChapterDataLocal helper (logic remains unchanged)
   ChapterDetailed? _findChapterDataLocal(
@@ -181,7 +395,7 @@ class ChapterLandingScreen extends ConsumerWidget {
     bool assignedTaskCompleted = false;
     if (isMissionForThisChapter) {
       // The primary source of truth for task completion is the 'isCompleted' field of the StudyTask itself.
-      assignedTaskCompleted = relevantTodaysTaskForThisChapter!.isCompleted;
+      assignedTaskCompleted = relevantTodaysTaskForThisChapter.isCompleted;
 
       // As a fallback or secondary check, if the task is about completing the chapter
       // and the chapter is mastered, we can also consider the task completed.
@@ -196,7 +410,7 @@ class ChapterLandingScreen extends ConsumerWidget {
       }
     }
 
-    // --- Navigation Logic (remains the same) ---
+    // --- Navigation Logic - Show dialog instead of auto-navigation ---
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!context.mounted) return;
 
@@ -225,17 +439,6 @@ class ChapterLandingScreen extends ConsumerWidget {
                     subject: subjectName,
                     chapterId: chapterId,
                     chapterData: chapterData)));
-      } else if (!progress.isMastered && progress.currentLevel != "Mastered") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                settings: RouteSettings(
-                    name: "/levelContent/$chapterId/${progress.currentLevel}"),
-                builder: (_) => level_content.LevelContentScreen(
-                    subject: subjectName,
-                    chapterId: chapterId,
-                    levelName: progress.currentLevel,
-                    chapterData: chapterData)));
       } else if (progress.isMastered || progress.currentLevel == "Mastered") {
         if (Navigator.canPop(context)) Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -247,6 +450,13 @@ class ChapterLandingScreen extends ConsumerWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           margin: const EdgeInsets.all(10),
         ));
+      } else {
+        // Show learning method selection dialog
+        Future.delayed(const Duration(milliseconds: 500), () {
+          if (context.mounted) {
+            _showLearningMethodDialog(context, chapterData, progress);
+          }
+        });
       }
     });
 
@@ -270,7 +480,7 @@ class ChapterLandingScreen extends ConsumerWidget {
           "Chapter '${chapterData.chapterTitle}' Mastered! Well done!";
     } else {
       statusMessage =
-          "Getting '${chapterData.chapterTitle}' ready...\nNext up: ${progress.currentLevel}";
+          "Preparing your learning options for '${chapterData.chapterTitle}'...\n\n🎓 Choose your preferred learning style!";
     }
 
     return _buildLoadingScreen(

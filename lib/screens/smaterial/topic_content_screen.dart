@@ -51,7 +51,6 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = "";
-
   @override
   void initState() {
     super.initState();
@@ -339,6 +338,7 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("🔧 TopicContentScreen BUILD: Cat teacher button should be VISIBLE!");
     final AsyncValue<String> contentState =
         ref.watch(_topicContentStateProvider);
     final ColorScheme colorScheme = Theme.of(context).colorScheme;

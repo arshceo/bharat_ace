@@ -28,31 +28,92 @@ class AIContentGenerationService {
     String? additionalPromptSegment, // Parameter for language, etc.
   }) async {
     String prompt = """
-    Generate comprehensive yet easy-to-understand educational content for a Class $studentClass student ${board != null && board.isNotEmpty ? '(Board: $board)' : ''}.
-    Topic: "$topic"
-    Chapter: "$chapter"
-    Subject: "$subject"
+    You are BharatAce's Study Genius, an AI tutor dedicated to making learning fun, deep, and memorable for every student in India.
 
-    Instructions:
-    1. Explain the core concepts clearly and concisely.
-    2. Use simple language suitable for the student's class level.
-    3. Include relevant examples to illustrate the concepts.
-    4. Provide memory aids (like mnemonics or analogies) where applicable.
-    5. Structure the content logically with clear headings or sections if possible (use Markdown for basic formatting like **headings** or *italics*).
-    6. Ensure accuracy and cover the essential aspects of the topic for this grade level.
-    ${complexityPreference == 'simple' ? '7. Focus on a very basic overview.' : ''}
-    ${complexityPreference == 'detailed' ? '7. Include more in-depth explanations and related concepts.' : ''}
+    Whenever a topic, formula, or concept is provided, generate content that:
+    - Explains the concept in **simple, friendly language** for the student's grade.
+    - Is never boring or just a definition—always engaging, creative, and joyful!
+
+    **CRUCIAL: Always use the most effective and diverse study techniques for each concept. Combine and adapt the following techniques as best suits the topic:**
+    - **Mind Maps:** Break down the topic visually into branches and sub-branches, showing how all parts connect.
+    - **Memory Palace:** Guide the student to visualize each concept or formula as an object, character, or scene in a familiar place (like their home, school, or a famous Indian location), ensuring logical placement and vivid imagery.
+    - **Mnemonics:** Create catchy phrases, stories, abbreviations, or rhymes (in English, Hindi, or any fun Indian mix) that help remember facts, steps, or lists.
+    - **Peg Words & Number Pegs:** Use number-image associations (1=sun, 2=shoe, etc.) for lists and equations, making recall easier.
+    - **Keyword/One-Word Anchor:** Identify a powerful word or image that captures the main idea of a paragraph or concept, and use it to generate a short, memorable story for the whole concept.
+    - **Storytelling & Analogies:** Craft short, imaginative stories or analogies that explain the logic behind the concept or formula, using Indian names, festivals, foods, or daily life.
+    - **Chunking & Association:** Break complex information into small, logical parts and connect each to something familiar.
+    - **Songs, Rhymes, and Cultural References:** Turn key facts or formulas into rhymes, Bollywood-style slogans, or folk song lines.
+    - **Visualization:** Suggest a simple drawing, diagram, or hand-motion students can use to "see" the concept.
+    - **Feynman Technique:** Encourage the student to "teach it back" in their own words, and provide a sample super-simple explanation.
+    - **Active Recall & Quiz:** End with a playful quiz or quick challenge based on the story/technique.
+    - **Spaced Repetition Tips:** Suggest how to review or recall the concept later for maximum memory.
+
+    **Special Instructions for Formulas and Equations (Math, Physics, Chemistry, etc.):**
+    - Always use the most powerful memory technique for each type of content:
+      - For math formulas: Use number pegs, memory palace, and vivid logic-based stories that explain not just what the formula is, but why it works, with step-by-step breakdowns.
+      - For physics formulas: Use analogies, story-based mnemonics, and visualization (e.g., imagine forces as cricket players, vectors as roads in a city, etc.).
+      - For science/chemistry equations: Create colorful stories, peg-words, and memory palace for reactants/products, plus logic-based mnemonics that connect to real-life uses or experiments.
+    - Never present just the formula—always include a memorable story, peg, or image that makes it stick and explains its logic, not just a trick.
+
+    **General Requirements:**
+    - Use Indian context, examples, and humor wherever possible (names, places, foods, etc.).
+    - For each technique, explain briefly how the student should use it.
+    - If a student asks for a specific topic or formula, adapt your response to the subject and student’s class level.
+    - Content must be lively, memorable, and logical—students should understand and recall deeply, not just memorize.
+    - Use Markdown headings, lists, and formatting for clarity.
+    - Never just give a boring answer—always apply the best mix of techniques above.
+
+    ---
+
+    **Request Details:**
+    - Topic: "$topic"
+    - Chapter: "$chapter"
+    - Subject: "$subject"
+    - Class: $studentClass${board != null && board.isNotEmpty ? ' (Board: $board)' : ''}
+    ${complexityPreference == 'simple' ? '- Preference: Simple overview.' : ''}
+    ${complexityPreference == 'detailed' ? '- Preference: Detailed explanation.' : ''}
     ${additionalPromptSegment != null && additionalPromptSegment.isNotEmpty ? '\nIMPORTANT: Generate the content specifically ${additionalPromptSegment.trim()}.' : ''}
 
-    Generate the content now:
+    ***Now, for the requested topic or formula, generate a complete, fun, logical, and memorable learning experience using the techniques above.***
     """;
     // The line above integrates additionalPromptSegment
 
     try {
       print(
           "AIContentService: Generating content for $topic with prompt: $prompt");
-      String generatedContent = await _aiChatService.sendMessage(prompt);
-      print("AIContentService: Content generated.");
+
+      // Check if this is a language-specific request
+      String generatedContent;
+      if (additionalPromptSegment != null &&
+          (additionalPromptSegment.contains('Punjabi') ||
+              additionalPromptSegment.contains('Hinglish') ||
+              additionalPromptSegment.contains('Pinglish') ||
+              additionalPromptSegment.contains('Hindi') ||
+              additionalPromptSegment.contains('Gurmukhi') ||
+              additionalPromptSegment.contains('Devanagari'))) {
+        // Extract language from the prompt
+        String targetLanguage = 'English';
+        if (additionalPromptSegment.contains('Punjabi') ||
+            additionalPromptSegment.contains('Gurmukhi')) {
+          targetLanguage = 'Punjabi';
+        } else if (additionalPromptSegment.contains('Hinglish')) {
+          targetLanguage = 'Hinglish';
+        } else if (additionalPromptSegment.contains('Pinglish')) {
+          targetLanguage = 'Pinglish';
+        } else if (additionalPromptSegment.contains('Hindi') ||
+            additionalPromptSegment.contains('Devanagari')) {
+          targetLanguage = 'Hindi';
+        }
+
+        print(
+            "AIContentService: Using language-specific generation for $targetLanguage");
+        generatedContent = await _aiChatService.generateLanguageSpecificContent(
+            prompt, targetLanguage);
+      } else {
+        generatedContent = await _aiChatService.sendMessage(prompt);
+      }
+
+      print("AIContentService: Content generated successfully.");
       return generatedContent.trim();
     } catch (e) {
       print("❌ AIContentService Error in generateTopicContent: $e");

@@ -68,7 +68,7 @@ class GeminiService {
       // Use a model that supports JSON output well, like 1.5 Flash or Pro
       // model: 'gemini-1.5-pro-latest', // For best quality JSON adherence
       model:
-          'gemini-2.0-flash', // Faster and often sufficient for structured output
+          'gemini-1.5-flash-latest', // Faster and often sufficient for structured output
       apiKey: _apiKey,
       generationConfig: GenerationConfig(
         responseMimeType: "application/json", // Crucial for JSON output

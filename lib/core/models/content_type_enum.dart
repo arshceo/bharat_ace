@@ -1,6 +1,6 @@
 enum ContentType {
   image, // For notes that are images
-  video, // For reels
+  video, // For video content
   // textNote, // If you plan to have text-only notes later
 }
 

@@ -68,7 +68,7 @@ class _LevelContentScreenState extends ConsumerState<LevelContentScreen> {
         levelName: widget.levelName,
         chapterData: widget.chapterData
       );
-  
+
   @override
   void initState() {
     super.initState();
@@ -606,6 +606,7 @@ class _LevelContentScreenState extends ConsumerState<LevelContentScreen> {
                           ? 78
                           : 0)),
               child: FloatingActionButton(
+                heroTag: "level_content_chat_fab", // Add unique heroTag
                 onPressed: () {
                   setState(() {
                     _isChatBoxVisible = !_isChatBoxVisible;

@@ -1,6 +1,7 @@
 // lib/core/providers/student_details_provider.dart
 
 import 'package:bharat_ace/core/models/student_model.dart';
+import 'package:bharat_ace/core/services/supabase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' show User;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -232,7 +233,7 @@ class StudentDetailsNotifier extends StateNotifier<StudentModel?> {
           print(
               "StudentDetailsNotifier: Exam dates updated locally and in Firestore.");
         }
-      } catch (e, s) {
+      } catch (e) {
         print(
             "❌ StudentDetailsNotifier: Error updating student exam dates in Firestore: $e");
         if (mounted && state != null && state?.id == currentStudent.id) {
@@ -519,8 +520,7 @@ class StudentDetailsNotifier extends StateNotifier<StudentModel?> {
   Future<void> saveStudentDataToFirestore() async {
     if (state == null) throw Exception("Student data is null, cannot save.");
     if (state!.id.isEmpty) throw Exception("Student ID is missing.");
-    if (state!.grade.isEmpty ||
-        (state!.board != null && state!.board!.isEmpty)) {
+    if (state!.grade.isEmpty || state!.board.isEmpty) {
       // Allow board to be null but not empty string
       throw Exception(
           "Essential profile data (Grade/Board if provided) is missing.");
@@ -533,6 +533,15 @@ class StudentDetailsNotifier extends StateNotifier<StudentModel?> {
       Map<String, dynamic> studentData = state!.toJson();
       await dbService.setStudentData(state!.id, studentData);
       print("✅ Notifier: Student data saved successfully.");
+
+      // Also sync to Supabase
+      try {
+        await SupabaseService.createOrUpdateUser(state!);
+        print("✅ Notifier: Student data synced to Supabase successfully.");
+      } catch (supabaseError) {
+        print("⚠️ Notifier: Failed to sync to Supabase: $supabaseError");
+        // Don't throw - Firebase save was successful, Supabase sync is supplementary
+      }
     } catch (e) {
       print("❌ Notifier: Error saving student data: $e");
       rethrow;
@@ -547,6 +556,19 @@ class StudentDetailsNotifier extends StateNotifier<StudentModel?> {
       if (mounted) state = state!.copyWith(lastActive: Timestamp.now());
     } catch (e) {
       print("❌ Error updating last active via notifier: $e");
+    }
+  }
+
+  void updateAvatar(String avatarUrl) {
+    final user = _ref.read(firebaseAuthProvider).currentUser;
+    if (user == null) {
+      print("❌ Error: Cannot update avatar, user not logged in.");
+      return;
+    }
+    final currentState = _ensureStateExists(user.uid, user.email ?? "");
+    if (mounted) {
+      state = currentState.copyWith(avatar: avatarUrl);
+      print("Notifier: Updated avatar in state to $avatarUrl");
     }
   }
 

@@ -1,7 +1,7 @@
 // --- lib/screens/main_layout_screen.dart ---
 
-import 'package:bharat_ace/common/routes.dart';
 import 'package:bharat_ace/screens/gifts_screen/presentations/screens/rewards_gallery_screen.dart';
+import 'package:bharat_ace/screens/profile_screen.dart';
 import 'package:bharat_ace/screens/syllabus_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,7 +49,7 @@ class MainLayout extends ConsumerWidget {
     HomeScreen2(), // Index 0
     SyllabusScreen(), // Index 1
     RewardsGalleryScreen(), // Index 2
-    ProfilePlaceholderScreen() // Index 3
+    ProfileScreen() // Index 3 - Use actual ProfileScreen
   ];
 
   @override
@@ -144,60 +144,3 @@ class MainLayout extends ConsumerWidget {
 } // End of MainLayout class
 
 // IMPORTANT: AiChatWidget Definition
-// The AiChatWidget and its dependencies (ChatMessage, geminiServiceProvider, etc.)
-// need to be accessible here.
-// Ideally, AiChatWidget and ChatMessage would be in their own files in a 'widgets' directory.
-// For example: import 'package:bharat_ace/widgets/ai_chat_widget.dart';
-//
-// If AiChatWidget and its dependencies are defined in home_screen2.dart,
-// you would need to import home_screen2.dart. However, this creates a circular dependency risk
-// if home_screen2.dart also imports main_layout_screen.dart.
-//
-// **For this to work, you MUST ensure AiChatWidget is correctly imported or defined.**
-// Below is a placeholder comment. Replace with actual import or definition if needed.
-
-/*
-// --- Placeholder for AiChatWidget and ChatMessage if not imported ---
-// If AiChatWidget is in home_screen2.dart, and home_screen2.dart is already imported above,
-// it *should* be available.
-// If you've moved AiChatWidget to its own file (e.g., lib/widgets/ai_chat_widget.dart),
-// you'd import it like this:
-// import 'package:bharat_ace/widgets/ai_chat_widget.dart'; // Example path
-//
-// And AiChatWidget might look like this (simplified, actual code from previous step):
-//
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:google_generative_ai/google_generative_ai.dart' as gen_ai;
-// import 'dart:math';
-// import 'package:bharat_ace/core/services/gemini_service.dart'; // Assuming geminiServiceProvider is here
-// import 'package:bharat_ace/screens/home_screen/home_screen2.dart'; // For DailyFeedItem, HomeScreen2.colors
-
-// class ChatMessage { ... } // Definition from previous steps
-// class AiChatWidget extends ConsumerStatefulWidget { ... } // Definition from previous steps
-*/
-
-class ProfilePlaceholderScreen extends StatelessWidget {
-  const ProfilePlaceholderScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: MainLayout.darkBg, // Match background
-      appBar: AppBar(
-        title: const Text("Profile (Placeholder)"),
-        backgroundColor: MainLayout.surfaceDark,
-        foregroundColor: MainLayout.textPrimary,
-        automaticallyImplyLeading: false,
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.permissions);
-          },
-          child: const Text("Go to Permissions Screen (DEV)"),
-        ),
-      ),
-    );
-  }
-}

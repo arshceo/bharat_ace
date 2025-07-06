@@ -9,6 +9,8 @@ import 'package:bharat_ace/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:bharat_ace/screens/onboarding_screen/subject_selection_screen.dart';
 import 'package:bharat_ace/screens/settings/permissions_screen.dart';
 import 'package:bharat_ace/screens/topic_details_screen.dart';
+import 'package:bharat_ace/screens/profile_screen.dart';
+import 'package:bharat_ace/screens/test_supabase.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -21,6 +23,8 @@ class AppRoutes {
   static const String onboard_subject_selection = "/onboard_subjects";
   static const String topic_details_screen = "/topic_details";
   static const String permissions = "/permissions";
+  static const String profile = "/profile";
+  static const String testSupabase = "/test_supabase";
   static const String alarm = "/alarm";
   static const String leaderboard = "/leaderboard";
 
@@ -44,6 +48,11 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => MainLayout());
       case permissions:
         return MaterialPageRoute(builder: (_) => const PermissionsScreen());
+      case profile:
+        final String? userId = settings.arguments as String?;
+        return MaterialPageRoute(builder: (_) => ProfileScreen(userId: userId));
+      case testSupabase:
+        return MaterialPageRoute(builder: (_) => TestSupabaseConnection());
       case alarm: // Add case for alarm screen
         return MaterialPageRoute(builder: (_) => const ProgressScreen());
       case leaderboard:
