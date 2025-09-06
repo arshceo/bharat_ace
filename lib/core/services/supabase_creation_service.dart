@@ -113,23 +113,23 @@ class SupabaseCreationService {
 
       onProgress(0.9); // Starting database save
 
-      // Create ProfileContentItem
-      final contentItem = ProfileContentItem(
-        id: uniqueContentId,
-        userId: userId,
-        title: title,
-        type: type,
-        downloadUrl: downloadUrl,
-        thumbnailUrl: thumbnailUrl,
-        timestamp: DateTime.now(),
-        views: 0,
-        likes: 0,
-      );
+      // // Create ProfileContentItem
+      // final contentItem = ProfileContentItem(
+      //   id: uniqueContentId,
+      //   userId: userId,
+      //   title: title,
+      //   type: type,
+      //   downloadUrl: downloadUrl,
+      //   thumbnailUrl: thumbnailUrl,
+      //   timestamp: DateTime.now(),
+      //   views: 0,
+      //   likes: 0,
+      // );
 
       // Save to Supabase database
       print('💾 Saving content metadata to database...');
       try {
-        await SupabaseService.saveUserCreation(contentItem);
+        // await SupabaseService.saveUserCreation(contentItem);
         print('✅ Content saved to database successfully');
       } catch (dbError) {
         print('❌ Database save failed: $dbError');

@@ -7,7 +7,7 @@ class AIChatService {
   AIChatService() {
     _model = GenerativeModel(
       model:
-          'gemini-2.0-flash-exp', // More powerful model for better language support
+          'gemini-2.5-flash', // More powerful model for better language support
       apiKey: dotenv.env['GEMINI_API']!,
       systemInstruction: Content.text(
           "You are an educational AI that can teach in multiple languages including English, Hindi, Punjabi (Gurmukhi script), Hinglish (Hindi+English mix), and Pinglish (Punjabi+English mix). When asked to generate content in a specific language, respond entirely in that language with proper script and vocabulary."),

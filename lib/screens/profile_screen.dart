@@ -1,713 +1,724 @@
-import 'dart:io';
+// import 'dart:io';
 
-import 'package:bharat_ace/core/providers/supabase_providers.dart';
+// import 'package:bharat_ace/core/theme/app_theme.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:animate_do/animate_do.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:image_picker/image_picker.dart';
 
-import 'package:bharat_ace/core/models/student_model.dart';
-import 'package:bharat_ace/core/providers/student_details_provider.dart';
+// import 'package:bharat_ace/core/models/student_model.dart';
+// import 'package:bharat_ace/core/providers/student_details_provider.dart';
+// import '../widgets/profile_menu_widget.dart';
 
-// --- Local ProfileAchievement Model ---
-class ProfileAchievement {
-  final String id;
-  final String title;
-  final IconData icon;
-  final Color color;
-  final DateTime dateAchieved;
+// // --- Local ProfileAchievement Model ---
+// class ProfileAchievement {
+//   final String id;
+//   final String title;
+//   final IconData icon;
+//   final Color color;
+//   final DateTime dateAchieved;
 
-  ProfileAchievement({
-    required this.id,
-    required this.title,
-    required this.icon,
-    required this.color,
-    required this.dateAchieved,
-  });
-}
+//   ProfileAchievement({
+//     required this.id,
+//     required this.title,
+//     required this.icon,
+//     required this.color,
+//     required this.dateAchieved,
+//   });
+// }
 
-// --- userAchievementsProvider ---
-final userAchievementsProvider =
-    FutureProvider<List<ProfileAchievement>>((ref) async {
-  await Future.delayed(const Duration(milliseconds: 800));
-  return [
-    ProfileAchievement(
-        id: 'a1',
-        title: 'Math Whiz',
-        icon: Icons.calculate_rounded,
-        color: ProfileScreen.accentCyan,
-        dateAchieved: DateTime.now().subtract(const Duration(days: 5))),
-    ProfileAchievement(
-        id: 'a2',
-        title: 'Science Explorer',
-        icon: Icons.science_rounded,
-        color: ProfileScreen.accentPink,
-        dateAchieved: DateTime.now().subtract(const Duration(days: 12))),
-    ProfileAchievement(
-        id: 'a3',
-        title: '7-Day Streak!',
-        icon: Icons.local_fire_department_rounded,
-        color: Colors.orangeAccent,
-        dateAchieved: DateTime.now().subtract(const Duration(days: 2))),
-    ProfileAchievement(
-        id: 'a4',
-        title: 'Perfect Score: Quiz 1',
-        icon: Icons.star_rounded,
-        color: ProfileScreen.goldStar,
-        dateAchieved: DateTime.now().subtract(const Duration(days: 20))),
-  ];
-});
+// // --- userAchievementsProvider ---
+// final userAchievementsProvider =
+//     FutureProvider<List<ProfileAchievement>>((ref) async {
+//   await Future.delayed(const Duration(milliseconds: 800));
+//   return [
+//     ProfileAchievement(
+//         id: 'a1',
+//         title: 'Math Champion',
+//         icon: Icons.calculate_rounded,
+//         color: AppTheme.primary,
+//         dateAchieved: DateTime.now().subtract(const Duration(days: 5))),
+//     ProfileAchievement(
+//         id: 'a2',
+//         title: 'Science Explorer',
+//         icon: Icons.science_rounded,
+//         color: AppTheme.secondary,
+//         dateAchieved: DateTime.now().subtract(const Duration(days: 12))),
+//     ProfileAchievement(
+//         id: 'a3',
+//         title: '7-Day Streak!',
+//         icon: Icons.local_fire_department_rounded,
+//         color: AppTheme.warning,
+//         dateAchieved: DateTime.now().subtract(const Duration(days: 2))),
+//     ProfileAchievement(
+//         id: 'a4',
+//         title: 'Perfect Score',
+//         icon: Icons.star_rounded,
+//         color: AppTheme.success,
+//         dateAchieved: DateTime.now().subtract(const Duration(days: 20))),
+//   ];
+// });
 
-class ProfileScreen extends ConsumerStatefulWidget {
-  final String?
-      userId; // Optional userId parameter to view other users' profiles
+// class ProfileScreen extends ConsumerStatefulWidget {
+//   final String? userId;
 
-  const ProfileScreen({super.key, this.userId});
+//   const ProfileScreen({super.key, this.userId});
 
-  static const Color darkBg = Color(0xFF12121F);
-  static const Color primaryPurple = Color(0xFF7E57C2);
-  static const Color accentCyan = Color(0xFF29B6F6);
-  static const Color accentPink = Color(0xFFEC407A);
-  static const Color surfaceDark = Color(0xFF1E1E2E);
-  static const Color surfaceLight = Color(0xFF2A2A3A);
-  static const Color textPrimary = Color(0xFFEAEAEA);
-  static const Color textSecondary = Color(0xFFAAAAAA);
-  static const Color goldStar = Color(0xFFFFD700);
+//   @override
+//   ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
+// }
 
-  @override
-  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
-}
+// class _ProfileScreenState extends ConsumerState<ProfileScreen>
+//     with SingleTickerProviderStateMixin {
+//   late TabController _tabController;
 
-class _ProfileScreenState extends ConsumerState<ProfileScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+//   @override
+//   void initState() {
+//     super.initState();
+//     _tabController = TabController(length: 2, vsync: this);
+//   }
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController =
-        TabController(length: 2, vsync: this); // Reduced from 3 tabs to 2
-  }
+//   @override
+//   void dispose() {
+//     _tabController.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
+//   Map<String, dynamic> _calculateLevel(int xp) {
+//     const int baseXpPerLevel = 1000;
+//     int level = (xp / baseXpPerLevel).floor() + 1;
+//     int xpInCurrentLevel = xp % baseXpPerLevel;
+//     double progressToNextLevel = xpInCurrentLevel / baseXpPerLevel;
 
-  Map<String, dynamic> _calculateLevel(int xp) {
-    const int baseXpPerLevel = 1000;
-    int level = (xp / baseXpPerLevel).floor() + 1;
-    int xpInCurrentLevel = xp % baseXpPerLevel;
-    double progressToNextLevel = xpInCurrentLevel / baseXpPerLevel;
+//     return {
+//       'level': level,
+//       'progressToNextLevel': progressToNextLevel,
+//       'xpInCurrentLevel': xpInCurrentLevel,
+//       'xpForNextLevel': baseXpPerLevel - xpInCurrentLevel,
+//     };
+//   }
 
-    return {
-      'level': level,
-      'progressToNextLevel': progressToNextLevel,
-      'xpInCurrentLevel': xpInCurrentLevel,
-      'xpForNextLevel': baseXpPerLevel - xpInCurrentLevel,
-    };
-  }
+//   Future<void> _handleProfileImageUpdate() async {
+//     HapticFeedback.mediumImpact();
+//     final ImagePicker picker = ImagePicker();
 
-  Future<void> _handleProfileImageUpdate() async {
-    final ImagePicker picker = ImagePicker();
+//     showModalBottomSheet(
+//       context: context,
+//       backgroundColor: AppTheme.white,
+//       shape: const RoundedRectangleBorder(
+//         borderRadius:
+//             BorderRadius.vertical(top: Radius.circular(AppTheme.radiusXL)),
+//       ),
+//       builder: (context) => Container(
+//         padding: const EdgeInsets.all(AppTheme.space2XL),
+//         child: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: [
+//             // Drag handle
+//             Container(
+//               width: 40,
+//               height: 4,
+//               decoration: BoxDecoration(
+//                 color: AppTheme.gray300,
+//                 borderRadius: BorderRadius.circular(2),
+//               ),
+//             ),
+//             const SizedBox(height: AppTheme.spaceLG),
+//             Text(
+//               'Update Profile Picture',
+//               style: AppTheme.textTheme.headlineSmall,
+//             ),
+//             const SizedBox(height: AppTheme.spaceMD),
+//             Text(
+//               'Choose how you\'d like to update your profile picture',
+//               style: AppTheme.textTheme.bodyMedium,
+//               textAlign: TextAlign.center,
+//             ),
+//             const SizedBox(height: AppTheme.space2XL),
+//             Row(
+//               children: [
+//                 Expanded(
+//                   child: _buildImageSourceOption(
+//                     icon: Icons.camera_alt_rounded,
+//                     label: 'Camera',
+//                     onTap: () async {
+//                       Navigator.pop(context);
+//                       final XFile? image = await picker.pickImage(
+//                         source: ImageSource.camera,
+//                         imageQuality: 80,
+//                       );
+//                       if (image != null) {
+//                         await _uploadProfileImage(File(image.path));
+//                       }
+//                     },
+//                   ),
+//                 ),
+//                 const SizedBox(width: AppTheme.spaceMD),
+//                 Expanded(
+//                   child: _buildImageSourceOption(
+//                     icon: Icons.photo_library_rounded,
+//                     label: 'Gallery',
+//                     onTap: () async {
+//                       Navigator.pop(context);
+//                       final XFile? image = await picker.pickImage(
+//                         source: ImageSource.gallery,
+//                         imageQuality: 80,
+//                       );
+//                       if (image != null) {
+//                         await _uploadProfileImage(File(image.path));
+//                       }
+//                     },
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             const SizedBox(height: AppTheme.spaceMD),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
 
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: ProfileScreen.surfaceDark,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Update Profile Picture',
-              style: TextStyle(
-                color: ProfileScreen.textPrimary,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildImageSourceOption(
-                  icon: Icons.camera_alt,
-                  label: 'Camera',
-                  onTap: () async {
-                    Navigator.pop(context);
-                    final XFile? image = await picker.pickImage(
-                      source: ImageSource.camera,
-                      imageQuality: 80,
-                    );
-                    if (image != null) {
-                      await _uploadProfileImage(File(image.path));
-                    }
-                  },
-                ),
-                _buildImageSourceOption(
-                  icon: Icons.photo_library,
-                  label: 'Gallery',
-                  onTap: () async {
-                    Navigator.pop(context);
-                    final XFile? image = await picker.pickImage(
-                      source: ImageSource.gallery,
-                      imageQuality: 80,
-                    );
-                    if (image != null) {
-                      await _uploadProfileImage(File(image.path));
-                    }
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+//   Widget _buildImageSourceOption({
+//     required IconData icon,
+//     required String label,
+//     required VoidCallback onTap,
+//   }) {
+//     return Material(
+//       color: AppTheme.gray50,
+//       borderRadius: BorderRadius.circular(AppTheme.radiusLG),
+//       child: InkWell(
+//         onTap: () {
+//           HapticFeedback.lightImpact();
+//           onTap();
+//         },
+//         borderRadius: BorderRadius.circular(AppTheme.radiusLG),
+//         child: Container(
+//           padding: const EdgeInsets.all(AppTheme.spaceLG),
+//           child: Column(
+//             children: [
+//               Icon(icon, size: 32, color: AppTheme.primary),
+//               const SizedBox(height: AppTheme.spaceXS),
+//               Text(
+//                 label,
+//                 style: AppTheme.textTheme.bodyMedium?.copyWith(
+//                   fontWeight: FontWeight.w600,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
 
-  Widget _buildImageSourceOption({
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: ProfileScreen.surfaceLight,
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: ProfileScreen.accentCyan.withOpacity(0.3)),
-        ),
-        child: Column(
-          children: [
-            Icon(icon, color: ProfileScreen.accentCyan, size: 40),
-            const SizedBox(height: 10),
-            Text(
-              label,
-              style: TextStyle(
-                color: ProfileScreen.textPrimary,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+//   Future<void> _uploadProfileImage(File imageFile) async {
+//     try {
+//       // Show loading dialog
+//       showDialog(
+//         context: context,
+//         barrierDismissible: false,
+//         builder: (context) => AlertDialog(
+//           backgroundColor: AppTheme.white,
+//           content: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               const CircularProgressIndicator(),
+//               const SizedBox(height: AppTheme.spaceMD),
+//               Text('Uploading profile picture...',
+//                   style: AppTheme.textTheme.bodyMedium),
+//             ],
+//           ),
+//         ),
+//       );
 
-  Future<void> _uploadProfileImage(File imageFile) async {
-    try {
-      // Show loading dialog
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-          backgroundColor: ProfileScreen.surfaceDark,
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircularProgressIndicator(color: ProfileScreen.accentCyan),
-              const SizedBox(height: 16),
-              Text(
-                'Uploading profile image...',
-                style: TextStyle(color: ProfileScreen.textPrimary),
-              ),
-            ],
-          ),
-        ),
-      );
+//       // TODO: Implement actual image upload to Supabase/Firebase
+//       // For now, just simulate a delay
+//       await Future.delayed(const Duration(seconds: 2));
 
-      // Upload image using the provider
-      await ref.read(profileImageUploadProvider(imageFile).future);
+//       Navigator.of(context).pop(); // Close loading dialog
 
-      // Close loading dialog
-      if (mounted) Navigator.pop(context);
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(
+//           content: const Text('Profile picture updated successfully!'),
+//           backgroundColor: AppTheme.success,
+//         ),
+//       );
 
-      // Show success message
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Profile image updated successfully!'),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      }
-    } catch (e) {
-      // Close loading dialog
-      if (mounted) Navigator.pop(context);
+//       // Refresh the profile data
+//       // ignore: unused_result
+//       ref.refresh(studentDetailsProvider);
+//     } catch (e) {
+//       Navigator.of(context).pop(); // Close loading dialog
 
-      // Show error message
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Failed to upload image: $e'),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      }
-    }
-  }
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(
+//           content: Text('Failed to upload image: $e'),
+//           backgroundColor: AppTheme.error,
+//         ),
+//       );
+//     }
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ProfileScreen.darkBg,
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          _buildProfileHeader(),
-        ],
-        body: Column(
-          children: [
-            _buildTabBar(),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _buildAchievementsTab(),
-                  _buildStatsTab(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     final student = ref.watch(studentDetailsProvider);
 
-  Widget _buildProfileHeader() {
-    final student = ref.watch(studentDetailsProvider);
+//     return Scaffold(
+//       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//       body: student.when(
+//         loading: () => const Center(child: CircularProgressIndicator()),
+//         error: (error, stack) => Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Icon(Icons.error_outline, size: 64, color: AppTheme.error),
+//               const SizedBox(height: AppTheme.spaceMD),
+//               Text(
+//                 'Error loading profile',
+//                 style: AppTheme.textTheme.titleLarge?.copyWith(
+//                   color: AppTheme.error,
+//                 ),
+//               ),
+//               const SizedBox(height: AppTheme.spaceMD),
+//               ElevatedButton(
+//                 onPressed: () => ref.refresh(studentDetailsProvider),
+//                 child: const Text('Retry'),
+//               ),
+//             ],
+//           ),
+//         ),
+//         data: (studentData) => _buildProfileContent(studentData),
+//       ),
+//     );
+//   }
 
-    return SliverToBoxAdapter(
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(20, 60, 20, 30),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              ProfileScreen.primaryPurple.withOpacity(0.8),
-              ProfileScreen.accentCyan.withOpacity(0.6),
-            ],
-          ),
-        ),
-        child: student.when(
-          data: (studentData) => studentData != null
-              ? _buildProfileContent(studentData)
-              : const Center(child: Text('No data available')),
-          loading: () => const Center(
-            child: CircularProgressIndicator(color: Colors.white),
-          ),
-          error: (error, stack) => Center(
-            child: Text(
-              'Error loading profile',
-              style: TextStyle(color: ProfileScreen.textPrimary),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+//   Widget _buildProfileContent(StudentModel? student) {
+//     if (student == null) {
+//       return const Center(
+//         child: Text('No student data available'),
+//       );
+//     }
 
-  Widget _buildProfileContent(StudentModel student) {
-    final levelData = _calculateLevel(student.xp);
+//     final levelData = _calculateLevel(student.xp);
 
-    return Column(
-      children: [
-        // Profile Picture with edit button
-        Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 4),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    blurRadius: 15,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-              child: CircleAvatar(
-                radius: 60,
-                backgroundColor: ProfileScreen.surfaceLight,
-                backgroundImage: student.avatar.isNotEmpty
-                    ? NetworkImage(student.avatar)
-                    : null,
-                child: student.avatar.isEmpty
-                    ? Icon(
-                        Icons.person,
-                        size: 60,
-                        color: ProfileScreen.textSecondary,
-                      )
-                    : null,
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: _handleProfileImageUpdate,
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: ProfileScreen.accentCyan,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 2),
-                  ),
-                  child: const Icon(
-                    Icons.camera_alt,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
+//     return SingleChildScrollView(
+//       padding: const EdgeInsets.all(AppTheme.spaceLG),
+//       child: Column(
+//         children: [
+//           // Profile Header
+//           _buildProfileHeader(student, levelData),
 
-        // Name and Username
-        Text(
-          student.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          '@${student.username}',
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.8),
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 20),
+//           const SizedBox(height: AppTheme.spaceLG),
 
-        // Level Progress
-        Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.white.withOpacity(0.2)),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Level ${levelData['level']}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${student.xp} XP',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15),
-              CircularPercentIndicator(
-                radius: 40.0,
-                lineWidth: 8.0,
-                percent: levelData['progressToNextLevel'],
-                center: Text(
-                  '${(levelData['progressToNextLevel'] * 100).toInt()}%',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                progressColor: ProfileScreen.goldStar,
-                backgroundColor: Colors.white.withOpacity(0.2),
-                circularStrokeCap: CircularStrokeCap.round,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                '${levelData['xpForNextLevel']} XP to next level',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+//           // Menu Options including Leave Application
+//           const ProfileMenuWidget(),
 
-  Widget _buildTabBar() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      decoration: BoxDecoration(
-        color: ProfileScreen.surfaceDark,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: TabBar(
-        controller: _tabController,
-        indicator: BoxDecoration(
-          color: ProfileScreen.accentCyan,
-          borderRadius: BorderRadius.circular(25),
-        ),
-        dividerColor: Colors.transparent,
-        labelColor: Colors.white,
-        unselectedLabelColor: ProfileScreen.textSecondary,
-        labelStyle: const TextStyle(fontWeight: FontWeight.w600),
-        tabs: const [
-          Tab(text: 'Achievements'),
-          Tab(text: 'Stats'),
-        ],
-      ),
-    );
-  }
+//           const SizedBox(height: AppTheme.spaceLG),
 
-  Widget _buildAchievementsTab() {
-    final achievements = ref.watch(userAchievementsProvider);
+//           // Quick Stats
+//           _buildQuickStats(student),
+//         ],
+//       ),
+//     );
+//   }
 
-    return achievements.when(
-      data: (achievementList) => achievementList.isEmpty
-          ? _buildEmptyState('No achievements yet', Icons.emoji_events)
-          : Padding(
-              padding: const EdgeInsets.all(20),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.1,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                ),
-                itemCount: achievementList.length,
-                itemBuilder: (context, index) {
-                  final achievement = achievementList[index];
-                  return _buildAchievementCard(achievement);
-                },
-              ),
-            ),
-      loading: () => const Center(
-        child: CircularProgressIndicator(color: ProfileScreen.accentCyan),
-      ),
-      error: (error, stack) => _buildEmptyState(
-        'Error loading achievements',
-        Icons.error_outline,
-      ),
-    );
-  }
+//   Widget _buildProfileHeader(
+//       StudentModel student, Map<String, dynamic> levelData) {
+//     return Builder(
+//       builder: (context) {
+//         final isDark = Theme.of(context).brightness == Brightness.dark;
+//         return Container(
+//           padding: const EdgeInsets.all(AppTheme.spaceLG),
+//           margin: const EdgeInsets.only(top: 16.0),
+//           decoration: BoxDecoration(
+//             color: isDark ? AppTheme.darkCard : AppTheme.white,
+//             borderRadius: BorderRadius.circular(AppTheme.radiusLG),
+//             boxShadow: isDark
+//               ? [
+//                   BoxShadow(
+//                     color: Colors.black.withOpacity(0.3),
+//                     blurRadius: 8,
+//                     offset: const Offset(0, 2),
+//                   ),
+//                 ]
+//               : AppTheme.cardShadow,
+//             border: Border.all(
+//               color: isDark ? AppTheme.darkBorder : Colors.transparent,
+//               width: isDark ? 1 : 0,
+//             ),
+//           ),
+//           child: Column(
+//         children: [
+//           // Profile Picture
+//           GestureDetector(
+//             onTap: () async => await _handleProfileImageUpdate(),
+//             child: CircleAvatar(
+//               radius: 50,
+//               backgroundColor: AppTheme.primary.withOpacity(0.1),
+//               backgroundImage: student.avatar.isNotEmpty
+//                   ? NetworkImage(student.avatar)
+//                   : null,
+//               child: student.avatar.isEmpty
+//                   ? Icon(
+//                       Icons.person,
+//                       size: 50,
+//                       color: AppTheme.primary,
+//                     )
+//                   : null,
+//             ),
+//           ),
 
-  Widget _buildAchievementCard(ProfileAchievement achievement) {
-    return FadeInUp(
-      duration: const Duration(milliseconds: 600),
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              achievement.color.withOpacity(0.8),
-              achievement.color.withOpacity(0.4),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: achievement.color.withOpacity(0.3),
-              blurRadius: 15,
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              achievement.icon,
-              color: Colors.white,
-              size: 40,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              achievement.title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              _formatDate(achievement.dateAchieved),
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
-                fontSize: 12,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+//           const SizedBox(height: AppTheme.spaceMD),
 
-  Widget _buildStatsTab() {
-    final student = ref.watch(studentDetailsProvider);
+//           // Name and Username
+//           Builder(
+//             builder: (context) {
+//               final isDark = Theme.of(context).brightness == Brightness.dark;
+//               return Text(
+//                 student.name,
+//                 style: AppTheme.textTheme.displaySmall?.copyWith(
+//                   fontWeight: FontWeight.bold,
+//                   color: isDark ? AppTheme.darkTextPrimary : AppTheme.gray900,
+//                 ),
+//                 textAlign: TextAlign.center,
+//               );
+//             }
+//           ),
 
-    return student.when(
-      data: (studentData) => Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            _buildStatCard(
-              'Total XP',
-              '${studentData?.xp ?? 0}',
-              Icons.star,
-              ProfileScreen.goldStar,
-            ),
-            const SizedBox(height: 15),
-            _buildStatCard(
-              'Current Level',
-              '${_calculateLevel(studentData?.xp ?? 0)['level']}',
-              Icons.trending_up,
-              ProfileScreen.accentCyan,
-            ),
-            const SizedBox(height: 15),
-            _buildStatCard(
-              'Study Streak',
-              '7 days', // This could be dynamic based on your data
-              Icons.local_fire_department,
-              Colors.orangeAccent,
-            ),
-            const SizedBox(height: 15),
-            _buildStatCard(
-              'Subjects',
-              '${studentData?.enrolledSubjects.length ?? 0}',
-              Icons.book,
-              ProfileScreen.accentPink,
-            ),
-          ],
-        ),
-      ),
-      loading: () => const Center(
-        child: CircularProgressIndicator(color: ProfileScreen.accentCyan),
-      ),
-      error: (error, stack) => _buildEmptyState(
-        'Error loading stats',
-        Icons.error_outline,
-      ),
-    );
-  }
+//           const SizedBox(height: AppTheme.spaceXS),
 
-  Widget _buildStatCard(
-      String title, String value, IconData icon, Color color) {
-    return FadeInLeft(
-      duration: const Duration(milliseconds: 600),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: ProfileScreen.surfaceLight,
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: color.withOpacity(0.3)),
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Icon(icon, color: color, size: 24),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: ProfileScreen.textSecondary,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    value,
-                    style: TextStyle(
-                      color: ProfileScreen.textPrimary,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+//           Builder(
+//             builder: (context) {
+//               final isDark = Theme.of(context).brightness == Brightness.dark;
+//               return Container(
+//                 padding: const EdgeInsets.symmetric(
+//                   horizontal: AppTheme.spaceMD,
+//                   vertical: AppTheme.spaceXS,
+//                 ),
+//                 decoration: BoxDecoration(
+//                   color: isDark ? AppTheme.darkCard.withOpacity(0.6) : AppTheme.gray100,
+//                   borderRadius: BorderRadius.circular(AppTheme.radiusSM),
+//                   border: isDark ? Border.all(color: AppTheme.darkBorder, width: 1) : null,
+//                 ),
+//                 child: Text(
+//                   '@${student.username}',
+//                   style: AppTheme.textTheme.bodyMedium?.copyWith(
+//                     color: isDark ? AppTheme.darkTextSecondary : AppTheme.gray600,
+//                   ),
+//                 ),
+//               );
+//             }
+//           ),
 
-  Widget _buildEmptyState(String message, IconData icon) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 64,
-            color: ProfileScreen.textSecondary,
-          ),
-          const SizedBox(height: 20),
-          Text(
-            message,
-            style: TextStyle(
-              color: ProfileScreen.textSecondary,
-              fontSize: 16,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+//           const SizedBox(height: AppTheme.spaceLG),
 
-  String _formatDate(DateTime date) {
-    final now = DateTime.now();
-    final difference = now.difference(date).inDays;
+//         // Level Progress
+//         _buildLevelProgress(levelData),
+//       ],
+//     ),
+//   );
+// }
 
-    if (difference == 0) {
-      return 'Today';
-    } else if (difference == 1) {
-      return 'Yesterday';
-    } else if (difference < 7) {
-      return '$difference days ago';
-    } else {
-      return '${date.day}/${date.month}/${date.year}';
-    }
-  }
-}
+// Widget _buildLevelProgress(Map<String, dynamic> levelData) {
+//   return Builder(
+//     builder: (context) {
+//       final isDark = Theme.of(context).brightness == Brightness.dark;
+//       return Column(
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Text(
+//                 'Level ${levelData['level']}',
+//                 style: AppTheme.textTheme.titleMedium?.copyWith(
+//                   fontWeight: FontWeight.bold,
+//                   color: isDark ? AppTheme.darkTextPrimary : AppTheme.gray900,
+//                 ),
+//               ),
+//               Text(
+//                 '${levelData['xpInCurrentLevel']} / 1000 XP',
+//                 style: AppTheme.textTheme.bodyMedium?.copyWith(
+//                   color: isDark ? AppTheme.darkTextSecondary : AppTheme.gray600,
+//                 ),
+//               ),
+//             ],
+//           ),
+//           const SizedBox(height: AppTheme.spaceXS),
+//           LinearProgressIndicator(
+//             value: levelData['progressToNextLevel'],
+//             backgroundColor: isDark ? AppTheme.gray700 : AppTheme.gray200,
+//             valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primary),
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
+
+// Future<void> _handleProfileImageUpdate() async {
+//     HapticFeedback.mediumImpact();
+//     final ImagePicker picker = ImagePicker();
+
+//     showModalBottomSheet(
+//       context: context,
+//       backgroundColor: AppTheme.white,
+//       shape: const RoundedRectangleBorder(
+//         borderRadius:
+//             BorderRadius.vertical(top: Radius.circular(AppTheme.radiusXL)),
+//       ),
+//       builder: (context) => Container(
+//         padding: const EdgeInsets.all(AppTheme.space2XL),
+//         child: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: [
+//             // Drag handle
+//             Container(
+//               width: 40,
+//               height: 4,
+//               decoration: BoxDecoration(
+//                 color: AppTheme.gray300,
+//                 borderRadius: BorderRadius.circular(2),
+//               ),
+//             ),
+//             const SizedBox(height: AppTheme.spaceLG),
+//             Text(
+//               'Update Profile Picture',
+//               style: AppTheme.textTheme.headlineSmall,
+//             ),
+//             const SizedBox(height: AppTheme.spaceMD),
+//             Text(
+//               'Choose how you\'d like to update your profile picture',
+//               style: AppTheme.textTheme.bodyMedium,
+//               textAlign: TextAlign.center,
+//             ),
+//             const SizedBox(height: AppTheme.space2XL),
+//             Row(
+//               children: [
+//                 Expanded(
+//                   child: _buildImageSourceOption(
+//                     icon: Icons.camera_alt_rounded,
+//                     label: 'Camera',
+//                     onTap: () async {
+//                       Navigator.pop(context);
+//                       final XFile? image = await picker.pickImage(
+//                         source: ImageSource.camera,
+//                         imageQuality: 80,
+//                       );
+//                       if (image != null) {
+//                         await _uploadProfileImage(File(image.path));
+//                       }
+//                     },
+//                   ),
+//                 ),
+//                 const SizedBox(width: AppTheme.spaceMD),
+//                 Expanded(
+//                   child: _buildImageSourceOption(
+//                     icon: Icons.photo_library_rounded,
+//                     label: 'Gallery',
+//                     onTap: () async {
+//                       Navigator.pop(context);
+//                       final XFile? image = await picker.pickImage(
+//                         source: ImageSource.gallery,
+//                         imageQuality: 80,
+//                       );
+//                       if (image != null) {
+//                         await _uploadProfileImage(File(image.path));
+//                       }
+//                     },
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             const SizedBox(height: AppTheme.spaceMD),
+//           ],
+//         ),
+//       ),
+//     );
+//   },
+
+//   Widget _buildImageSourceOption({
+//     required IconData icon,
+//     required String label,
+//     required VoidCallback onTap,
+//   }) {
+//     return Material(
+//       color: AppTheme.gray50,
+//       borderRadius: BorderRadius.circular(AppTheme.radiusLG),
+//       child: InkWell(
+//         onTap: () {
+//           HapticFeedback.lightImpact();
+//           onTap();
+//         },
+//         borderRadius: BorderRadius.circular(AppTheme.radiusLG),
+//         child: Container(
+//           padding: const EdgeInsets.all(AppTheme.spaceLG),
+//           child: Column(
+//             children: [
+//               Icon(icon, size: 32, color: AppTheme.primary),
+//               const SizedBox(height: AppTheme.spaceXS),
+//               Text(
+//                 label,
+//                 style: AppTheme.textTheme.bodyMedium?.copyWith(
+//                   fontWeight: FontWeight.w600,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Future<void> _uploadProfileImage(File imageFile) async {
+//     try {
+//       // Show loading dialog
+//       showDialog(
+//         context: context,
+//         barrierDismissible: false,
+//         builder: (context) => AlertDialog(
+//           backgroundColor: AppTheme.white,
+//           content: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               const CircularProgressIndicator(),
+//               const SizedBox(height: AppTheme.spaceMD),
+//               Text('Uploading profile picture...',
+//                   style: AppTheme.textTheme.bodyMedium),
+//             ],
+//           ),
+//         ),
+//       );
+
+//       // TODO: Implement actual image upload to Supabase/Firebase
+//       // For now, just simulate a delay
+//       await Future.delayed(const Duration(seconds: 2));
+
+//       Navigator.of(context).pop(); // Close loading dialog
+
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(
+//           content: const Text('Profile picture updated successfully!'),
+//           backgroundColor: AppTheme.success,
+//         ),
+//       );
+
+//       // Refresh the profile data
+//       // ignore: unused_result
+//       ref.refresh(studentDetailsProvider);
+//     } catch (e) {
+//       Navigator.of(context).pop(); // Close loading dialog
+
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(
+//           content: Text('Failed to upload image: $e'),
+//           backgroundColor: AppTheme.error,
+//         ),
+//       );
+//     }
+//   }
+
+//   Widget _buildQuickStats(StudentModel student) {
+//     return Builder(
+//       builder: (context) {
+//         final isDark = Theme.of(context).brightness == Brightness.dark;
+//         return Container(
+//           padding: const EdgeInsets.all(AppTheme.spaceLG),
+//           decoration: BoxDecoration(
+//             color: isDark ? AppTheme.darkCard : AppTheme.white,
+//             borderRadius: BorderRadius.circular(AppTheme.radiusLG),
+//             boxShadow: isDark
+//                 ? [
+//                     BoxShadow(
+//                       color: Colors.black.withOpacity(0.3),
+//                       blurRadius: 8,
+//                       offset: const Offset(0, 2),
+//                     ),
+//                   ]
+//                 : AppTheme.cardShadow,
+//             border: Border.all(
+//               color: isDark ? AppTheme.darkBorder : Colors.transparent,
+//               width: isDark ? 1 : 0,
+//             ),
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Quick Stats',
+//                 style: AppTheme.textTheme.titleLarge?.copyWith(
+//                   fontWeight: FontWeight.bold,
+//                   color: isDark ? AppTheme.darkTextPrimary : AppTheme.gray900,
+//                 ),
+//               ),
+//               const SizedBox(height: AppTheme.spaceMD),
+//               Row(
+//                 children: [
+//                   Expanded(
+//                     child: _buildStatCard(
+//                       title: 'XP',
+//                       value: student.xp.toString(),
+//                       icon: Icons.emoji_events,
+//                       color: AppTheme.primary,
+//                     ),
+//                   ),
+//                   const SizedBox(width: AppTheme.spaceMD),
+//                   Expanded(
+//                     child: _buildStatCard(
+//                       title: 'Streak',
+//                       value: '7', // Replace with actual streak data
+//                       icon: Icons.local_fire_department,
+//                       color: AppTheme.warning,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+
+//   Widget _buildStatCard({
+//     required String title,
+//     required String value,
+//     required IconData icon,
+//     required Color color,
+//   }) {
+//     return Builder(
+//       builder: (context) {
+//         final isDark = Theme.of(context).brightness == Brightness.dark;
+//         return Container(
+//           padding: const EdgeInsets.all(AppTheme.spaceMD),
+//           decoration: BoxDecoration(
+//             color: color.withOpacity(0.1),
+//             borderRadius: BorderRadius.circular(AppTheme.radiusMD),
+//             border: isDark ? Border.all(color: color.withOpacity(0.3), width: 1) : null,
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               Icon(icon, color: color, size: 24),
+//               const SizedBox(height: AppTheme.spaceXS),
+//               Text(
+//                 value,
+//                 style: AppTheme.textTheme.titleLarge?.copyWith(
+//                   fontWeight: FontWeight.bold,
+//                   color: isDark ? AppTheme.darkTextPrimary : AppTheme.gray900,
+//                 ),
+//               ),
+//               Text(
+//                 title,
+//                 style: AppTheme.textTheme.bodySmall?.copyWith(
+//                   color: isDark ? AppTheme.darkTextSecondary : AppTheme.gray600,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

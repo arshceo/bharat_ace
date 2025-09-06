@@ -1,11 +1,12 @@
 import 'dart:math';
+import 'package:bharat_ace/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:animate_do/animate_do.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_theme.dart';
 import '../../core/models/leaderboard_user.dart';
 import '../../core/providers/home_providers.dart';
 
@@ -47,27 +48,26 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: AppColors.darkBackground,
+      backgroundColor: AppTheme.white,
       body: Stack(
         children: [
-          // Animated Background
-          _buildAnimatedBackground(size),
+          // Modern Background with subtle gradient
+          _buildModernBackground(size),
 
           // Main Content
           SafeArea(
             child: Column(
               children: [
                 // Custom App Bar
-                _buildCustomAppBar(context, textTheme),
+                _buildCustomAppBar(context),
 
                 // Hero Section
-                _buildHeroSection(textTheme),
+                _buildHeroSection(Theme.of(context).textTheme),
 
                 // Tab Bar
-                _buildTabBar(textTheme),
+                _buildTabBar(Theme.of(context).textTheme),
 
                 // Tab Bar View
                 Expanded(
@@ -89,151 +89,153 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen>
     );
   }
 
-  Widget _buildAnimatedBackground(Size size) {
-    return AnimatedBuilder(
-      animation: _backgroundController,
-      builder: (context, child) {
-        return Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColors.darkBackground,
-                AppColors.surfaceDark.withOpacity(0.8),
-                AppColors.darkBackground,
-              ],
+  Widget _buildModernBackground(Size size) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppTheme.white,
+            AppTheme.gray50,
+          ],
+        ),
+      ),
+      child: Stack(
+        children: [
+          // Subtle pattern overlay
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.03,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      'data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="%23000" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>',
+                    ),
+                    repeat: ImageRepeat.repeat,
+                  ),
+                ),
+              ),
             ),
           ),
-          child: Stack(
-            children: [
-              // Floating Orbs
-              ...List.generate(8, (index) {
-                final double animationOffset = (index * 0.15) % 1.0;
+
+          // Floating gradient shapes
+          ...List.generate(6, (index) {
+            return AnimatedBuilder(
+              animation: _backgroundController,
+              builder: (context, child) {
+                final double animationOffset = (index * 0.2) % 1.0;
                 final double progress =
                     (_backgroundController.value + animationOffset) % 1.0;
 
                 return Positioned(
                   left: (size.width * 0.1) + (progress * size.width * 0.8),
-                  top: (size.height * 0.1) +
-                      (sin((progress + index * 0.3) * 2 * pi) *
+                  top: (size.height * 0.2) +
+                      (sin((progress + index * 0.4) * 2 * pi) *
                           size.height *
-                          0.3) +
-                      (index * size.height * 0.08),
+                          0.2) +
+                      (index * size.height * 0.1),
                   child: Container(
-                    width: 40 + (index * 8),
-                    height: 40 + (index * 8),
+                    width: 80 + (index * 20),
+                    height: 80 + (index * 20),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
                           [
-                            AppColors.accentPink,
-                            AppColors.accentCyan,
-                            AppColors.goldStar,
-                            AppColors.accentGreen
+                            AppTheme.primary,
+                            AppTheme.secondary,
+                            AppTheme.success,
+                            AppTheme.warning
                           ][index % 4]
-                              .withOpacity(0.15),
+                              .withOpacity(0.05),
                           Colors.transparent,
                         ],
                       ),
                     ),
                   ),
                 );
-              }),
-
-              // Geometric Shapes
-              ...List.generate(5, (index) {
-                return Positioned(
-                  right: 20 + (index * 60.0),
-                  top: 100 + (index * 120.0),
-                  child: Transform.rotate(
-                    angle: _backgroundController.value * 2 * pi + (index * 0.5),
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.primaryPurple.withOpacity(0.1),
-                          width: 2,
-                        ),
-                        shape: index % 2 == 0
-                            ? BoxShape.circle
-                            : BoxShape.rectangle,
-                      ),
-                    ),
-                  ),
-                );
-              }),
-            ],
-          ),
-        );
-      },
+              },
+            );
+          }),
+        ],
+      ),
     );
   }
 
-  Widget _buildCustomAppBar(BuildContext context, TextTheme textTheme) {
+  Widget _buildCustomAppBar(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppTheme.spaceLG, vertical: AppTheme.spaceMD),
       child: Row(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: AppColors.surfaceDark.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: AppColors.primaryPurple.withOpacity(0.3),
-                width: 1,
-              ),
+              color: AppTheme.white,
+              borderRadius: BorderRadius.circular(AppTheme.radiusMD),
+              border: Border.all(color: AppTheme.gray200),
+              boxShadow: AppTheme.cardShadow,
             ),
             child: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: Icon(
                 Icons.arrow_back_ios_new_rounded,
-                color: AppColors.textPrimary,
+                color: AppTheme.gray700,
+                size: 20,
               ),
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: AppTheme.spaceMD),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Global Leaderboard',
-                  style: textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
+                  style: AppTheme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppTheme.gray900,
                   ),
                 ),
                 Text(
                   'Compete with scholars worldwide',
-                  style: textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
+                  style: AppTheme.textTheme.bodyMedium?.copyWith(
+                    color: AppTheme.gray600,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppTheme.spaceMD,
+              vertical: AppTheme.spaceXS,
+            ),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.accentPink, AppColors.primaryPurple],
+                colors: [AppTheme.success, AppTheme.primary],
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppTheme.radiusXL),
+              boxShadow: [
+                BoxShadow(
+                  color: AppTheme.success.withOpacity(0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.emoji_events, color: Colors.white, size: 16),
+                Icon(Icons.emoji_events_rounded,
+                    color: AppTheme.white, size: 16),
                 const SizedBox(width: 4),
                 Text(
                   'Live',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                  style: AppTheme.textTheme.labelSmall?.copyWith(
+                    color: AppTheme.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],

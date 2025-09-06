@@ -14,7 +14,7 @@ import 'package:bharat_ace/core/providers/progress_provider.dart';
 import 'package:bharat_ace/core/models/student_model.dart';
 
 // --- Import App Theme & Widgets ---
-import 'package:bharat_ace/core/theme/app_colors.dart';
+import 'package:bharat_ace/core/theme/app_theme.dart';
 
 class SyllabusScreen extends ConsumerWidget {
   const SyllabusScreen({super.key});
@@ -26,22 +26,22 @@ class SyllabusScreen extends ConsumerWidget {
         ref.watch(studentDetailsProvider);
     final StudentModel? student = studentAsync.valueOrNull;
 
-    final TextTheme textTheme = Theme.of(context).textTheme.apply(
-          bodyColor: AppColors.textPrimary,
-          displayColor: AppColors.textPrimary,
-        );
-
     return Scaffold(
-      backgroundColor: AppColors.darkBackground,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
           student != null ? "Class ${student.grade} Syllabus" : "Syllabus",
-          style: textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+          style: AppTheme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? AppTheme.darkTextPrimary
+                : AppTheme.gray900,
+          ),
         ),
-        backgroundColor: AppColors.cardBackground,
-        foregroundColor: AppColors.textPrimary,
-        elevation: 2,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        elevation: 0,
+        scrolledUnderElevation: 1,
+        surfaceTintColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
       ),
       body: syllabusAsync.when(
@@ -65,7 +65,7 @@ class SyllabusScreen extends ConsumerWidget {
               "No Syllabus Yet!",
               "It looks like the syllabus for your class hasn't been uploaded. Please check back later.",
               Icons.menu_book_rounded,
-              AppColors.primaryAccent,
+              AppTheme.primary,
             );
           }
           final subjectNames = subjectsMap.keys.toList()..sort();
@@ -133,15 +133,12 @@ class SyllabusScreen extends ConsumerWidget {
             children: [
               SyllabusOverallProgressHeader(
                 overallProgress: overallProgress,
-                textTheme: textTheme,
+                textTheme: AppTheme.textTheme,
               )
                   .animate()
                   .fadeIn(duration: 500.ms)
                   .slideY(begin: -0.1, duration: 400.ms, curve: Curves.easeOut),
-              const Divider(
-                  height: 1,
-                  color: AppColors.cardLightBackground,
-                  thickness: 1),
+              const Divider(height: 1, color: AppTheme.gray200, thickness: 1),
               Expanded(
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -168,7 +165,7 @@ class SyllabusScreen extends ConsumerWidget {
                           'subject_tile_$subjectName'), // Unique key for SubjectExpansionTile
                       subjectName: subjectName,
                       subjectData: subjectDetailed,
-                      textTheme: textTheme,
+                      textTheme: AppTheme.textTheme,
                       progressInfo: progressTuple,
                       itemIndex: index,
                     );

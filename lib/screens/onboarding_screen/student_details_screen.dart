@@ -1,9 +1,11 @@
 // --- student_details_screen.dart (Complete Code) ---
 import 'package:bharat_ace/common/routes.dart';
 import 'package:bharat_ace/core/providers/student_details_provider.dart';
+import 'package:bharat_ace/core/theme/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:animate_do/animate_do.dart';
 
 class StudentDetailsScreen extends ConsumerStatefulWidget {
   const StudentDetailsScreen({super.key});

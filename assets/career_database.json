@@ -1,0 +1,1580 @@
+{
+  "careers_database": {
+    "software_engineer": {
+      "id": "software_engineer",
+      "title": "Software Engineer",
+      "category": "Technology",
+      "description": "Design, develop, and maintain software applications and systems",
+      "icon": "💻",
+      "overview": {
+        "demand_level": "Very High",
+        "growth_projection": "22% (2024-2034)",
+        "job_security": "High",
+        "work_environment": "Office/Remote/Hybrid",
+        "stress_level": "Medium to High"
+      },
+      "salary_info": {
+        "currency": "INR",
+        "entry_level": {
+          "min": 300000,
+          "max": 800000,
+          "average": 550000,
+          "per": "annum"
+        },
+        "mid_level": {
+          "min": 800000,
+          "max": 2000000,
+          "average": 1400000,
+          "per": "annum"
+        },
+        "senior_level": {
+          "min": 2000000,
+          "max": 5000000,
+          "average": 3500000,
+          "per": "annum"
+        },
+        "top_tier": {
+          "min": 5000000,
+          "max": 15000000,
+          "average": 10000000,
+          "per": "annum"
+        }
+      },
+      "required_skills": {
+        "technical_skills": [
+          {
+            "skill": "Programming Languages",
+            "details": ["Java", "Python", "JavaScript", "C++", "Go"],
+            "importance": "Critical",
+            "learning_time": "6-12 months"
+          },
+          {
+            "skill": "Data Structures & Algorithms",
+            "details": ["Arrays", "LinkedList", "Trees", "Graphs", "Dynamic Programming"],
+            "importance": "Critical",
+            "learning_time": "4-8 months"
+          },
+          {
+            "skill": "Web Development",
+            "details": ["HTML", "CSS", "React/Angular", "Node.js", "Databases"],
+            "importance": "High",
+            "learning_time": "6-10 months"
+          },
+          {
+            "skill": "Version Control",
+            "details": ["Git", "GitHub", "GitLab"],
+            "importance": "High",
+            "learning_time": "1-2 months"
+          },
+          {
+            "skill": "Cloud Platforms",
+            "details": ["AWS", "Azure", "Google Cloud"],
+            "importance": "High",
+            "learning_time": "3-6 months"
+          }
+        ],
+        "soft_skills": [
+          {
+            "skill": "Problem Solving",
+            "importance": "Critical"
+          },
+          {
+            "skill": "Communication",
+            "importance": "High"
+          },
+          {
+            "skill": "Teamwork",
+            "importance": "High"
+          },
+          {
+            "skill": "Time Management",
+            "importance": "Medium"
+          }
+        ]
+      },
+      "academic_roadmap": {
+        "high_school": {
+          "class_10": {
+            "subjects": ["Mathematics", "Science", "English", "Computer Science"],
+            "board_preference": "CBSE preferred for competitive exams",
+            "percentage_target": "80%+",
+            "activities": [
+              "Basic computer literacy",
+              "Online coding courses (Scratch, Python basics)",
+              "Participate in school coding competitions"
+            ]
+          },
+          "class_11_12": {
+            "stream": "Science (PCM) with Computer Science",
+            "core_subjects": ["Physics", "Chemistry", "Mathematics", "Computer Science", "English"],
+            "percentage_target": "85%+",
+            "competitive_exams": ["JEE Main", "JEE Advanced", "BITSAT", "VITEEE", "SRMJEEE"],
+            "activities": [
+              "Advanced programming (C++, Java)",
+              "Participate in coding olympiads",
+              "Build simple projects",
+              "Learn data structures basics"
+            ]
+          }
+        },
+        "undergraduate": {
+          "degree_options": [
+            {
+              "degree": "B.Tech in Computer Science Engineering",
+              "duration": "4 years",
+              "top_colleges": [
+                "IIT Delhi, Mumbai, Kanpur",
+                "NIT Trichy, Warangal, Surathkal",
+                "IIIT Hyderabad, Bangalore",
+                "BITS Pilani",
+                "Delhi Technological University"
+              ],
+              "admission_process": "JEE Main/Advanced",
+              "fee_range": "₹2-15 lakhs (4 years)"
+            },
+            {
+              "degree": "B.Sc Computer Science",
+              "duration": "3 years",
+              "colleges": ["DU", "BHU", "Jamia Millia", "Christ University"],
+              "admission_process": "Merit/Entrance based",
+              "fee_range": "₹1-8 lakhs (3 years)"
+            },
+            {
+              "degree": "BCA (Bachelor of Computer Applications)",
+              "duration": "3 years",
+              "colleges": ["IGNOU", "Symbiosis", "Christ University"],
+              "admission_process": "Merit/Entrance based",
+              "fee_range": "₹1.5-6 lakhs (3 years)"
+            }
+          ],
+          "year_wise_focus": {
+            "year_1": [
+              "Programming fundamentals (C, C++)",
+              "Mathematics for CS",
+              "Computer organization",
+              "Build 2-3 simple projects"
+            ],
+            "year_2": [
+              "Data Structures & Algorithms",
+              "Object-Oriented Programming (Java/Python)",
+              "Database Management Systems",
+              "Participate in coding competitions"
+            ],
+            "year_3": [
+              "Software Engineering",
+              "Computer Networks",
+              "Operating Systems",
+              "Start internship preparations",
+              "Open source contributions"
+            ],
+            "year_4": [
+              "Specialization courses (AI/ML, Web Dev, Mobile Dev)",
+              "Major project/thesis",
+              "Campus placements",
+              "Industry internship"
+            ]
+          }
+        },
+        "postgraduate": {
+          "options": [
+            {
+              "degree": "M.Tech in Computer Science",
+              "duration": "2 years",
+              "entrance": "GATE",
+              "specializations": ["AI/ML", "Cybersecurity", "Data Science", "Cloud Computing"]
+            },
+            {
+              "degree": "MS in Computer Science (Abroad)",
+              "duration": "2 years",
+              "entrance": "GRE, TOEFL/IELTS",
+              "countries": ["USA", "Canada", "Germany", "Australia"]
+            }
+          ]
+        }
+      },
+      "skill_roadmap": {
+        "beginner": {
+          "duration": "6-12 months",
+          "milestones": [
+            {
+              "skill": "Choose First Programming Language",
+              "timeline": "Month 1",
+              "resources": [
+                "Python for Beginners - Coursera",
+                "Java Tutorial - Oracle",
+                "FreeCodeCamp Python Course"
+              ],
+              "projects": ["Calculator", "Simple Games", "Basic Scripts"]
+            },
+            {
+              "skill": "Basic Data Structures",
+              "timeline": "Month 2-4",
+              "resources": [
+                "GeeksforGeeks DSA",
+                "LeetCode Easy Problems",
+                "HackerRank Practice"
+              ],
+              "projects": ["Array manipulation programs", "Simple search algorithms"]
+            },
+            {
+              "skill": "Version Control",
+              "timeline": "Month 3",
+              "resources": ["Git Tutorial - Atlassian", "GitHub Learning Lab"],
+              "projects": ["Create GitHub profile", "Contribute to open source"]
+            }
+          ]
+        },
+        "intermediate": {
+          "duration": "12-18 months",
+          "milestones": [
+            {
+              "skill": "Advanced DSA",
+              "timeline": "Month 6-12",
+              "resources": [
+                "Striver A2Z DSA Sheet",
+                "LeetCode Medium Problems",
+                "Codeforces Practice"
+              ],
+              "projects": ["Implement sorting algorithms", "Graph algorithms"]
+            },
+            {
+              "skill": "Web Development",
+              "timeline": "Month 8-14",
+              "resources": [
+                "The Complete Web Developer Bootcamp",
+                "React Official Documentation",
+                "Node.js Tutorial"
+              ],
+              "projects": ["Personal Portfolio", "Todo App", "E-commerce Clone"]
+            },
+            {
+              "skill": "Database Management",
+              "timeline": "Month 10-12",
+              "resources": ["MySQL Tutorial", "MongoDB University"],
+              "projects": ["Library Management System", "Student Database"]
+            }
+          ]
+        },
+        "advanced": {
+          "duration": "12+ months",
+          "milestones": [
+            {
+              "skill": "System Design",
+              "timeline": "Month 18-24",
+              "resources": [
+                "Designing Data-Intensive Applications",
+                "System Design Primer",
+                "High Scalability Blog"
+              ],
+              "projects": ["Design Twitter Clone", "Chat Application"]
+            },
+            {
+              "skill": "Cloud Computing",
+              "timeline": "Month 20-26",
+              "resources": [
+                "AWS Certified Developer Course",
+                "Google Cloud Training",
+                "Docker & Kubernetes Tutorial"
+              ],
+              "projects": ["Deploy apps on cloud", "Microservices architecture"]
+            }
+          ]
+        }
+      },
+      "career_progression": {
+        "entry_level": {
+          "positions": ["Software Developer", "Junior Developer", "Associate Software Engineer"],
+          "experience": "0-2 years",
+          "responsibilities": [
+            "Write clean, maintainable code",
+            "Debug and fix software issues",
+            "Participate in code reviews",
+            "Learn company technologies and processes"
+          ],
+          "skills_to_develop": [
+            "Proficiency in primary programming language",
+            "Understanding of software development lifecycle",
+            "Basic testing and debugging skills"
+          ]
+        },
+        "mid_level": {
+          "positions": ["Software Engineer", "Senior Developer", "Full Stack Developer"],
+          "experience": "2-5 years",
+          "responsibilities": [
+            "Design software solutions",
+            "Lead small development teams",
+            "Mentor junior developers",
+            "Participate in architectural decisions"
+          ],
+          "skills_to_develop": [
+            "Advanced programming concepts",
+            "System design principles",
+            "Leadership and communication skills"
+          ]
+        },
+        "senior_level": {
+          "positions": ["Senior Software Engineer", "Tech Lead", "Principal Engineer"],
+          "experience": "5-10 years",
+          "responsibilities": [
+            "Lead major technical initiatives",
+            "Make architectural decisions",
+            "Mentor teams and individuals",
+            "Interface with stakeholders"
+          ],
+          "skills_to_develop": [
+            "Advanced system design",
+            "Team leadership",
+            "Business acumen"
+          ]
+        },
+        "expert_level": {
+          "positions": ["Staff Engineer", "Engineering Manager", "CTO"],
+          "experience": "10+ years",
+          "responsibilities": [
+            "Set technical vision and strategy",
+            "Lead multiple teams",
+            "Drive company-wide technical decisions",
+            "External representation and thought leadership"
+          ]
+        }
+      },
+      "job_market": {
+        "top_companies": {
+          "product_companies": [
+            {"name": "Google India", "salary_range": "₹15-80 lakhs", "locations": ["Bangalore", "Hyderabad", "Mumbai"]},
+            {"name": "Microsoft India", "salary_range": "₹12-70 lakhs", "locations": ["Bangalore", "Hyderabad", "Noida"]},
+            {"name": "Amazon India", "salary_range": "₹10-60 lakhs", "locations": ["Bangalore", "Chennai", "Mumbai"]},
+            {"name": "Flipkart", "salary_range": "₹8-50 lakhs", "locations": ["Bangalore", "Delhi"]},
+            {"name": "Swiggy", "salary_range": "₹6-40 lakhs", "locations": ["Bangalore"]},
+            {"name": "Zomato", "salary_range": "₹5-35 lakhs", "locations": ["Delhi", "Bangalore"]}
+          ],
+          "service_companies": [
+            {"name": "TCS", "salary_range": "₹3.5-25 lakhs", "locations": ["Pan India"]},
+            {"name": "Infosys", "salary_range": "₹4-30 lakhs", "locations": ["Bangalore", "Pune", "Chennai"]},
+            {"name": "Wipro", "salary_range": "₹3.5-28 lakhs", "locations": ["Bangalore", "Hyderabad"]},
+            {"name": "Accenture", "salary_range": "₹4.5-35 lakhs", "locations": ["Bangalore", "Mumbai", "Chennai"]}
+          ],
+          "startups": [
+            {"name": "BYJU'S", "salary_range": "₹6-45 lakhs", "locations": ["Bangalore"]},
+            {"name": "Ola", "salary_range": "₹5-40 lakhs", "locations": ["Bangalore"]},
+            {"name": "Paytm", "salary_range": "₹6-50 lakhs", "locations": ["Noida", "Bangalore"]}
+          ]
+        },
+        "job_locations": {
+          "bangalore": {
+            "opportunities": "Highest",
+            "cost_of_living": "High",
+            "average_salary": "₹8-12 lakhs",
+            "major_companies": 150
+          },
+          "hyderabad": {
+            "opportunities": "Very High",
+            "cost_of_living": "Medium",
+            "average_salary": "₹6-10 lakhs",
+            "major_companies": 100
+          },
+          "pune": {
+            "opportunities": "High",
+            "cost_of_living": "Medium-High",
+            "average_salary": "₹6-9 lakhs",
+            "major_companies": 80
+          },
+          "chennai": {
+            "opportunities": "High",
+            "cost_of_living": "Medium",
+            "average_salary": "₹5-8 lakhs",
+            "major_companies": 70
+          }
+        }
+      },
+      "certifications": [
+        {
+          "name": "AWS Certified Developer",
+          "provider": "Amazon",
+          "cost": "₹12,000",
+          "validity": "3 years",
+          "importance": "High for cloud roles"
+        },
+        {
+          "name": "Google Cloud Professional Developer",
+          "provider": "Google",
+          "cost": "₹15,000",
+          "validity": "2 years",
+          "importance": "High for cloud roles"
+        },
+        {
+          "name": "Oracle Java Certification",
+          "provider": "Oracle",
+          "cost": "₹20,000",
+          "validity": "Lifetime",
+          "importance": "Medium"
+        }
+      ],
+      "learning_resources": {
+        "free_resources": [
+          {
+            "name": "FreeCodeCamp",
+            "type": "Interactive Course",
+            "url": "freecodecamp.org",
+            "topics": ["Web Development", "Data Structures", "Python"]
+          },
+          {
+            "name": "GeeksforGeeks",
+            "type": "Practice Platform",
+            "url": "geeksforgeeks.org",
+            "topics": ["DSA", "Interview Preparation", "Programming"]
+          },
+          {
+            "name": "GitHub",
+            "type": "Code Repository",
+            "url": "github.com",
+            "topics": ["Version Control", "Open Source", "Portfolio"]
+          }
+        ],
+        "paid_resources": [
+          {
+            "name": "Coursera - Google IT Certificate",
+            "cost": "₹3,000/month",
+            "duration": "6 months",
+            "certification": "Yes"
+          },
+          {
+            "name": "Udacity - Full Stack Developer",
+            "cost": "₹50,000",
+            "duration": "6 months",
+            "certification": "Yes"
+          },
+          {
+            "name": "Scaler Academy",
+            "cost": "₹3,50,000",
+            "duration": "12 months",
+            "placement_support": "Yes"
+          }
+        ],
+        "books": [
+          {
+            "title": "Clean Code",
+            "author": "Robert Martin",
+            "price": "₹800",
+            "importance": "High"
+          },
+          {
+            "title": "Introduction to Algorithms",
+            "author": "Cormen, Leiserson, Rivest, Stein",
+            "price": "₹1,200",
+            "importance": "Critical"
+          }
+        ]
+      },
+      "success_stories": [
+        {
+          "name": "Sundar Pichai",
+          "position": "CEO, Google",
+          "background": "IIT Kharagpur Metallurgical Engineering",
+          "journey": "Started as Product Manager, led Chrome and Android teams",
+          "key_lesson": "Technical excellence combined with leadership skills"
+        },
+        {
+          "name": "Satya Nadella",
+          "position": "CEO, Microsoft",
+          "background": "Manipal Institute of Technology",
+          "journey": "Joined Microsoft in 1992, led cloud computing division",
+          "key_lesson": "Continuous learning and adaptation to new technologies"
+        }
+      ],
+      "challenges_solutions": {
+        "common_challenges": [
+          {
+            "challenge": "Keeping up with rapidly changing technology",
+            "solution": "Continuous learning, following tech blogs, participating in communities"
+          },
+          {
+            "challenge": "Imposter syndrome",
+            "solution": "Build strong fundamentals, contribute to open source, seek mentorship"
+          },
+          {
+            "challenge": "Work-life balance",
+            "solution": "Time management, setting boundaries, regular exercise"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "path": "Entrepreneurship",
+          "description": "Start your own tech company",
+          "requirements": ["Strong technical skills", "Business acumen", "Network"],
+          "timeline": "5-10 years experience recommended"
+        },
+        {
+          "path": "Product Management",
+          "description": "Lead product strategy and development",
+          "requirements": ["Technical background", "Communication skills", "Business understanding"],
+          "timeline": "3-5 years experience"
+        },
+        {
+          "path": "Technical Writing",
+          "description": "Create technical documentation and content",
+          "requirements": ["Writing skills", "Technical knowledge", "Communication"],
+          "timeline": "2-4 years experience"
+        }
+      ],
+      "day_in_life": {
+        "entry_level": [
+          "9:00 AM - Stand-up meeting with team",
+          "9:30 AM - Code review and bug fixes",
+          "11:00 AM - Work on assigned features",
+          "1:00 PM - Lunch break",
+          "2:00 PM - Continue development work",
+          "4:00 PM - Testing and documentation",
+          "5:00 PM - Team sync and planning",
+          "6:00 PM - Learning new technologies"
+        ],
+        "senior_level": [
+          "9:00 AM - Team planning and architecture discussions",
+          "10:00 AM - Code reviews and mentoring",
+          "12:00 PM - Client/stakeholder meetings",
+          "1:00 PM - Lunch",
+          "2:00 PM - System design and technical decisions",
+          "4:00 PM - Problem-solving and firefighting",
+          "5:00 PM - Team leadership activities",
+          "6:00 PM - Strategic planning and documentation"
+        ]
+      }
+    },
+    "doctor": {
+      "id": "doctor",
+      "title": "Medical Doctor",
+      "category": "Healthcare",
+      "description": "Diagnose and treat illnesses, injuries, and other health conditions",
+      "icon": "👩‍⚕️",
+      "overview": {
+        "demand_level": "Very High",
+        "growth_projection": "15% (2024-2034)",
+        "job_security": "Very High",
+        "work_environment": "Hospitals/Clinics",
+        "stress_level": "High"
+      },
+      "salary_info": {
+        "currency": "INR",
+        "entry_level": {
+          "min": 600000,
+          "max": 1200000,
+          "average": 900000,
+          "per": "annum"
+        },
+        "mid_level": {
+          "min": 1200000,
+          "max": 3000000,
+          "average": 2100000,
+          "per": "annum"
+        },
+        "senior_level": {
+          "min": 3000000,
+          "max": 8000000,
+          "average": 5500000,
+          "per": "annum"
+        },
+        "specialist": {
+          "min": 8000000,
+          "max": 20000000,
+          "average": 14000000,
+          "per": "annum"
+        }
+      },
+      "academic_roadmap": {
+        "high_school": {
+          "class_10": {
+            "subjects": ["Mathematics", "Science", "English", "Social Studies"],
+            "board_preference": "CBSE/ICSE - Both accepted",
+            "percentage_target": "90%+",
+            "activities": [
+              "Biology and Chemistry focus",
+              "Science exhibitions",
+              "Healthcare volunteering"
+            ]
+          },
+          "class_11_12": {
+            "stream": "Science (PCB) - Physics, Chemistry, Biology",
+            "core_subjects": ["Physics", "Chemistry", "Biology", "English"],
+            "percentage_target": "95%+ (for top colleges)",
+            "competitive_exams": ["NEET UG"],
+            "activities": [
+              "NEET preparation coaching",
+              "Hospital visits and observation",
+              "First aid courses",
+              "Biology competitions"
+            ]
+          }
+        },
+        "undergraduate": {
+          "degree_options": [
+            {
+              "degree": "MBBS (Bachelor of Medicine, Bachelor of Surgery)",
+              "duration": "5.5 years (4.5 years + 1 year internship)",
+              "top_colleges": [
+                "AIIMS Delhi, Mumbai, Bangalore",
+                "Christian Medical College (CMC) Vellore",
+                "Armed Forces Medical College (AFMC), Pune",
+                "King George's Medical University, Lucknow",
+                "Maulana Azad Medical College, Delhi"
+              ],
+              "admission_process": "NEET UG",
+              "fee_range": "₹1-30 lakhs (5.5 years)",
+              "seats": "90,000+ total seats in India"
+            }
+          ],
+          "year_wise_focus": {
+            "year_1": [
+              "Anatomy, Physiology, Biochemistry",
+              "Foundation of medical sciences",
+              "Basic clinical skills",
+              "Medical terminology"
+            ],
+            "year_2": [
+              "Pathology, Microbiology, Pharmacology",
+              "Community medicine",
+              "Clinical postings begin",
+              "Patient interaction skills"
+            ],
+            "year_3": [
+              "Medicine, Surgery basics",
+              "Pediatrics introduction",
+              "Clinical rotations",
+              "Case study analysis"
+            ],
+            "year_4": [
+              "Specialized clinical subjects",
+              "Surgery, Medicine, OBG",
+              "Emergency medicine",
+              "Research projects"
+            ],
+            "year_5": [
+              "Final year clinical postings",
+              "Thesis preparation",
+              "Comprehensive clinical training",
+              "NEET PG preparation"
+            ],
+            "internship": [
+              "Rotatory internship",
+              "Hands-on patient care",
+              "Emergency duties",
+              "Registration process"
+            ]
+          }
+        },
+        "postgraduate": {
+          "options": [
+            {
+              "degree": "MD/MS (Doctor of Medicine/Master of Surgery)",
+              "duration": "3 years",
+              "entrance": "NEET PG",
+              "specializations": [
+                "Internal Medicine", "Pediatrics", "Surgery", "OBG",
+                "Radiology", "Anesthesiology", "Dermatology", "Psychiatry"
+              ],
+              "fee_range": "₹5-50 lakhs"
+            },
+            {
+              "degree": "DNB (Diplomate of National Board)",
+              "duration": "3 years",
+              "entrance": "NEET PG",
+              "advantage": "More seats available",
+              "recognition": "Equivalent to MD/MS"
+            }
+          ]
+        },
+        "super_specialization": {
+          "options": [
+            {
+              "degree": "DM/MCh (Doctorate in Medicine/Master of Chirurgiae)",
+              "duration": "3 years",
+              "entrance": "NEET SS",
+              "specializations": [
+                "Cardiology", "Neurology", "Gastroenterology",
+                "Cardiac Surgery", "Neurosurgery", "Plastic Surgery"
+              ]
+            }
+          ]
+        }
+      },
+      "skill_roadmap": {
+        "pre_medical": {
+          "duration": "2 years (Class 11-12)",
+          "milestones": [
+            {
+              "skill": "NEET Preparation",
+              "timeline": "24 months",
+              "resources": [
+                "NCERT Books (Class 11-12)",
+                "NEET coaching institutes (Allen, Aakash, BYJU'S)",
+                "Previous year question papers"
+              ],
+              "targets": ["500+ score in NEET", "Top 10% rank"]
+            }
+          ]
+        },
+        "medical_school": {
+          "duration": "5.5 years",
+          "milestones": [
+            {
+              "skill": "Basic Medical Sciences",
+              "timeline": "First 2.5 years",
+              "subjects": ["Anatomy", "Physiology", "Biochemistry", "Pathology"],
+              "assessment": "University examinations"
+            },
+            {
+              "skill": "Clinical Skills",
+              "timeline": "Last 3 years",
+              "subjects": ["Medicine", "Surgery", "Pediatrics", "OBG"],
+              "practical_training": "Hospital rotations"
+            }
+          ]
+        },
+        "specialization": {
+          "duration": "3-6 years",
+          "milestones": [
+            {
+              "skill": "Specialized Knowledge",
+              "timeline": "3 years MD/MS",
+              "focus": "Deep expertise in chosen field",
+              "research": "Thesis completion mandatory"
+            }
+          ]
+        }
+      },
+      "career_progression": {
+        "junior_resident": {
+          "positions": ["Junior Resident", "House Officer"],
+          "experience": "Just after MBBS",
+          "salary_range": "₹50,000-80,000/month",
+          "responsibilities": [
+            "Patient care under supervision",
+            "Emergency duties",
+            "Documentation",
+            "Learning clinical procedures"
+          ]
+        },
+        "senior_resident": {
+          "positions": ["Senior Resident", "Registrar"],
+          "experience": "During/after MD/MS",
+          "salary_range": "₹80,000-1,50,000/month",
+          "responsibilities": [
+            "Independent patient management",
+            "Teaching junior residents",
+            "Research activities",
+            "Specialized procedures"
+          ]
+        },
+        "consultant": {
+          "positions": ["Consultant", "Attending Physician"],
+          "experience": "After specialization",
+          "salary_range": "₹2-10+ lakhs/month",
+          "responsibilities": [
+            "Final medical decisions",
+            "Complex case management",
+            "Department leadership",
+            "Academic responsibilities"
+          ]
+        }
+      },
+      "specializations": {
+        "high_demand": [
+          {
+            "name": "Cardiology",
+            "salary_range": "₹15-50 lakhs/year",
+            "seats": "Limited",
+            "description": "Heart and cardiovascular diseases"
+          },
+          {
+            "name": "Dermatology",
+            "salary_range": "₹12-40 lakhs/year",
+            "lifestyle": "Better work-life balance",
+            "description": "Skin, hair, and nail disorders"
+          },
+          {
+            "name": "Radiology",
+            "salary_range": "₹10-35 lakhs/year",
+            "growth": "High due to technology",
+            "description": "Medical imaging and diagnosis"
+          }
+        ],
+        "traditional": [
+          {
+            "name": "Internal Medicine",
+            "salary_range": "₹8-25 lakhs/year",
+            "scope": "Broad clinical practice",
+            "description": "Adult diseases and conditions"
+          },
+          {
+            "name": "Pediatrics",
+            "salary_range": "₹8-30 lakhs/year",
+            "emotional_reward": "High",
+            "description": "Children's health and diseases"
+          },
+          {
+            "name": "Surgery",
+            "salary_range": "₹10-40 lakhs/year",
+            "stress": "High",
+            "description": "Surgical interventions"
+          }
+        ]
+      },
+      "challenges_solutions": {
+        "common_challenges": [
+          {
+            "challenge": "Long and demanding education",
+            "solution": "Strong dedication, time management, support system"
+          },
+          {
+            "challenge": "High competition for specialization",
+            "solution": "Consistent preparation, multiple attempt strategy"
+          },
+          {
+            "challenge": "Emotional stress from patient care",
+            "solution": "Mental health support, peer networks, counseling"
+          },
+          {
+            "challenge": "Work-life balance",
+            "solution": "Time management, delegation, setting boundaries"
+          }
+        ]
+      }
+    },
+    "singer": {
+      "id": "singer",
+      "title": "Professional Singer",
+      "category": "Arts & Entertainment",
+      "description": "Perform vocal music for audiences across various platforms and genres",
+      "icon": "🎤",
+      "overview": {
+        "demand_level": "Medium",
+        "growth_projection": "8% (2024-2034)",
+        "job_security": "Variable",
+        "work_environment": "Studios/Stages/Events",
+        "stress_level": "Medium"
+      },
+      "salary_info": {
+        "currency": "INR",
+        "beginner": {
+          "min": 10000,
+          "max": 50000,
+          "average": 30000,
+          "per": "month"
+        },
+        "intermediate": {
+          "min": 50000,
+          "max": 300000,
+          "average": 175000,
+          "per": "month"
+        },
+        "professional": {
+          "min": 300000,
+          "max": 1500000,
+          "average": 900000,
+          "per": "month"
+        },
+        "celebrity": {
+          "min": 1500000,
+          "max": 10000000,
+          "average": 5750000,
+          "per": "event"
+        }
+      },
+      "required_skills": {
+        "technical_skills": [
+          {
+            "skill": "Vocal Technique",
+            "details": ["Breath control", "Pitch accuracy", "Vocal range", "Tone quality"],
+            "importance": "Critical",
+            "learning_time": "2-5 years continuous practice"
+          },
+          {
+            "skill": "Music Theory",
+            "details": ["Scales", "Ragas", "Rhythm", "Harmony", "Song structure"],
+            "importance": "High",
+            "learning_time": "1-3 years"
+          },
+          {
+            "skill": "Language Proficiency",
+            "details": ["Hindi", "English", "Regional languages", "Sanskrit slokas"],
+            "importance": "High",
+            "learning_time": "Ongoing"
+          },
+          {
+            "skill": "Performance Skills",
+            "details": ["Stage presence", "Audience engagement", "Choreography basics"],
+            "importance": "High",
+            "learning_time": "2-4 years"
+          },
+          {
+            "skill": "Recording Techniques",
+            "details": ["Studio etiquette", "Microphone technique", "Audio software basics"],
+            "importance": "Medium",
+            "learning_time": "6 months - 1 year"
+          }
+        ],
+        "soft_skills": [
+          {
+            "skill": "Confidence",
+            "importance": "Critical"
+          },
+          {
+            "skill": "Emotional Expression",
+            "importance": "Critical"
+          },
+          {
+            "skill": "Networking",
+            "importance": "High"
+          },
+          {
+            "skill": "Resilience",
+            "importance": "High"
+          },
+          {
+            "skill": "Adaptability",
+            "importance": "Medium"
+          }
+        ]
+      },
+      "academic_roadmap": {
+        "high_school": {
+          "class_10": {
+            "subjects": ["Music", "Languages", "General subjects"],
+            "activities": [
+              "Join school choir or music group",
+              "Learn basic instrument (harmonium/keyboard)",
+              "Participate in cultural programs",
+              "Start voice training"
+            ],
+            "percentage_target": "70%+ (Academic backup important)"
+          },
+          "class_11_12": {
+            "stream_options": [
+              "Arts with Music",
+              "Any stream with Music as additional subject",
+              "Vocational Music courses"
+            ],
+            "activities": [
+              "Formal music training",
+              "Performance competitions",
+              "YouTube channel creation",
+              "Local event performances"
+            ],
+            "competitive_exams": ["Music entrance exams for colleges"]
+          }
+        },
+        "undergraduate": {
+          "degree_options": [
+            {
+              "degree": "Bachelor of Performing Arts (Music)",
+              "duration": "3 years",
+              "colleges": [
+                "Delhi University (Music Department)",
+                "Banaras Hindu University",
+                "Rabindra Bharati University, Kolkata",
+                "University of Mumbai",
+                "Prayag Sangit Samiti, Allahabad"
+              ],
+              "fee_range": "₹50,000-3 lakhs (3 years)"
+            },
+            {
+              "degree": "Bachelor of Music (Classical/Western)",
+              "duration": "3 years",
+              "specializations": ["Hindustani Classical", "Carnatic", "Western Classical"],
+              "fee_range": "₹1-5 lakhs (3 years)"
+            },
+            {
+              "degree": "Any Graduate Degree + Music Diploma",
+              "advantage": "Academic backup with music specialization",
+              "institutes": ["Gandharva Mahavidyalaya", "Pracheen Kala Kendra"]
+            }
+          ]
+        },
+        "postgraduate": {
+          "options": [
+            {
+              "degree": "Master of Performing Arts",
+              "duration": "2 years",
+              "specialization": "Advanced vocal techniques"
+            },
+            {
+              "degree": "Diploma in Music Production",
+              "duration": "1 year",
+              "focus": "Technical aspects of music industry"
+            }
+          ]
+        }
+      },
+      "skill_roadmap": {
+        "foundation": {
+          "duration": "1-2 years",
+          "milestones": [
+            {
+              "skill": "Basic Vocal Training",
+              "timeline": "6-12 months",
+              "resources": [
+                "Local music teacher",
+                "Online courses (Udemy, Coursera)",
+                "YouTube tutorials (Indian Classical basics)"
+              ],
+              "practice": "1-2 hours daily vocal exercises"
+            },
+            {
+              "skill": "Choose Music Genre",
+              "timeline": "Month 3-6",
+              "options": ["Bollywood", "Classical", "Folk", "Western Pop", "Devotional"],
+              "activities": ["Listen extensively", "Try different styles", "Find your strength"]
+            },
+            {
+              "skill": "Basic Instrument",
+              "timeline": "6 months",
+              "instruments": ["Harmonium", "Guitar", "Keyboard"],
+              "purpose": "Accompaniment and music theory understanding"
+            }
+          ]
+        },
+        "development": {
+          "duration": "2-4 years",
+          "milestones": [
+            {
+              "skill": "Advanced Vocal Techniques",
+              "timeline": "12-24 months",
+              "focus": ["Range expansion", "Control", "Improvisation", "Raga knowledge"],
+              "teachers": "Find established guru/mentor"
+            },
+            {
+              "skill": "Performance Experience",
+              "timeline": "Ongoing",
+              "venues": [
+                "College events",
+                "Local competitions",
+                "Cultural programs",
+                "Wedding ceremonies",
+                "Religious functions"
+              ],
+              "target": "50+ performances"
+            },
+            {
+              "skill": "Digital Presence",
+              "timeline": "12 months",
+              "platforms": ["YouTube", "Instagram", "Spotify", "Gaana"],
+              "content": ["Cover songs", "Original compositions", "Classical renditions"]
+            },
+            {
+              "skill": "Music Production Basics",
+              "timeline": "6-12 months",
+              "software": ["GarageBand", "FL Studio", "Pro Tools"],
+              "purpose": "Home recording and basic editing"
+            }
+          ]
+        },
+        "professional": {
+          "duration": "3-5 years",
+          "milestones": [
+            {
+              "skill": "Industry Networking",
+              "timeline": "Ongoing",
+              "activities": [
+                "Music director meetings",
+                "Industry events attendance",
+                "Collaboration with musicians",
+                "Social media engagement"
+              ]
+            },
+            {
+              "skill": "Versatility Development",
+              "timeline": "24 months",
+              "areas": [
+                "Multiple languages",
+                "Different genres",
+                "Live vs studio singing",
+                "Background vocals"
+              ]
+            },
+            {
+              "skill": "Professional Recording",
+              "timeline": "12-18 months",
+              "experience": [
+                "Professional studio sessions",
+                "Working with music directors",
+                "Film playback opportunities",
+                "Album recordings"
+              ]
+            }
+          ]
+        }
+      },
+      "career_paths": {
+        "playback_singer": {
+          "description": "Sing for Bollywood/Regional films",
+          "entry_requirements": [
+            "Exceptional vocal ability",
+            "Language proficiency",
+            "Industry connections",
+            "Versatility in genres"
+          ],
+          "income_sources": [
+            "Per song fees: ₹25,000-10 lakhs",
+            "Royalties from music companies",
+            "Live concert performances",
+            "Brand endorsements"
+          ],
+          "career_progression": [
+            "Background vocalist → Solo songs → Hit songs → Established singer"
+          ]
+        },
+        "classical_performer": {
+          "description": "Hindustani/Carnatic classical music",
+          "entry_requirements": [
+            "Rigorous classical training (8-15 years)",
+            "Guru-shishya tradition",
+            "Deep knowledge of ragas",
+            "Cultural performance exposure"
+          ],
+          "income_sources": [
+            "Concert performances: ₹50,000-5 lakhs per show",
+            "Teaching and workshops",
+            "Government cultural programs",
+            "International tours"
+          ]
+        },
+        "independent_artist": {
+          "description": "Original music creation and performance",
+          "entry_requirements": [
+            "Songwriting abilities",
+            "Music production knowledge",
+            "Strong digital presence",
+            "Business acumen"
+          ],
+          "income_sources": [
+            "Streaming royalties",
+            "Live performances",
+            "Merchandise sales",
+            "Brand collaborations",
+            "Music licensing"
+          ]
+        },
+        "music_teacher": {
+          "description": "Teaching vocal music",
+          "entry_requirements": [
+            "Strong musical foundation",
+            "Teaching skills",
+            "Patience and communication",
+            "Certification preferred"
+          ],
+          "income_sources": [
+            "Private lessons: ₹500-2000 per hour",
+            "Music school employment",
+            "Online course creation",
+            "Workshop conducting"
+          ]
+        }
+      },
+      "industry_insights": {
+        "bollywood_music": {
+          "major_music_directors": [
+            "A.R. Rahman", "Shankar-Ehsaan-Loy", "Vishal-Shekhar",
+            "Amit Trivedi", "Ilaiyaraaja", "Harris Jayaraj"
+          ],
+          "music_labels": [
+            "T-Series", "Sony Music", "Zee Music", "Tips Music",
+            "Saregama", "Times Music"
+          ],
+          "opportunities": [
+            "Film songs", "Album songs", "Devotional music",
+            "Regional cinema", "Web series soundtracks"
+          ]
+        },
+        "digital_platforms": {
+          "streaming_services": [
+            {"name": "Spotify", "revenue_share": "70% to artists"},
+            {"name": "Apple Music", "revenue_share": "70% to artists"},
+            {"name": "YouTube Music", "revenue_share": "55% to artists"},
+            {"name": "Gaana", "indian_focus": "Strong regional presence"},
+            {"name": "JioSaavn", "indian_focus": "Large user base"}
+          ],
+          "content_creation": [
+            "YouTube covers and originals",
+            "Instagram Reels music",
+            "TikTok trend participation",
+            "Podcast appearances"
+          ]
+        }
+      },
+      "learning_resources": {
+        "online_platforms": [
+          {
+            "name": "Shankar Mahadevan Academy",
+            "cost": "₹500-2000/month",
+            "focus": "Indian classical and Bollywood",
+            "features": "Live classes, structured curriculum"
+          },
+          {
+            "name": "iPassio",
+            "cost": "₹300-1500/month",
+            "focus": "Hindustani classical",
+            "features": "Beginner to advanced levels"
+          },
+          {
+            "name": "YouTube Channels",
+            "cost": "Free",
+            "channels": [
+              "Sargam Music Academy",
+              "Learn Music Online",
+              "Classical Music Lessons"
+            ]
+          }
+        ],
+        "offline_learning": [
+          {
+            "name": "Local Gurus/Teachers",
+            "cost": "₹1000-5000/month",
+            "advantage": "Personalized attention, traditional training"
+          },
+          {
+            "name": "Music Institutes",
+            "examples": [
+              "Gandharva Mahavidyalaya",
+              "Pracheen Kala Kendra",
+              "Bharatiya Vidya Bhavan"
+            ],
+            "cost": "₹2000-8000/month"
+          }
+        ],
+        "equipment_needed": [
+          {
+            "item": "Basic Recording Setup",
+            "cost": "₹15,000-50,000",
+            "includes": ["USB Microphone", "Audio Interface", "Headphones", "Software"]
+          },
+          {
+            "item": "Practice Instruments",
+            "cost": "₹5,000-25,000",
+            "includes": ["Harmonium", "Tanpura app/device", "Metronome"]
+          }
+        ]
+      },
+      "success_stories": [
+        {
+          "name": "Arijit Singh",
+          "background": "Started with reality shows, consistent struggle",
+          "breakthrough": "Tum Hi Ho (Aashiqui 2)",
+          "key_lesson": "Persistence and continuous improvement"
+        },
+        {
+          "name": "Shreya Ghoshal",
+          "background": "Classical training from childhood",
+          "breakthrough": "Sa Re Ga Ma Pa winner, then Devdas",
+          "key_lesson": "Strong foundation and versatility"
+        },
+        {
+          "name": "Armaan Malik",
+          "background": "Child singer, evolved with changing music trends",
+          "breakthrough": "Bollywood and independent music success",
+          "key_lesson": "Adaptation to modern music styles"
+        }
+      ],
+      "challenges_solutions": {
+        "common_challenges": [
+          {
+            "challenge": "Irregular income and financial instability",
+            "solution": "Diversify income streams, teaching, multiple projects"
+          },
+          {
+            "challenge": "High competition and rejection",
+            "solution": "Continuous skill improvement, networking, persistence"
+          },
+          {
+            "challenge": "Voice maintenance and health",
+            "solution": "Proper vocal hygiene, regular practice, medical care"
+          },
+          {
+            "challenge": "Building industry connections",
+            "solution": "Attend industry events, collaborate, social media presence"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "path": "Music Producer",
+          "description": "Create and produce music tracks",
+          "transition": "Learn music production software and techniques"
+        },
+        {
+          "path": "Voice Actor",
+          "description": "Voice-over for animations, ads, dubbing",
+          "transition": "Develop acting skills and voice modulation"
+        },
+        {
+          "path": "Music Therapist",
+          "description": "Use music for healing and therapy",
+          "transition": "Additional psychology/therapy certification"
+        }
+      ]
+    },
+    "civil_engineer": {
+      "id": "civil_engineer",
+      "title": "Civil Engineer",
+      "category": "Engineering",
+      "description": "Design, build, and maintain infrastructure including buildings, roads, bridges, and water systems",
+      "icon": "🏗️",
+      "overview": {
+        "demand_level": "High",
+        "growth_projection": "11% (2024-2034)",
+        "job_security": "High",
+        "work_environment": "Office/Construction Sites",
+        "stress_level": "Medium"
+      },
+      "salary_info": {
+        "currency": "INR",
+        "entry_level": {
+          "min": 250000,
+          "max": 600000,
+          "average": 425000,
+          "per": "annum"
+        },
+        "mid_level": {
+          "min": 600000,
+          "max": 1500000,
+          "average": 1050000,
+          "per": "annum"
+        },
+        "senior_level": {
+          "min": 1500000,
+          "max": 4000000,
+          "average": 2750000,
+          "per": "annum"
+        },
+        "expert_level": {
+          "min": 4000000,
+          "max": 10000000,
+          "average": 7000000,
+          "per": "annum"
+        }
+      },
+      "academic_roadmap": {
+        "high_school": {
+          "class_10": {
+            "subjects": ["Mathematics", "Science", "English"],
+            "percentage_target": "80%+",
+            "activities": [
+              "Focus on Mathematics and Physics",
+              "Engineering drawing classes",
+              "Construction site visits"
+            ]
+          },
+          "class_11_12": {
+            "stream": "Science (PCM) - Physics, Chemistry, Mathematics",
+            "core_subjects": ["Physics", "Chemistry", "Mathematics", "English"],
+            "percentage_target": "75%+ (for good engineering colleges)",
+            "competitive_exams": ["JEE Main", "JEE Advanced", "State Engineering Entrances"],
+            "activities": [
+              "Engineering entrance preparation",
+              "Mathematics olympiads",
+              "Science model making",
+              "CAD software introduction"
+            ]
+          }
+        },
+        "undergraduate": {
+          "degree_options": [
+            {
+              "degree": "B.Tech/B.E. in Civil Engineering",
+              "duration": "4 years",
+              "top_colleges": [
+                "IIT Delhi, Bombay, Madras, Kanpur",
+                "NIT Trichy, Warangal, Surathkal",
+                "Delhi Technological University",
+                "Jadavpur University",
+                "Thapar Institute of Engineering"
+              ],
+              "admission_process": "JEE Main/Advanced, State Entrances",
+              "fee_range": "₹4-20 lakhs (4 years)"
+            }
+          ],
+          "year_wise_focus": {
+            "year_1": [
+              "Engineering Mathematics",
+              "Engineering Physics and Chemistry",
+              "Engineering Graphics",
+              "Basic Civil Engineering",
+              "Programming basics (C/C++)"
+            ],
+            "year_2": [
+              "Strength of Materials",
+              "Fluid Mechanics",
+              "Surveying",
+              "Building Materials and Construction",
+              "Environmental Engineering"
+            ],
+            "year_3": [
+              "Structural Analysis",
+              "Geotechnical Engineering",
+              "Transportation Engineering",
+              "Water Resources Engineering",
+              "Design of Concrete Structures"
+            ],
+            "year_4": [
+              "Steel Structure Design",
+              "Foundation Engineering",
+              "Project Management",
+              "Final Year Project",
+              "Industrial Training",
+              "GATE preparation"
+            ]
+          }
+        },
+        "postgraduate": {
+          "options": [
+            {
+              "degree": "M.Tech in Civil Engineering",
+              "duration": "2 years",
+              "entrance": "GATE",
+              "specializations": [
+                "Structural Engineering", "Geotechnical Engineering",
+                "Transportation Engineering", "Water Resources",
+                "Construction Management", "Environmental Engineering"
+              ]
+            },
+            {
+              "degree": "MS in Civil Engineering (Abroad)",
+              "duration": "2 years",
+              "entrance": "GRE, TOEFL/IELTS",
+              "countries": ["USA", "Canada", "Germany", "Australia"]
+            }
+          ]
+        }
+      },
+      "skill_roadmap": {
+        "technical_skills": {
+          "core_engineering": [
+            {
+              "skill": "AutoCAD",
+              "importance": "Critical",
+              "learning_time": "2-3 months",
+              "cost": "₹10,000-25,000 for course"
+            },
+            {
+              "skill": "Structural Analysis Software",
+              "tools": ["STAAD Pro", "ETABS", "SAP2000"],
+              "importance": "High",
+              "learning_time": "3-6 months each"
+            },
+            {
+              "skill": "Project Management Software",
+              "tools": ["MS Project", "Primavera"],
+              "importance": "High",
+              "learning_time": "2-4 months"
+            },
+            {
+              "skill": "3D Modeling",
+              "tools": ["Revit", "SketchUp", "3ds Max"],
+              "importance": "Medium",
+              "learning_time": "3-6 months"
+            }
+          ]
+        },
+        "progression_timeline": {
+          "year_1_2": [
+            "Master AutoCAD and basic drafting",
+            "Learn construction materials and methods",
+            "Understand surveying techniques",
+            "Basic knowledge of IS codes"
+          ],
+          "year_3_4": [
+            "Structural analysis and design",
+            "Learn STAAD Pro or similar software",
+            "Project work and site exposure",
+            "Preparation for campus placements"
+          ],
+          "post_graduation": [
+            "Advanced software proficiency",
+            "Project management skills",
+            "Industry certifications",
+            "Leadership and team management"
+          ]
+        }
+      },
+      "specializations": {
+        "structural_engineering": {
+          "description": "Design of buildings, bridges, and other structures",
+          "salary_range": "₹4-12 lakhs/year",
+          "software_required": ["STAAD Pro", "ETABS", "SAP2000"],
+          "career_prospects": "High demand in construction industry"
+        },
+        "geotechnical_engineering": {
+          "description": "Soil mechanics and foundation engineering",
+          "salary_range": "₹3.5-10 lakhs/year",
+          "software_required": ["PLAXIS", "GeoStudio"],
+          "career_prospects": "Infrastructure development projects"
+        },
+        "transportation_engineering": {
+          "description": "Design of roads, highways, and traffic systems",
+          "salary_range": "₹4-11 lakhs/year",
+          "software_required": ["SYNCHRO", "VISSIM"],
+          "career_prospects": "Government and private highway projects"
+        },
+        "water_resources": {
+          "description": "Water supply, irrigation, and drainage systems",
+          "salary_range": "₹3.5-9 lakhs/year",
+          "software_required": ["HEC-HMS", "SWMM"],
+          "career_prospects": "Water management and environmental projects"
+        }
+      },
+      "job_market": {
+        "government_sector": [
+          {
+            "organization": "Public Works Department (PWD)",
+            "salary_range": "₹3.5-8 lakhs/year",
+            "benefits": "Job security, pension, medical benefits",
+            "entrance": "State PSC exams"
+          },
+          {
+            "organization": "National Highways Authority of India (NHAI)",
+            "salary_range": "₹4-10 lakhs/year",
+            "projects": "Highway construction and maintenance"
+          },
+          {
+            "organization": "Railway Engineering Services",
+            "salary_range": "₹5-12 lakhs/year",
+            "entrance": "ESE (Engineering Services Examination)"
+          }
+        ],
+        "private_sector": [
+          {
+            "company": "L&T Construction",
+            "salary_range": "₹3.5-15 lakhs/year",
+            "projects": "Infrastructure, buildings, industrial"
+          },
+          {
+            "company": "Tata Projects",
+            "salary_range": "₹4-12 lakhs/year",
+            "focus": "Industrial and infrastructure projects"
+          },
+          {
+            "company": "Shapoorji Pallonji",
+            "salary_range": "₹3.5-10 lakhs/year",
+            "focus": "Construction and infrastructure"
+          },
+          {
+            "company": "DLF",
+            "salary_range": "₹4-12 lakhs/year",
+            "focus": "Real estate development"
+          }
+        ],
+        "consulting_firms": [
+          {
+            "firm": "AECOM",
+            "salary_range": "₹4-15 lakhs/year",
+            "focus": "Design and consulting"
+          },
+          {
+            "firm": "Jacobs",
+            "salary_range": "₹5-18 lakhs/year",
+            "focus": "Infrastructure consulting"
+          }
+        ]
+      }
+    }
+  }
+}

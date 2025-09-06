@@ -68,7 +68,7 @@ class GeminiService {
       // Use a model that supports JSON output well, like 1.5 Flash or Pro
       // model: 'gemini-1.5-pro-latest', // For best quality JSON adherence
       model:
-          'gemini-1.5-flash-latest', // Faster and often sufficient for structured output
+          'gemini-2.5-flash', // Faster and often sufficient for structured output
       apiKey: _apiKey,
       generationConfig: GenerationConfig(
         responseMimeType: "application/json", // Crucial for JSON output
@@ -79,7 +79,7 @@ class GeminiService {
     );
     _chatModel = GenerativeModel(
       // model: 'gemini-1.5-pro-latest', // Or 'gemini-pro' for chat
-      model: 'gemini-1.5-flash-latest', // Often good for chat too
+      model: 'gemini-2.5-flash', // Often good for chat too
       apiKey: _apiKey,
       generationConfig: GenerationConfig(
         temperature: 0.7, // More creative for chat

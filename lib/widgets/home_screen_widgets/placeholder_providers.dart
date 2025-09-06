@@ -150,6 +150,3 @@ final activeStudentsProvider = StreamProvider<int>((ref) async* {
     yield count; // Emit the new count
   }
 });
-
-// Provider for Bottom Navigation Index (Standard UI State)
-final bottomNavIndexProvider = StateProvider<int>((ref) => 0); // 0 is Home

@@ -2,7 +2,9 @@
 
 // import 'package:bharat_ace/screens/alarm_screen.dart' as AppColors;
 import 'package:bharat_ace/core/models/study_task_model.dart';
-import 'package:bharat_ace/core/providers/personalized_study_plan_provider.dart';
+import 'package:bharat_ace/core/providers/personalized_study_plan_provider.dart'
+    hide todaysPersonalizedTasksProvider; // Hide the original provider
+import 'package:bharat_ace/core/providers/optimized_study_plan_provider.dart';
 import 'package:bharat_ace/screens/smaterial/cat_teacher_classroom_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -316,9 +318,9 @@ class ChapterLandingScreen extends ConsumerWidget {
     final AsyncValue<ChapterProgress> chapterProgressAsync = ref.watch(
         chapterProgressStreamProvider(
             (subject: subjectName, chapterId: chapterId)));
-    // NEW: Watch today's assigned tasks
+    // NEW: Watch today's assigned tasks using optimized provider
     final AsyncValue<List<StudyTask>> todaysTasksAsync =
-        ref.watch(todaysPersonalizedTasksProvider);
+        ref.watch(optimizedTodaysTasksProvider);
 
     final TextTheme textTheme = Theme.of(context).textTheme.apply(
           bodyColor: AppColors.textPrimary,

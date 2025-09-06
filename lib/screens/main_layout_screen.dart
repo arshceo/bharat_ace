@@ -1,146 +1,208 @@
 // --- lib/screens/main_layout_screen.dart ---
 
-import 'package:bharat_ace/screens/gifts_screen/presentations/screens/rewards_gallery_screen.dart';
-import 'package:bharat_ace/screens/profile_screen.dart';
+import 'package:bharat_ace/screens/profile_screen_new.dart';
 import 'package:bharat_ace/screens/syllabus_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Import Screens for the tabs (Ensure paths are correct)
-import 'package:bharat_ace/screens/home_screen/home_screen2.dart';
+// Import Screens for the tabs
+import 'package:bharat_ace/screens/home_screen/home_screen_backup.dart';
+import 'package:bharat_ace/screens/competitions/competitions_screen.dart';
+import 'package:bharat_ace/screens/exam_succeed/exam_succeed_screen.dart';
+import '../widgets/home_screen_widgets/ai_chat_widget.dart';
 
-import '../widgets/home_screen_widgets/ai_chat_widget.dart'; // Or HomeScreenV4, etc.
+// Import the new theme system and providers
+import 'package:bharat_ace/core/theme/app_theme.dart';
+import 'package:bharat_ace/core/providers/feature_toggle_provider.dart';
 
-// --- Import AiChatWidget and related classes/constants ---
-// You'll need to ensure these paths are correct based on your project structure.
-// Assuming AiChatWidget, ChatMessage, and GeminiService are defined/accessible
-// from where HomeScreen2 is.
-// If not, you might need to create a shared widgets/services directory.
-// For this example, I'll assume AiChatWidget is defined in or imported by home_screen2.dart
-// and HomeScreen2.surfaceDark etc. are accessible or we redefine them here.
-
-// If AiChatWidget is defined in home_screen2.dart, it might be better to move it to its own file
-// e.g., lib/widgets/ai_chat_widget.dart and import it here.
-// For simplicity, I'll assume it's accessible. If not, you'll see an error.
-
-// *** DEFINE bottomNavIndexProvider HERE ***
-final bottomNavIndexProvider = StateProvider<int>((ref) {
-  // Default selected index (e.g., 0 for Home)
-  return 0;
-});
-// ****************************************
+// *** Navigation Provider ***
+final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
 
 class MainLayout extends ConsumerWidget {
   const MainLayout({super.key});
 
-  // --- Colors (These should ideally be in a central theme file) ---
-  static const Color darkBg = Color(0xFF12121F);
-  static const Color primaryPurple = Color(0xFF7E57C2); // From HomeScreen2
-  static const Color accentCyan = Color(0xFF29B6F6); // From HomeScreen2
-  static const Color textPrimary = Color(0xFFEAEAEA);
-  static const Color textSecondary = Color(0xFFAAAAAA);
-  static const Color surfaceDark = Color(0xFF1E1E2E);
-  static const Color surfaceLight =
-      Color(0xFF2A2A3A); // From HomeScreen2 for AiChatWidget styling
-  // --- End Colors ---
-
-  // List of screen widgets corresponding to bottom nav indices
-  final List<Widget> _screens = const [
-    HomeScreen2(), // Index 0
-    SyllabusScreen(), // Index 1
-    RewardsGalleryScreen(), // Index 2
-    ProfileScreen() // Index 3 - Use actual ProfileScreen
-  ];
+  // Get screens based on feature toggle status
+  List<Widget> _getScreens(bool extraFeaturesEnabled) {
+    return [
+      const HomeScreen2(), // Index 0
+      const SyllabusScreen(), // Index 1
+      extraFeaturesEnabled
+          ? const CompetitionsScreen() // Index 2 with features enabled
+          : const ExamSucceedScreen(), // Index 2 with features disabled
+      const ProfileScreen() // Index 3
+    ];
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Watch the index from the provider defined above
     final int selectedIndex = ref.watch(bottomNavIndexProvider);
+    // Watch the feature toggle state
+    final bool extraFeaturesEnabled = ref.watch(featureToggleProvider);
+    // Get screens based on feature toggle
+    final screens = _getScreens(extraFeaturesEnabled);
 
     return Scaffold(
-        backgroundColor: darkBg, // Use defined dark color
-        extendBody: true, // Allows body content behind bottom nav bar
-        body: IndexedStack(
-          // Use IndexedStack to keep screen states
-          index: selectedIndex,
-          children: _screens,
-        ),
-        bottomNavigationBar: _buildBottomNavBarV5(
-            context, ref, selectedIndex), // Pass necessary params
-        floatingActionButton:
-            _buildFABV5(context, ref), // Pass ref for AiChatWidget
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      extendBody: true,
+      body: IndexedStack(
+        index: selectedIndex,
+        children: screens,
+      ),
+      bottomNavigationBar:
+          _buildBottomNavBar(context, ref, selectedIndex, extraFeaturesEnabled),
+      floatingActionButton: _buildFAB(context, ref),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
   }
 
-  // --- Bottom Nav Bar Builder ---
-  Widget _buildBottomNavBarV5(
-      BuildContext context, WidgetRef ref, int currentIndex) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 8.0,
-      elevation: 4,
-      color: surfaceDark.withOpacity(0.95),
-      padding: EdgeInsets.zero,
-      child: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) =>
-            ref.read(bottomNavIndexProvider.notifier).state = index,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_rounded), label: 'Syllabus'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard), label: 'Gifts'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded), label: 'Profile')
-        ],
-        backgroundColor: Colors.transparent,
+  // --- Modern Bottom Navigation Bar ---
+  Widget _buildBottomNavBar(
+      BuildContext context, WidgetRef ref, int currentIndex,
+      [bool extraFeaturesEnabled = false]) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppTheme.darkCard
+            : AppTheme.white,
+        borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(AppTheme.radiusLG)),
+        boxShadow: Theme.of(context).brightness == Brightness.dark
+            ? [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ]
+            : [
+                BoxShadow(
+                  color: AppTheme.gray900.withOpacity(0.08),
+                  blurRadius: 20,
+                  offset: const Offset(0, -4),
+                ),
+              ],
+      ),
+      child: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
         elevation: 0,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: accentCyan,
-        unselectedItemColor: textSecondary.withOpacity(0.7),
-        selectedLabelStyle:
-            const TextStyle(fontWeight: FontWeight.bold, fontSize: 11),
-        unselectedLabelStyle: const TextStyle(fontSize: 11),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
+        color: Colors.transparent,
+        padding: EdgeInsets.zero,
+        child: Container(
+          height: 60,
+          padding: const EdgeInsets.symmetric(horizontal: AppTheme.spaceMD),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(Icons.home_rounded, 'Home', 0, currentIndex, ref),
+              _buildNavItem(
+                  Icons.menu_book_rounded, 'Syllabus', 1, currentIndex, ref),
+              const SizedBox(width: 40), // Space for FAB
+              _buildNavItem(
+                  extraFeaturesEnabled
+                      ? Icons.emoji_events_rounded
+                      : Icons.school_rounded,
+                  extraFeaturesEnabled ? 'Competitions' : 'Exam Tips',
+                  2,
+                  currentIndex,
+                  ref),
+              _buildNavItem(
+                  Icons.person_rounded, 'Profile', 3, currentIndex, ref),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  // --- FAB Builder ---
-  Widget _buildFABV5(BuildContext context, WidgetRef ref) {
-    // Added WidgetRef
-    return FloatingActionButton(
-      onPressed: () {
-        // --- UPDATED TO SHOW AiChatWidget ---
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          // Use colors defined in MainLayout or import from HomeScreen2
-          backgroundColor: MainLayout
-              .surfaceDark, // Or HomeScreen2.surfaceDark if accessible and preferred
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-          ),
-          builder: (BuildContext bottomSheetContext) {
-            // AiChatWidget is a ConsumerStatefulWidget, so it manages its own provider consumption.
-            // We pass null for 'item' to indicate a general chat session.
-            // Make sure AiChatWidget is imported or accessible in this file's scope.
-            return const AiChatWidget(item: null);
-          },
-        );
-        // --- END UPDATED PART ---
-      },
-      backgroundColor: accentCyan,
-      foregroundColor: darkBg,
-      elevation: 4.0,
-      shape: const CircleBorder(),
-      heroTag: 'fab_main_layout_v5_general_ai_chat', // Ensure unique heroTag
-      child: const Icon(Icons.support_agent_sharp),
+  Widget _buildNavItem(
+      IconData icon, String label, int index, int currentIndex, WidgetRef ref) {
+    final bool isSelected = currentIndex == index;
+
+    return GestureDetector(
+      onTap: () => ref.read(bottomNavIndexProvider.notifier).state = index,
+      child: AnimatedContainer(
+        duration: AppTheme.durationFast,
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppTheme.spaceSM,
+          vertical: AppTheme.spaceXS,
+        ),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppTheme.primary.withOpacity(0.1)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(AppTheme.radiusSM),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? AppTheme.primary : AppTheme.gray400,
+              size: 24,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: AppTheme.textTheme.labelSmall?.copyWith(
+                color: isSelected ? AppTheme.primary : AppTheme.gray400,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
-} // End of MainLayout class
 
-// IMPORTANT: AiChatWidget Definition
+  // --- Modern AI Assistant FAB ---
+  Widget _buildFAB(BuildContext context, WidgetRef ref) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppTheme.primary,
+            AppTheme.secondary,
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppTheme.primary.withOpacity(0.3),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: AppTheme.white,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(AppTheme.radiusXL),
+              ),
+            ),
+            builder: (BuildContext bottomSheetContext) {
+              return const AiChatWidget(item: null);
+            },
+          );
+        },
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppTheme.white,
+        elevation: 0,
+        highlightElevation: 0,
+        shape: const CircleBorder(),
+        heroTag: 'main_ai_chat_fab',
+        child: const Icon(
+          Icons.auto_awesome_rounded,
+          size: 28,
+        ),
+      ),
+    );
+  }
+}

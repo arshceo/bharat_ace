@@ -2,16 +2,19 @@ import 'package:bharat_ace/core/services/auth_checker.dart';
 import 'package:bharat_ace/screens/alarm_screen.dart';
 import 'package:bharat_ace/screens/authentication/login_screen.dart';
 import 'package:bharat_ace/screens/authentication/signup_screen.dart';
-import 'package:bharat_ace/screens/home_screen/home_screen2.dart';
+import 'package:bharat_ace/screens/career/career_dream_palace_screen.dart';
+import 'package:bharat_ace/screens/career/career_path_visualization_screen.dart';
 import 'package:bharat_ace/screens/leaderboard/leaderboard_screen.dart';
 import 'package:bharat_ace/screens/main_layout_screen.dart';
 import 'package:bharat_ace/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:bharat_ace/screens/onboarding_screen/subject_selection_screen.dart';
+import 'package:bharat_ace/screens/profile_screen_new.dart';
 import 'package:bharat_ace/screens/settings/permissions_screen.dart';
 import 'package:bharat_ace/screens/topic_details_screen.dart';
-import 'package:bharat_ace/screens/profile_screen.dart';
 import 'package:bharat_ace/screens/test_supabase.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/home_screen/home_screen_backup.dart';
 
 class AppRoutes {
   static const String authChecker = "/";

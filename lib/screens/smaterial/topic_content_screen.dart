@@ -30,15 +30,25 @@ final _qaHistoryProvider =
 
 // --- Main Widget ---
 class TopicContentScreen extends ConsumerStatefulWidget {
-  final String chapter;
-  final String topic;
+  final String? chapter;
+  final String? topic;
   final String subject;
+  final String? taskId;
+  final String? chapterId;
+  final String? topicId;
+  final VoidCallback? onComplete;
+  final bool isStudySession;
 
   const TopicContentScreen({
     super.key,
-    required this.chapter,
-    required this.topic,
+    this.chapter,
+    this.topic,
     required this.subject,
+    this.taskId,
+    this.chapterId,
+    this.topicId,
+    this.onComplete,
+    this.isStudySession = false,
   });
 
   @override
@@ -176,7 +186,7 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
     final cacheService = ref.read(contentCacheServiceProvider);
     final String? cachedContent = forceRegenerate
         ? null
-        : await cacheService.getCachedContent(widget.topic);
+        : await cacheService.getCachedContent(widget.topic ?? '');
 
     if (cachedContent != null && cachedContent.isNotEmpty) {
       print("Content loaded from cache for ${widget.topic}.");
@@ -219,14 +229,14 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
             "Generating content with class: ${student.grade}, board: ${student.board ?? "Not specified"}");
         final generatedContent = await contentService.generateTopicContent(
           subject: widget.subject,
-          chapter: widget.chapter,
-          topic: widget.topic,
+          chapter: widget.chapter ?? '',
+          topic: widget.topic ?? '',
           studentClass: student.grade,
           board: student.board,
           complexityPreference: complexity,
         );
         if (mounted) {
-          cacheService.saveContentToCache(widget.topic, generatedContent);
+          cacheService.saveContentToCache(widget.topic ?? '', generatedContent);
           ref.read(_topicContentStateProvider.notifier).state =
               AsyncValue.data(generatedContent);
         }
@@ -288,8 +298,8 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
       print("Answering question with student class: ${student.grade}");
       final answer = await contentService.answerTopicQuestion(
         subject: widget.subject,
-        chapter: widget.chapter,
-        topic: widget.topic,
+        chapter: widget.chapter ?? '',
+        topic: widget.topic ?? '',
         existingContent: currentContent,
         question: question,
         studentClass: student.grade,
@@ -349,7 +359,7 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.topic,
+        title: Text(widget.topic ?? '',
             style: textTheme.titleLarge?.copyWith(fontSize: 18),
             overflow: TextOverflow.ellipsis),
         actions: [
@@ -373,7 +383,7 @@ class _TopicContentScreenState extends ConsumerState<TopicContentScreen> {
                   else if (value == 'clear_cache')
                     ref
                         .read(contentCacheServiceProvider)
-                        .clearCacheForTopic(widget.topic)
+                        .clearCacheForTopic(widget.topic ?? '')
                         .then((_) => _loadOrGenerateContent());
                 },
                 itemBuilder: (context) => <PopupMenuEntry<String>>[
